@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\GetAttribute;
+use App\traits\GetAttribute;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
