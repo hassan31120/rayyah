@@ -1,0 +1,7 @@
+
+[
+    { "id": "1", "cat_name_ar": "مطاعم", "cat_name_en": "Restruants" },
+    { "id": "2", "cat_name_ar": "خدمات", "cat_name_en": "Services" },
+    { "id": "3", "cat_name_ar": "محلات", "cat_name_en": "Shops" }
+    
+]
