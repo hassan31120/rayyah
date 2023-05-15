@@ -65,9 +65,9 @@ class WalletController extends Controller
             $transaction->reciver_id = $reciver->id;
             $reciver->wallet->increment('balance', $request->balance);
             $transaction->save();
-    
+
             return $this->helper->ResponseJson(1, __('apis.success'));
-    
+
         }
         return $this->helper->ResponseJson(1, __('apis.balance_faild'));
 

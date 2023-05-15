@@ -402,7 +402,7 @@ return [
     "credit" => "دائن",
     "transactionable_type" => "نوع القائم بالحركة",
     "trans"=>"التحويلات",
-    
+
     "orders" => "الطلبات",
     "wallet_details" => "تفاصيل المحفظه",
     "block" => "حظر",

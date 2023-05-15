@@ -37,3 +37,4 @@ class UserRegistration implements ShouldBroadcast
         return 'user-register';
     }
 }
+
