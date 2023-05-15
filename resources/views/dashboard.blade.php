@@ -39,6 +39,19 @@
     <!-- /breadcrumb -->
 @endsection
 @section('content')
+@if (session()->has('success'))
+<script>
+    toastr.success( "{{ __('admin.update_successfully') }}")
+
+</script>
+@endif
+@if (session()->has('login'))
+<script>
+    toastr.success( "{{ __('admin.login') }}")
+
+</script>
+@endif
+
     <!-- row -->
     <div class="row row-sm">
         <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
@@ -504,13 +517,15 @@
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
-        var pusher = new Pusher('daa2dc72ea2be3e8a3e8', {
-            cluster: 'eu'
-        });
+        var pusher = new Pusher('2d29478d36a13c14ce84', {
+      cluster: 'ap1'
+    });
 
-        var channel = pusher.subscribe('pop-up');
+
+        var channel = pusher.subscribe('popup-channel');
         channel.bind('user-register', function(data) {
-            toastr.success(JSON.stringify(data.name) + 'تم اضافه فاتوره جديدع بواسطه')
+            toastr.success(  'لديك مستخدم جديد')
+            // alert(JSON.stringify(data))
 
         });
     </script>

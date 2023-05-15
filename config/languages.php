@@ -7,7 +7,7 @@ return [
     ],
     'ar' => [
         'display' => 'arabic',
-        'flag-icon' => 'eg',
+        'flag-icon' => 'sa',
     ],
 
 ];

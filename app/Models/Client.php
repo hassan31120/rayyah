@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\traits\GetAttribute;
+use App\Traits\GetAttribute;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -54,6 +54,11 @@ class Client extends Authenticatable
 
     public function addresses(){
         return $this->hasMany(Address::class, 'user_id');
+    }
+
+    public function wallet()
+    {
+        return $this->hasOne('App\Models\Wallet' );
     }
 
 

@@ -12,14 +12,12 @@ class UserRegistration implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $name;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($name)
+    public function __construct()
     {
-        $this->name = $name;
     }
 
     /**
@@ -30,7 +28,7 @@ class UserRegistration implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('pop-up'),
+            new Channel('popup-channel'),
         ];
     }
 
@@ -39,3 +37,4 @@ class UserRegistration implements ShouldBroadcast
         return 'user-register';
     }
 }
+

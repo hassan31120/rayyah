@@ -4,7 +4,8 @@ return [
     "create"=>"اضافه",
     'places'=>'الأماكن',
     'add-place'=>'إضافه مكان',
-    
+    'reme'=>'تذكرني',
+    'login' => 'مرحبا بعودتك',
     "Products"=>"المنتجات",
     "welcome" => "مرحبا بك",
     "address" => " العنوان",
@@ -102,6 +103,7 @@ return [
     "logo_image_induction" => "صورة لوجو الموقع التعريفي",
     "logo_image" => "صورة لوجو الموقع ",
     "fav_icon_image" => "صورة  ال fav icon ",
+    "logout" => "تسجيل الخروج",
     "background_image" => "صورة خلفية صفحة تسجيل الدخول",
     "virtual_user_image" => "صورة المستخدم الافتراضية",
     "Picture_of_Loader" => "صورة ال  loader ",
@@ -148,6 +150,8 @@ return [
     "phone" => "رقم الهاتف",
     "status" => "الحالة",
     "add" => "اضافه",
+    "password_confirmation" => "تأكيد كلمه المرور",
+
     "update" => "تعديل",
     "update_successfullay" => "تم التعديل بنجاح",
     "sort_by" => "ترتيب حسب",
@@ -198,7 +202,7 @@ return [
     "control" => "التحكم",
     'contac' => "التواصل",
     "there_are_no_matches_matching" => "لا يوجد نتائج مطابقه",
-    "login" => "تسجيل دخول",
+    "login2" => "تسجيل دخول",
     "section" => " القسم",
     "add_section" => "اضافة قسم",
     "edit_section_page" => " صفحة تعديل قسم",
@@ -398,7 +402,7 @@ return [
     "credit" => "دائن",
     "transactionable_type" => "نوع القائم بالحركة",
     "trans"=>"التحويلات",
-    
+
     "orders" => "الطلبات",
     "wallet_details" => "تفاصيل المحفظه",
     "block" => "حظر",

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -23,6 +24,10 @@ class AdminController extends Controller
 
      //   return view($id);
     }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -64,7 +69,11 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = auth()->user()->id;
+        $admin = User::where('id', $id)->first();
+        if($admin){
+                    return view('admin.profile.edit', compact('admin'));
+         }
     }
 
     /**
@@ -76,7 +85,28 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id= auth()->user()->id;
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'same:confirm-password',
+        ]);
+        $input = $request->except('password');
+        $admin = User::where('id', $id)->first();
+
+        if ($request->password) {
+
+            if (!empty($user->password)) {
+                $user->password = Hash::make($request->password);
+            } else {
+                $input = Arr::except($input, array('password'));
+            }
+        }
+        $admin->update($input);
+
+        return redirect()->back()
+            ->with('success', 'تم تحديث معلومات المستخدم بنجاح');
     }
 
     /**

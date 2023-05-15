@@ -46,14 +46,10 @@ Route::get('language/{locale}', function ($locale) {
     return redirect()->back();
 })->name('language');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LangController@switchLang']);
 
+Route::middleware('auth')->group(function () {
 
 Route::controller(ProductController::class)->group(function(){
     Route::get('products','index')->name('products');
@@ -68,6 +64,9 @@ Route::controller(TransactionController::class)->group(function(){
     Route::get('transactions','index')->name('users.index');
 
 });
+
+Route::prefix('users')->group(function () {
+
 
 Route::controller(ClientController::class)->group(function(){
     Route::get('users', 'index')->name('users');
@@ -87,14 +86,16 @@ Route::controller(DeliveryController::class)->group(function(){
     Route::delete('delivery/delete/{id}', 'destroy')->name('delivery.destroy');
 });
 
+});
+
 Route::controller(ContactController::class)->group(function(){
-    Route::get('contacts', 'index')->name('contacts');
-    Route::delete('contact/delete/{id}', 'destroy')->name('contact.destroy');
+    Route::get('settings/contacts', 'index')->name('contacts');
+    Route::delete('settings/contact/delete/{id}', 'destroy')->name('contact.destroy');
 });
 
 Route::controller(ComplainController::class)->group(function(){
-    Route::get('complains', 'index')->name('complains');
-    Route::delete('complain/delete/{id}', 'destroy')->name('complain.destroy');
+    Route::get('settings/complains', 'index')->name('complains');
+    Route::delete('settings/complain/delete/{id}', 'destroy')->name('complain.destroy');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -107,5 +108,9 @@ Route::controller(ComplainController::class)->group(function(){
 // Route::get('unreadNotifications', 'InvoicesController@unreadNotifications')->name('unreadNotifications');
 
 Route::get('/{page}', [AdminController::class, 'index']);
+Route::get('/{page}/edit', [AdminController::class, 'edit'])->name('profile.edit');
+Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
 
+
+});
 require __DIR__ . '/auth.php';

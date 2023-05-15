@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Category;
-use App\traits\GetAttribute;
+use App\Traits\GetAttribute;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,7 +16,6 @@ class Product extends Model
     public $translatable = ['name','description'];
     protected $table = 'products';
     protected $guarded = [];
-
 
     public function __construct(array $attributes = [])
     {
@@ -38,4 +37,6 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
+
+
 }

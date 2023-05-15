@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\user;
 
 use App\Models\User;
+use App\Models\Client;
 use App\helpers\helper;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -51,22 +52,22 @@ class WalletController extends Controller
     public function sendBalane(Request $request){
         $validate = $request->validate([
             'balance' => 'required',
-            'number' => 'required|exists:users,number',
+            'number' => 'required|exists:clients,number',
         ]);
-        $sender = Auth::user();
-        $reciver = User::where('number',$validate['number'])->first();
+        $sender = auth()->user();
+        $reciver = Client::where('number',$validate['number'])->first();
         $transaction = new Transaction();
         if ($sender->wallet->balance >= $request->balance) {
             $sender->wallet->balance -=  $request->balance;
             $sender->wallet->save();
-            $transaction->balance = $validate['balance'];
+            $transaction->value = $validate['balance'];
             $transaction->sender_id = $sender->id;
             $transaction->reciver_id = $reciver->id;
             $reciver->wallet->increment('balance', $request->balance);
             $transaction->save();
-    
+
             return $this->helper->ResponseJson(1, __('apis.success'));
-    
+
         }
         return $this->helper->ResponseJson(1, __('apis.balance_faild'));
 
