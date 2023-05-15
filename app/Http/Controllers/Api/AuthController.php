@@ -86,6 +86,8 @@ class AuthController extends Controller
             'verification_code' => null
         ]);
 
+        // hello hassan
+
         $token = $user->createToken('Mohammed-Hassan')->plainTextToken;
 
         return response()->json([
