@@ -56,7 +56,7 @@
   <div class="col-xl-12">
       <div class="card mg-b-20">
           <div class="card-header pb-0">
-                  <a href={{url('delivery/create') }} class="modal-effect btn btn-sm btn-primary" style="color:white"><i
+                  <a href={{url('users/delivery/create') }} class="modal-effect btn btn-sm btn-primary" style="color:white"><i
                           class="fas fa-plus"></i>&nbsp; {{ __('admin.add') }}</a>
 
               @can('تصدير EXCEL')
@@ -78,7 +78,7 @@
                               <th class="border-bottom-0">{{ __('admin.phone') }}</th>
 
                               <th class="border-bottom-0">{{ __('admin.control') }}</th>
-                           
+
                           </tr>
                       </thead>
                       <tbody>
@@ -102,12 +102,12 @@
                                   <td>{{ $item->email }}</td>
                                   <td>{{ $item->number }}</td>
 
-                                
-                            
-                                  <td>
-                                   
 
-                                    
+
+                                  <td>
+
+
+
                                     <a href="{{ route('delivery.edit',$item->id) }}"  class="btn round btn-outline-primary">
                                       <i
                                        class="fa-solid fa-pen-to-square"></i>

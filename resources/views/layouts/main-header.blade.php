@@ -61,7 +61,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="dropdown nav-item main-header-message ">
+                {{-- <div class="dropdown nav-item main-header-message ">
                     <a class="new nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg"
                             class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -151,7 +151,7 @@
                             <a href="text-center">VIEW ALL</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="dropdown nav-item main-header-notification">
                     <a class="new nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24"

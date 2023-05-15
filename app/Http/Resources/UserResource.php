@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'email'     => $this->email,
             'number'    => $this->number,
             'userType'  => $this->userType,
-            'balance'   => $this->balance,
+            'balance'   => (double) $this->wallet->balance,
             'image'     => $this->when(true, function () {
                 if (isset($this->attachmentRelation[0])) {
                     return asset($this->attachmentRelation[0]->path);

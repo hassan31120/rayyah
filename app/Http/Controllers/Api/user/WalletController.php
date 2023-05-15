@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\user;
 
-use App\Models\User;
 use App\Models\Client;
 use App\helpers\helper;
 use App\Models\Transaction;
@@ -29,7 +28,6 @@ class WalletController extends Controller
         $this->walletService->deposit($user, $amount);
         // Redirect to success page or display a success message
         return $this->helper->ResponseJson(1, __('apis.success'), $amount);
-
     }
 
     public function withdraw(Request $request)
@@ -49,12 +47,12 @@ class WalletController extends Controller
         // Display the user's balance
     }
 
-    public function sendBalane(Request $request){
+    public function sendBalance(Request $request){
         $validate = $request->validate([
             'balance' => 'required',
             'number' => 'required|exists:clients,number',
         ]);
-        $sender = auth()->user();
+        $sender = auth('sanctum')->user();
         $reciver = Client::where('number',$validate['number'])->first();
         $transaction = new Transaction();
         if ($sender->wallet->balance >= $request->balance) {

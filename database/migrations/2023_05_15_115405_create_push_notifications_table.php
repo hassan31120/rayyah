@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wallets', function (Blueprint $table) {
+        Schema::create('push_notifications', function (Blueprint $table) {
             $table->id();
-            $table->float('balance');
+            $table->string('title');
+            $table->text('body');
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')
                 ->onUpdate('cascade');
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wallets');
+        Schema::dropIfExists('push_notifications');
     }
 };

@@ -37,7 +37,7 @@
 </script>
 @endif
     <div class="page-wrapper">
-   
+
         <div class="page-body">
             <div class="container-xl">
                 <div class="row row-cards">
@@ -66,7 +66,7 @@
                                                     <td>{{ $item->message }}</td>
                                                     <td>
                                                         <span class=" btn round btn-outline-danger delete-row text-danger"
-                                                            data-url="{{ url('contact/delete/' . $item->id) }}">
+                                                            data-url="{{ url('settings/contact/delete/' . $item->id) }}">
                                                             <i class="fa-solid fa-trash"></i></span>
                                                     </td>
                                                 </tr>
