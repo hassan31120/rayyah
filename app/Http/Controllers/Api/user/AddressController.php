@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\user;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AddressResource;
 use App\Models\Address;
-use App\Models\User;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
