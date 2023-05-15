@@ -424,5 +424,8 @@ return [
     "trips" => "trips",
     "index_trips" => "trips",
     'show_trips' => 'Subscribers',
+    'from' => 'from',
+    'to' => 'to',
+    'trans_value' => 'Transaction value',
 
 ];

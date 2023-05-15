@@ -33,13 +33,12 @@
 @if (session()->has('delete'))
 <script>
     toastr.error( "{{ __('admin.delete_successfully') }}")
-
 </script>
 @endif
 
-   
+
     <div class="page-wrapper">
-    
+
         <div class="page-body">
             <div class="container-xl">
                 <div class="row row-cards">
@@ -64,7 +63,7 @@
                                                     <td>{{ $item->description }}</td>
                                                     <td>
                                                         <span class=" btn round btn-outline-danger delete-row text-danger"
-                                                            data-url="{{ url('complain/delete/' . $item->id) }}">
+                                                            data-url="{{ url('settings/complain/delete/' . $item->id) }}">
                                                             <i class="fa-solid fa-trash"></i></span>
                                                     </td>
                                                 </tr>

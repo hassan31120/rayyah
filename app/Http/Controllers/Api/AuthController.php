@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
+use Twilio\Rest\Client;
 use App\helpers\Attachment;
+use Illuminate\Http\Request;
+use App\Events\UserRegistration;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Client as ClientModel;
-use Illuminate\Http\Request;
-use Twilio\Rest\Client;
+use App\Models\Wallet;
 
 class AuthController extends Controller
 {
     public function auth(Request $request)
     {
         $validatedData = $request->validate([
-            'number' => 'required'
+            'number' => 'required',
+            'userType' => 'nullable'
         ]);
 
         $user = ClientModel::where('number', $validatedData['number'])->first();
@@ -34,6 +37,8 @@ class AuthController extends Controller
             //     )
             // );
 
+            event(new UserRegistration());
+
             return response()->json([
                 'message' => 'code has been sent successfully for login!',
             ], 200);
@@ -42,7 +47,15 @@ class AuthController extends Controller
             $verificationCode = rand(1000, 9999);
             $user = ClientModel::create([
                 'number' => $validatedData['number'],
-                'verification_code' => $verificationCode
+                'verification_code' => $verificationCode,
+            ]);
+            if (isset($validatedData['userType'])) {
+                $user->userType = $validatedData['userType'];
+                $user->save();
+            }
+            $wallet = Wallet::create([
+                'balance' => 0,
+                'client_id' => $user->id,
             ]);
 
             // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
@@ -53,6 +66,8 @@ class AuthController extends Controller
             //         'body' => 'Your verification code is: ' . $verificationCode
             //     )
             // );
+
+            event(new UserRegistration());
 
             return response()->json([
                 'message' => 'code has been sent successfully for registration!',
@@ -85,6 +100,8 @@ class AuthController extends Controller
             'number_verified_at' => now(),
             'verification_code' => null
         ]);
+
+        // hello hassan
 
         $token = $user->createToken('Mohammed-Hassan')->plainTextToken;
 
