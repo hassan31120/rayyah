@@ -38,7 +38,7 @@ Route::get('/', function () {
 Route::get('table', function () {
     return view('table-basic');
 });
-Route::get('/home', [AdminController::class , 'home'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', [AdminController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
@@ -50,21 +50,20 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 
 Route::middleware('auth')->group(function () {
 
-Route::controller(ServiceController::class)->group(function(){
-    Route::get('services','index')->name('services');
-    Route::get('services/create','create')->name('services.create');
-    Route::post('services/store','store')->name('services.store');
-    Route::get('services/edit/{id}','edit')->name('services.edit');
-    Route::post('services/update/{id}','update')->name('services.update');
-    Route::delete('services/delete/{id}','destroy')->name('services.delete');
+    Route::controller(ServiceController::class)->group(function () {
+        Route::get('services', 'index')->name('services');
+        Route::get('services/create', 'create')->name('services.create');
+        Route::post('services/store', 'store')->name('services.store');
+        Route::get('services/edit/{id}', 'edit')->name('services.edit');
+        Route::post('services/update/{id}', 'update')->name('services.update');
+        Route::delete('services/delete/{id}', 'destroy')->name('services.delete');
+    });
 
     Route::controller(TransactionController::class)->group(function () {
         Route::get('transactions', 'index')->name('users.index');
     });
 
     Route::prefix('users')->group(function () {
-
-
         Route::controller(ClientController::class)->group(function () {
             Route::get('users', 'index')->name('users');
             Route::get('user/create', 'create')->name('user.create');
@@ -106,6 +105,5 @@ Route::controller(ServiceController::class)->group(function(){
     Route::get('/{page}', [AdminController::class, 'index']);
     Route::get('/{page}/edit', [AdminController::class, 'edit'])->name('profile.edit');
     Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
-
 });
 require __DIR__ . '/auth.php';

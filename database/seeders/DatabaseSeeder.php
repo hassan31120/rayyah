@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\CatsSeeder;
 use Database\Seeders\CreateAdminUserSeeder;
 use Database\Seeders\PermissionTableSeeder;
 
@@ -24,7 +23,6 @@ class DatabaseSeeder extends Seeder
 
                 $this->call(CreateAdminUserSeeder::class);
                 $this->call(PermissionTableSeeder::class);
-                $this->call(CatsSeeder::class);
 
 
 

@@ -87,7 +87,7 @@
                 <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                     <div class="">
                         <h6 class="mb-3 tx-12 text-white">{{ __('admin.TODAY_EARNINGS') }} </h6>
-                        
+
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
