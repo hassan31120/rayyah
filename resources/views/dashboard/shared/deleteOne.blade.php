@@ -5,6 +5,7 @@
             title: "{{ __('admin.confirm_delete') }}",
             icon: "warning",
             buttons: true,
+            showCloseButton: true,
             dangerMode: true,
         }).then((result) => {
             if (result.value) {

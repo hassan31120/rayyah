@@ -57,59 +57,55 @@ Route::controller(ServiceController::class)->group(function(){
     Route::get('services/edit/{id}','edit')->name('services.edit');
     Route::post('services/update/{id}','update')->name('services.update');
     Route::delete('services/delete/{id}','destroy')->name('services.delete');
-});
 
-Route::controller(TransactionController::class)->group(function(){
-    Route::get('transactions','index')->name('users.index');
+    Route::controller(TransactionController::class)->group(function () {
+        Route::get('transactions', 'index')->name('users.index');
+    });
 
-});
-
-Route::prefix('users')->group(function () {
+    Route::prefix('users')->group(function () {
 
 
-Route::controller(ClientController::class)->group(function(){
-    Route::get('users', 'index')->name('users');
-    Route::get('user/create', 'create')->name('user.create');
-    Route::post('user/store', 'store')->name('user.store');
-    Route::get('user/edit/{id}', 'edit')->name('user.edit');
-    Route::post('user/update/{id}', 'update')->name('user.update');
-    Route::delete('user/delete/{id}', 'destroy')->name('user.destroy');
-});
+        Route::controller(ClientController::class)->group(function () {
+            Route::get('users', 'index')->name('users');
+            Route::get('user/create', 'create')->name('user.create');
+            Route::post('user/store', 'store')->name('user.store');
+            Route::get('user/edit/{id}', 'edit')->name('user.edit');
+            Route::post('user/update/{id}', 'update')->name('user.update');
+            Route::delete('user/delete/{id}', 'destroy')->name('user.destroy');
+        });
 
-Route::controller(DeliveryController::class)->group(function(){
-    Route::get('deliverys', 'index')->name('deliverys');
-    Route::get('delivery/create', 'create')->name('delivery.create');
-    Route::post('delivery/store', 'store')->name('delivery.store');
-    Route::get('delivery/edit/{id}', 'edit')->name('delivery.edit');
-    Route::post('delivery/update/{id}', 'update')->name('delivery.update');
-    Route::delete('delivery/delete/{id}', 'destroy')->name('delivery.destroy');
-});
+        Route::controller(DeliveryController::class)->group(function () {
+            Route::get('deliverys', 'index')->name('deliverys');
+            Route::get('delivery/create', 'create')->name('delivery.create');
+            Route::post('delivery/store', 'store')->name('delivery.store');
+            Route::get('delivery/edit/{id}', 'edit')->name('delivery.edit');
+            Route::post('delivery/update/{id}', 'update')->name('delivery.update');
+            Route::delete('delivery/delete/{id}', 'destroy')->name('delivery.destroy');
+        });
+    });
 
-});
+    Route::controller(ContactController::class)->group(function () {
+        Route::get('settings/contacts', 'index')->name('contacts');
+        Route::delete('settings/contact/delete/{id}', 'destroy')->name('contact.destroy');
+    });
 
-Route::controller(ContactController::class)->group(function(){
-    Route::get('settings/contacts', 'index')->name('contacts');
-    Route::delete('settings/contact/delete/{id}', 'destroy')->name('contact.destroy');
-});
+    Route::controller(ComplainController::class)->group(function () {
+        Route::get('settings/complains', 'index')->name('complains');
+        Route::delete('settings/complain/delete/{id}', 'destroy')->name('complain.destroy');
+    });
 
-Route::controller(ComplainController::class)->group(function(){
-    Route::get('settings/complains', 'index')->name('complains');
-    Route::delete('settings/complain/delete/{id}', 'destroy')->name('complain.destroy');
-});
-
-// Route::get('/home', 'HomeController@index')->name('home');
+    // Route::get('/home', 'HomeController@index')->name('home');
 
 
-// Route::get('MarkAsRead_all','InvoicesController@MarkAsRead_all')->name('MarkAsRead_all');
+    // Route::get('MarkAsRead_all','InvoicesController@MarkAsRead_all')->name('MarkAsRead_all');
 
-// Route::get('unreadNotifications_count', 'InvoicesController@unreadNotifications_count')->name('unreadNotifications_count');
+    // Route::get('unreadNotifications_count', 'InvoicesController@unreadNotifications_count')->name('unreadNotifications_count');
 
-// Route::get('unreadNotifications', 'InvoicesController@unreadNotifications')->name('unreadNotifications');
+    // Route::get('unreadNotifications', 'InvoicesController@unreadNotifications')->name('unreadNotifications');
 
-Route::get('/{page}', [AdminController::class, 'index']);
-Route::get('/{page}/edit', [AdminController::class, 'edit'])->name('profile.edit');
-Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
-
+    Route::get('/{page}', [AdminController::class, 'index']);
+    Route::get('/{page}/edit', [AdminController::class, 'edit'])->name('profile.edit');
+    Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
 
 });
 require __DIR__ . '/auth.php';

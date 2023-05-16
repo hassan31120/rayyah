@@ -408,7 +408,7 @@ return [
     "credit" => "دائن",
     "transactionable_type" => "نوع القائم بالحركة",
     "trans"=>"التحويلات",
-    
+
     "orders" => "الطلبات",
     "wallet_details" => "تفاصيل المحفظه",
     "block" => "حظر",
@@ -452,7 +452,10 @@ return [
     "seats" => "عدد المقاعد",
     "trips" => "الرحلات",
     "index_trips" => "الرحلات",
-    'show_trips' => 'المشرتكين'
+    'show_trips' => 'المشرتكين',
+    'from' => 'من',
+    'to' => 'إلى',
+    'trans_value' => 'قيمة التحويل',
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!

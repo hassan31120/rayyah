@@ -25,16 +25,19 @@ use App\Http\Controllers\Api\user\DeliveryController;
 
 Route::group(['middleware' => 'api-lang'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
+
         Route::post('/add-cart', [CartController::class,'createCart']);
         Route::post('/cart-details', [CartController::class,'cartDetails']);
         Route::post('delete-item-cart', [CartController::class,'removeFromCart']);
         Route::post('place-order', [OrderController::class,'placeOrder']);
         Route::get('home',[UserController::Class , 'home']);
         Route::post('category',[UserController::Class , 'category']);
+
         Route::get('/user_addresses', [AddressController::class, 'index']);
         Route::post('/add_address', [AddressController::class, 'store']);
         Route::post('/edit_address/{id}', [AddressController::class, 'update']);
         Route::post('/del_address/{id}', [AddressController::class, 'destroy']);
+
         Route::get('my-orders',[UserController::class,'myOrders']);
         Route::post('deposit',[WalletController::class , 'deposit']);
         Route::post('withdraw',[WalletController::class , 'withdraw']);
@@ -47,8 +50,7 @@ Route::group(['middleware' => 'api-lang'], function () {
         Route::get('/profile', [AuthController::class, 'profile']);
         Route::post('/editProfile', [AuthController::class, 'editProfile']);
         Route::post('/delUser', [AuthController::class, 'delUser']);
-    
-        Route::get('/settings', [SettingController::class, 'index']);
+
 
         Route::prefix('delivery')->group(function(){
             Route::post('list-orders',[DeliveryController::class,'listOrders']);
@@ -56,21 +58,18 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::post('finish-order',[DeliveryController::class,'finishOrder']);
             Route::post('my-orders',[DeliveryController::class,'myOrders']);
 
-
-
         });
 
-    
-    
     }) ;
             
-        
+    });
+    Route::get('/settings', [SettingController::class, 'index']);
+
+
+
     Route::post('/auth', [AuthController::class, 'auth']);
     Route::post('/verify', [AuthController::class, 'verify']);
-    
-    Route::post('/send_complain', [ComplainsController::class, 'send_complain']);
-Route::post('/contact_us', [ComplainsController::class, 'contact_us']);
 
-    
-    });
-    
+    Route::post('/send_complain', [ComplainsController::class, 'send_complain']);
+    Route::post('/contact_us', [ComplainsController::class, 'contact_us']);
+});
