@@ -22,18 +22,18 @@ class AuthController extends Controller
 
         if ($user) {
             // User exists, send verification code for login
-            $verificationCode = rand(1000, 9999);
+            // $verificationCode = rand(1000, 9999);
 
-            $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
-            $client->messages->create(
-                $user->number,
-                array(
-                    'from' => env('TWILIO_PHONE_NUMBER'),
-                    'body' => 'Your verification code is: ' . $verificationCode
-                )
-            );
+            // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
+            // $client->messages->create(
+            //     $user->number,
+            //     array(
+            //         'from' => env('TWILIO_PHONE_NUMBER'),
+            //         'body' => 'Your verification code is: ' . $verificationCode
+            //     )
+            // );
 
-            $user->verification_code = $verificationCode;
+            // $user->verification_code = $verificationCode;
             $user->save();
             event(new UserRegistration());
 

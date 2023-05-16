@@ -10,6 +10,7 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\InvoiceAchiveController;
 use App\Http\Controllers\InvoiceReportController;
 use App\Http\Controllers\Admin\ComplainController;
@@ -37,9 +38,7 @@ Route::get('/', function () {
 Route::get('table', function () {
     return view('table-basic');
 });
-Route::get('/home', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', [AdminController::class , 'home'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
@@ -51,13 +50,13 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 
 Route::middleware('auth')->group(function () {
 
-Route::controller(ProductController::class)->group(function(){
-    Route::get('products','index')->name('products');
-    Route::get('products/create','create')->name('products.create');
-    Route::post('products/store','store')->name('products.store');
-    Route::get('products/edit/{id}','edit')->name('products.edit');
-    Route::post('products/update/{id}','update')->name('products.update');
-    Route::delete('products/delete/{id}','destroy')->name('products.delete');
+Route::controller(ServiceController::class)->group(function(){
+    Route::get('services','index')->name('services');
+    Route::get('services/create','create')->name('services.create');
+    Route::post('services/store','store')->name('services.store');
+    Route::get('services/edit/{id}','edit')->name('services.edit');
+    Route::post('services/update/{id}','update')->name('services.update');
+    Route::delete('services/delete/{id}','destroy')->name('services.delete');
 });
 
 Route::controller(TransactionController::class)->group(function(){

@@ -6,9 +6,12 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\helpers\helper;
 use App\Models\Product;
+use App\Models\Service;
+use App\Events\newOrder;
 use App\Models\OrderItem;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Events\UserRegistration;
 use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
@@ -16,6 +19,36 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->helper = new helper();
+    }
+
+    public function placeOrder(Request $request){
+        $validate = $request->validate([
+            'payment_method' => 'required',
+            'address_id'=>'required:exists,addresses',
+            'total_del_price' => 'required',
+            'description' => 'required',
+            'service_id'=>'required|exists:services,id',
+        ]);
+        $address = auth()->user()->addresses()->where('user_id', auth()->user()->id)->first();
+        $service = Service::findorFail($validate['service_id']);
+        $order = new Order();
+        $order->payment_method = $validate['payment_method'];
+        $order->description = $validate['description'];
+        $order->total_del_price = $validate['total_del_price'];
+        $order->address_id = $address->id;
+        $order->service_id = $service->id;
+        $order->client_id = auth()->user()->id;
+        $order->ref_number = uniqid();
+
+        $order->save();
+
+        event(new newOrder());
+
+        return $this->helper->ResponseJson(1, __('apis.success'), $order);
+
+
+
+
     }
 
     public function checkout(Request $request)

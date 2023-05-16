@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
 @endsection
 @section('title')
-    {{ __('admin.add-plac') }}
+    {{ __('admin.add-place') }}
 @stop
 
 @section('page-header')
@@ -21,7 +21,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{ __('admin.places') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                <h4 class="content-title mb-0 my-auto">{{ __('admin.services') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
                     {{ __('admin.add-place') }}
                 </span>
             </div>
@@ -46,7 +46,7 @@
     <div class="card">
    
       <div class="card-body">
-        <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('services.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <div class="row">
@@ -66,8 +66,6 @@
 
                 </div>
             </div>
-            <input type="hidden"  value="" id="latitude" name="latitude">
-            <input type="hidden" value="" id="longitude"  name="longitude">
 
             <div class="mb-3">
                 <div class="row">
@@ -85,43 +83,14 @@
                 @endforeach
             </div>
             </div>
-            <div class="mb-3">
-             <label class="form-label">{{ __('admin.rate') }}</label>
-             <input class="form-control" name="rate" type="integer"  required data-validation-required-message="{{__('admin.this_field_is_required')}}">
-            </div>
-          <div class="form-group mb-3 ">
-            <label class="form-label">{{ __('site.category') }}</label>
-            <div>
-                <select class="form-control" name="category_id" required data-validation-required-message  aria-label="Default select example" >
-                    <option value="">select category</option>
-                    @foreach ($categories as $category)
-                        <option value={{ $category->id }}>{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-          </div>
-          <div class="mb-3 ">
-            <label class="form-label">{{ __('admin.logo') }}</label>
-
-            <div class="form-group mb-3">
-                <input name="logo" type="file" class="form-control"  required data-validation-required-message="{{__('admin.this_field_is_required')}}">
-
-            </div>
-            <div class="form-group">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-                </div>
-            </div>
+         
+        
+       <div class="mb-3">
+        <div class="row">
+            <input class="form-control" name="attachment" type="file">
         </div>
-        <div class="mb-3 ">
-            <label class="form-label">{{ __('admin.images') }}</label>
-
-                <input type="file" multiple class="form-control" name="image[]"  required data-validation-required-message="{{__('admin.this_field_is_required')}}">
-
-            </div>
-            <input id="pac-input" type="text">
-            <div id="map" style="height: 400px;width: 800px;" class="mb-3">
-            </div>
+       </div>
+       
 
             <button type="submit" class="btn btn-primary">Submit</button>
 
