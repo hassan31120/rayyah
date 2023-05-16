@@ -34,7 +34,7 @@ return [
     "delete_question" => "حذف سؤال",
     "delete_multible_question" => "حذف مجموعة من الاسئلة الشائعة",
     "question" => "السؤال",
-    'rate'=>'القييم',
+    'rate'=>'التقييم',
     'add_user'=>'إضافه مستخدم',
     'logo'=>'الشعار',
     'images'=>'الصور التعريفيه',
@@ -456,6 +456,7 @@ return [
     'from' => 'من',
     'to' => 'إلى',
     'trans_value' => 'قيمة التحويل',
+    'balance' => 'الرصيد',
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!

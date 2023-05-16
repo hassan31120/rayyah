@@ -432,5 +432,6 @@ return [
     'from' => 'from',
     'to' => 'to',
     'trans_value' => 'Transaction value',
+    'balance' => 'Balance',
 
 ];

@@ -27,7 +27,7 @@ class Client extends Authenticatable
         'push_token',
         'image',
         'userType',
-        'balance',
+        'rate',
         'verification_code',
         'number_verified_at'
     ];

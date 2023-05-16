@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ComplainsController;
+use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\user\CartController;
 use App\Http\Controllers\Api\user\UserController;
 use App\Http\Controllers\Api\user\OrderController;
@@ -56,6 +57,8 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::post('finish-order', [DeliveryController::class, 'finishOrder']);
             Route::post('my-orders', [DeliveryController::class, 'myOrders']);
         });
+
+        Route::post('rate', [RateController::class, 'rate']);
     });
     Route::get('/settings', [SettingController::class, 'index']);
 
