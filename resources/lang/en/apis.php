@@ -12,6 +12,7 @@ return [
   | these language lines according to your application's requirements.
   |
    */
+  'order_faild'=>'sorry you cannot cancel order now',
 
   'loggedOut'           => 'Log Out successfully',
   'AdminNotify'         => 'Admin Notify',

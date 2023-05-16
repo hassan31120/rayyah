@@ -9,7 +9,7 @@
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 @endsection
 @section('title')
-{{ __('admin.Products') }}
+{{ __('admin.services') }}
 @stop
 
 
@@ -18,8 +18,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{ __('admin.Products') }} </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                  {{ __('admin.Products') }}</span>
+                <h4 class="content-title mb-0 my-auto">{{ __('admin.services') }} </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
+                  {{ __('admin.services') }}</span>
             </div>
         </div>
 
@@ -56,7 +56,7 @@
   <div class="col-xl-12">
       <div class="card mg-b-20">
           <div class="card-header pb-0">
-                  <a href="products/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
+                  <a href="services/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
                           class="fas fa-plus"></i>&nbsp; {{ __('admin.add') }}</a>
 
               @can('تصدير EXCEL')
@@ -81,14 +81,14 @@
                           @php
                           $i = 0;
                           @endphp
-                          @foreach ($products as $invoice)
+                          @foreach ($services as $item)
                               @php
                               $i++
                               @endphp
                               <tr>
                                   <td>{{ $i }}</td>
-                                  <td>{{ $invoice->name }} </td>
-                                  <td>{{ $invoice->description }}</td>
+                                  <td>{{ $item->name }} </td>
+                                  <td>{{ $item->description }}</td>
                                 
                                 
                             
@@ -96,12 +96,12 @@
                                    
 
                                     
-                                    <a href="{{ route('products.edit',$invoice->id) }}"  class="btn round btn-outline-primary">
+                                    <a href="{{ route('services.edit',$item->id) }}"  class="btn round btn-outline-primary">
                                       <i
                                        class="fa-solid fa-pen-to-square"></i>
                                   </a>
                                     <span class=" btn round btn-outline-danger delete-row text-danger"
-                                   data-url="{{ url('products/delete/' .  $invoice->id) }}"><i
+                                   data-url="{{ url('services/delete/' .  $item->id) }}"><i
                                        class="fa-solid fa-trash"></i></span>
                                   </td>
                               </tr>

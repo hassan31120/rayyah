@@ -23,7 +23,6 @@ class AuthController extends Controller
         $user = ClientModel::where('number', $validatedData['number'])->first();
 
         if ($user) {
-            // User exists, send verification code for login
             $verificationCode = rand(1000, 9999);
             $user->verification_code = $verificationCode;
             $user->save();

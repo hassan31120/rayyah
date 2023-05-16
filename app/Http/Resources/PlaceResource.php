@@ -18,10 +18,8 @@ class PlaceResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
            'description' => $this->description,
-           'logo' => $this->attachmentRelation[0]->path,
-           'image'=>$this->productImages[0]->image,
-           'distance' => $this->distance,
-           'rate'=>$this->rate
+           'image' => $this->attachmentRelation[0]->path,
+          
         ];
     }
 }

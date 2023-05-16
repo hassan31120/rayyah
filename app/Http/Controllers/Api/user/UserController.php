@@ -7,6 +7,7 @@ use App\Models\Wallet;
 use App\helpers\helper;
 use App\Models\Address;
 use App\Models\Product;
+use App\Models\Service;
 use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use App\Http\Resources\OrderResource;
 use App\Http\Resources\PlaceResource;
 use App\Http\Resources\TransResource;
 use App\Http\Resources\HomeCatResource;
+use App\Http\Resources\DelOrderResource;
 use App\Http\Resources\PlaceByCatResource;
 use App\Http\Resources\TrackOrderResource;
 
@@ -47,32 +49,24 @@ class UserController extends Controller
     
     public function home(Request $request)
     {
-        $cats = HomeCatResource::collection(Category::all());
+        $services = HomeCatResource::collection(Service::all());
         
-        if($request->address_id){
-            $address = Address::findOrFail($request->address_id);
-            $latitude       =       $address->lat;
-            $longitude      =       $address->long;
+       if($request->service_id){
+        $service = Service::where('id', $request->service_id)->first();
+        if($service){
+
+        return $this->helper->ResponseJson(1, __('apis.success'),  new PlaceResource($service));
         }else{
-            $latitude       =       auth()->user()->lat;
-            $longitude      =       auth()->user()->lng;
-    
+            return $this->helper->ResponseJson(0, __('apis.faild'), null);
         }
 
-        $places =  $this->toGetPlace($latitude,$longitude)->get(); 
-        if($request->place_id){
+       }
             
-            $places =  $this->toGetPlace($latitude,$longitude)->where('id',$request->place_id)->first(); 
-            if($places){
-                return $this->helper->ResponseJson(1, __('apis.success'),  new PlaceResource($places));
+            if($services){
+                return $this->helper->ResponseJson(1, __('apis.success'),  $services);
 
             }
             return $this->helper->ResponseJson(0, __('apis.faild'));
-
-
-        }
-        
-        return $this->helper->ResponseJson(1, __('apis.success'), ['cats'=>$cats , 'places'=> PlaceResource::collection($places)]);
 
 
     }
@@ -107,6 +101,7 @@ class UserController extends Controller
         }
         return $this->helper->ResponseJson(1, __('apis.success'), OrderResource::collection($orders));
 
+        
 
     }
     public function myTrans(Request $request)
@@ -122,23 +117,32 @@ class UserController extends Controller
     function search(Request $request)
     {
 
-        if($request->address_id){
-            $address = Address::findOrFail($request->address_id);
-            $latitude       =       $address->lat;
-            $longitude      =       $address->long;
-        }else{
-            $latitude       =       auth()->user()->lat;
-            $longitude      =       auth()->user()->lng;
-    
-        }
-        $result = $this->toGetPlace($latitude,$longitude)->where('name', 'LIKE', '%'. $request->name. '%')->get();
+      
+        $result = Service::where('name', 'LIKE', '%'. $request->name. '%')->get();
            if(count($result)){
-                return $this->helper->ResponseJson(1, __('apis.success'), PlaceByCatResource::collection($result));
+                return $this->helper->ResponseJson(1, __('apis.success'), PlaceResource::collection($result));
             }
             else
             {
             return response()->json(['Result' => 'No Data not found'], 404);
           }
+
+
+    }
+
+    public function cancelOrder(Request $request)
+    {
+        $validate = $request->validate([
+            'order_id' => 'required|exists:orders,id',
+        ]);
+        $order = Order::findOrFail($validate['order_id']);
+        if($order->status == 'pending'){
+            $order->status = 'cancelled';
+            $order->save();
+            return $this->helper->ResponseJson(1, __('apis.success'));
+
+        }
+        return $this->helper->ResponseJson(0, __('apis.order_faild'));
 
 
     }

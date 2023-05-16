@@ -20,7 +20,10 @@ class Order extends Model
     {
         return $this->belongsTo('App\Models\Client','delivery_id');
     }
-
+    public function service()
+    {
+        return $this->belongsTo('App\Models\Service','service_id');
+    }
 
     public function items()
     {

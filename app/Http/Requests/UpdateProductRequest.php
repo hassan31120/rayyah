@@ -30,13 +30,7 @@ class UpdateProductRequest extends FormRequest
             'description.en' => 'sometimes',
             'description.fr' => 'sometimes',
             'description.de' => 'sometimes',
-            'rate'=>'sometimes',
-            'latitude'=>'sometimes',
-            'longitude'=>'sometimes',
-
-            'logo' => 'sometimes',
-            'cover' => 'sometimes',
-            'category_id'=>'sometimes',
+      
         ];
     }
 }
