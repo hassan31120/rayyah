@@ -67,4 +67,6 @@ Route::group(['middleware' => 'api-lang'], function () {
 
     Route::post('/send_complain', [ComplainsController::class, 'send_complain']);
     Route::post('/contact_us', [ComplainsController::class, 'contact_us']);
+
+    
 });

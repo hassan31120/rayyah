@@ -106,9 +106,6 @@
                                         <td>{{ $item->rate }}</td>
 
                                         <td>
-
-
-
                                             <a href="{{ route('delivery.edit', $item->id) }}"
                                                 class="btn round btn-outline-primary">
                                                 <i class="fa-solid fa-pen-to-square"></i>
