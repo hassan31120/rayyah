@@ -28,6 +28,7 @@
 @endsection
 
 @section('content')
+
     @if (session()->has('Add'))
         <script>
             toastr.success("{{ __('admin.added_successfully') }}")
@@ -109,6 +110,7 @@
         </div>
         <!--/div-->
     </div>
+
 @endsection
 
 @section('js')

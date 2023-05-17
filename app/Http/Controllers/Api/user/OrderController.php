@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\user;
 
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\Order;
 use App\helpers\helper;
 use App\Models\Product;
@@ -12,7 +13,10 @@ use App\Models\OrderItem;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Events\UserRegistration;
+use App\Notifications\NewOrderNoti;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class OrderController extends Controller
 {
@@ -43,6 +47,12 @@ class OrderController extends Controller
         $order->save();
 
         event(new newOrder());
+
+        $users = User::where('id', 1)->first();
+        $user_create = Auth::user()->number;
+        Notification::send($users, new NewOrderNoti($order->id, $user_create));
+
+        
 
         return $this->helper->ResponseJson(1, __('apis.success'), $order);
 

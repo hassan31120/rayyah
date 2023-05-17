@@ -717,7 +717,7 @@ slide is-expanded side-menu__item {
     content: '';
     width: 3px;
     height: 31px;
-    background: #005ee9;
+    background: #4ad2ea;
     position: absolute;
     left: 0;
 }
@@ -1323,21 +1323,21 @@ slide is-expanded side-menu__item {
 
 .app-sidebar {
   .side-menu__item.active:hover {
-    color: #7282a9 !important;
+    color: #4ad2ea !important;
   }
 
   .slide {
     &.active .side-menu__icon, &.is-expanded .side-menu__icon {
-      fill: #277aec  !important;
+      fill: #4ad2ea  !important;
     }
 
     &.active {
       .side-menu__icon {
-        fill: #277aec  !important;
+        fill: #4ad2ea  !important;
       }
 
       .side-menu__item {
-        color: #277aec  !important;
+        color: #4ad2ea  !important;
       }
     }
   }
@@ -1533,12 +1533,12 @@ slide is-expanded side-menu__item {
 		content: '';
 		width: 3px;
 		height: 31px;
-		background: #005ee9;
+		background: #4ad2ea;
 		position: absolute;
 		left: 0;
 		display:block;
 	}
 }
 .dark-theme .side-menu__item.active .side-menu__icon{
-	fill:#106ef1;
+	fill:#4ad2ea;
 }

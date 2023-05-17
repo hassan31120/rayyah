@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Api\user;
 
+use App\Models\User;
 use App\Models\Order;
 use App\helpers\helper;
 use Illuminate\Http\Request;
+use App\Notifications\OrderDeliver;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\OrderResource;
+use App\Notifications\OrderAcceptNoti;
 use App\Http\Resources\DelOrderResource;
 use App\Http\Resources\TrackOrderResource;
+use Illuminate\Support\Facades\Notification;
 
 class DeliveryController extends Controller
 {
@@ -46,7 +51,12 @@ class DeliveryController extends Controller
             $order->total_cost = $validate['total_service_price'] + $order->total_del_price;
             $order->delivery_id = auth()->user()->id;
             $order->save();
+            $users = User::where('id', 1)->first();
+            $user_create = Auth::user()->name;
+            Notification::send($users, new OrderAcceptNoti($order->id, $user_create));
+
             return $this->helper->ResponseJson(1, __('apis.success'), new TrackOrderResource($order));
+
         }
         return $this->helper->ResponseJson(0, __('apis.faild'));
     }
@@ -61,6 +71,10 @@ class DeliveryController extends Controller
         if($order){
             $order->status = 'done';
             $order->save();
+            $users = User::where('id', 1)->first();
+            $user_create = Auth::user()->name;
+            Notification::send($users, new OrderDeliver($order->id, $user_create));
+
             return $this->helper->ResponseJson(1, __('apis.success'));
         }
         return $this->helper->ResponseJson(0, __('apis.faild'));

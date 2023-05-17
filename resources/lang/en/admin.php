@@ -10,6 +10,17 @@ return [
     'sender'=>'Sender',
     "total_earning"=>"Total Earning",
     "Product_sold" => "sales",
+    "delivery"=>"Delivery",
+    "invoice"=>"Invoice",
+    'all'=>'All',
+    'pending'=>'Pending',
+    "read"=>'mark All as Read',
+
+
+    'recent'=>'On D elivery',
+    'done'=>'Finished',
+    'cancelled'=>'Cancelled',
+
 
     'reciver'=>'Reciver',
     "trans"=>"Transactions",
@@ -178,9 +189,20 @@ return [
     'add_user'=>'Create User',
     'contac' => "Contacts",
     "message"=>"Message",
-    "ray"=>"Rayyah",
+    "ray"=>"Rayih",
     'reme'=>'Remember me',
     "services"=>'Services',
+    "comar-day"=> " Compared to yesterday",
+    "compar-week"=>"Compared to Last week",
+    "order-status"=> "Order Status",
+    "recenr-er"=>"YOUR MOST RECENT EARNINGS
+    ",
+    "Sales-Count"=>"sales count",
+    "total_sales"=>"Total Sales",
+
+    'mond'=>'Sales mondsitoring template ',
+
+
 
     "section" => " Section",
     "add_section" => "Add a section",

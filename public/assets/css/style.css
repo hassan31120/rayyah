@@ -445,6 +445,10 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
+  .search-live{
+    width: 230px; margin-bottom:10px; float: left;
+  }
+
 .container, .container-fluid {
   width: 100%;
   padding-right: 15px;
