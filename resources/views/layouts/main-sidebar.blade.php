@@ -36,9 +36,9 @@
             </li>
 
             <li class="slide {{ Request::segment(1) == 'services' ? 'active' : '' }}" >
-                
+
                 <a class="side-menu__item" href="{{ url('/' . ($page = 'services')) }}"><svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M216 64c-13.3 0-24 10.7-24 24s10.7 24 24 24h16v33.3C119.6 157.2 32 252.4 32 368H480c0-115.6-87.6-210.8-200-222.7V112h16c13.3 0 24-10.7 24-24s-10.7-24-24-24H256 216zM24 400c-13.3 0-24 10.7-24 24s10.7 24 24 24H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H24z"/></svg><span class="side-menu__label">{{ __('admin.services') }}</span></a>
-    
+
             </li>
 
             <li class="slide {{ request()->is('users/*') ? 'active' : '' }}">
@@ -84,6 +84,15 @@
                         <path
                             d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
                     </svg><span class="side-menu__label">{{ __('admin.trans') }}</span></a>
+            </li>
+
+            <li class="slide {{ Request::segment(1) == 'banners' ? 'active' : '' }}">
+                <a class="side-menu__item" href="{{ url('/' . ($page = 'banners')) }}"><svg
+                        class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                    </svg><span class="side-menu__label">{{ __('admin.banners') }}</span></a>
             </li>
         </ul>
     </div>

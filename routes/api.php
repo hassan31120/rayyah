@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SettingController;
@@ -68,5 +67,7 @@ Route::group(['middleware' => 'api-lang'], function () {
     Route::post('/send_complain', [ComplainsController::class, 'send_complain']);
     Route::post('/contact_us', [ComplainsController::class, 'contact_us']);
 
-    
+
 });
+
+Route::get('test', [AuthController::class, 'test']);

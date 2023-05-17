@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -57,6 +58,13 @@ Route::middleware('auth')->group(function () {
         Route::get('services/edit/{id}', 'edit')->name('services.edit');
         Route::post('services/update/{id}', 'update')->name('services.update');
         Route::delete('services/delete/{id}', 'destroy')->name('services.delete');
+    });
+
+    Route::controller(BannerController::class)->group(function() {
+        Route::get('banners', 'index')->name('banners');
+        Route::get('banner/create', 'create')->name('banner.create');
+        Route::post('banner/create', 'store')->name('banner.store');
+        Route::delete('banner/delete/{id}', 'destroy')->name('banner.delete');
     });
 
     Route::controller(TransactionController::class)->group(function () {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Wallet;
 use Twilio\Rest\Client;
 use App\helpers\Attachment;
 use Illuminate\Http\Request;
@@ -9,7 +10,6 @@ use App\Events\UserRegistration;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Client as ClientModel;
-use App\Models\Wallet;
 
 class AuthController extends Controller
 {
@@ -78,7 +78,8 @@ class AuthController extends Controller
     {
         $validatedData = $request->validate([
             'number' => 'required',
-            'verification_code' => 'required|digits:4'
+            'verification_code' => 'required|digits:4',
+            'push_token' => 'required'
         ]);
 
         $user = ClientModel::where('number', $validatedData['number'])->first();
@@ -97,7 +98,8 @@ class AuthController extends Controller
 
         $user->update([
             'number_verified_at' => now(),
-            'verification_code' => null
+            'verification_code' => null,
+            'push_token' => $validatedData['push_token']
         ]);
 
         // hello hassan
@@ -195,5 +197,10 @@ class AuthController extends Controller
                 'msg' => 'there is no such user'
             ], 404);
         }
+    }
+
+    public function test()
+    {
+        
     }
 }

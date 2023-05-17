@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('number_verified_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('push_token')->nullable();
+            $table->string('noti_image')->nullable();
             $table->string('image')->nullable();
             $table->string('userType')->default('user');
             $table->double('rate')->nullable();
