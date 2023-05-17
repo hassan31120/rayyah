@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HomeCatResource extends JsonResource
+class BannerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,8 @@ class HomeCatResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'image' => asset($this->attachmentRelation[0]->path)
+            'id' => $this->id,
+            'banner' => asset($this->banner),
         ];
     }
 }

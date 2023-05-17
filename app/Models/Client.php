@@ -25,9 +25,10 @@ class Client extends Authenticatable
         'email',
         'number',
         'push_token',
+        'noti_image',
         'image',
         'userType',
-        'balance',
+        'rate',
         'verification_code',
         'number_verified_at'
     ];
@@ -58,8 +59,6 @@ class Client extends Authenticatable
 
     public function wallet()
     {
-        return $this->hasOne('App\Models\Wallet' );
+        return $this->hasOne(Wallet::class, 'client_id');
     }
-
-
 }

@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('transaction', function (Blueprint $table) {
             $table->id();
             $table->float('value');
-            $table->integer('sender_id');
-            $table->integer('reciver_id');
-
+            $table->unsignedBigInteger('sender_id');
+            $table->foreign('sender_id')->references('id')->on('clients')->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->unsignedBigInteger('reciver_id');
+            $table->foreign('reciver_id')->references('id')->on('clients')->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

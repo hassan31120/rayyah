@@ -79,7 +79,7 @@ class Attachment
 
         ///////////////////////////////
 
-        $destinationPath = public_path() . '/uploads/thumbnails/' . $folder_name . '/';
+        $destinationPath = public_path() . '/storage/thumbnails/' . $folder_name . '/';
         $extension = $file->getClientOriginalExtension(); // getting image extension
 
         if (!file_exists($destinationPath)) {
@@ -92,7 +92,7 @@ class Attachment
             $file->move($destinationPath, $name); // uploading file to given
             $model->$relation()->create(
                 [
-                    'path' => 'uploads/thumbnails/' . $folder_name . '/' . $name,
+                    'path' => 'storage/thumbnails/' . $folder_name . '/' . $name,
                     'type' => $type,
                     'usage' => $usage
                 ]
@@ -105,7 +105,7 @@ class Attachment
 
             $model->$relation()->create(
                 [
-                    'path' => 'uploads/thumbnails/' . $folder_name . '/' . $imageResize,
+                    'path' => 'storage/thumbnails/' . $folder_name . '/' . $imageResize,
                     'type' => $type,
                     'usage' => $usage
                 ]
@@ -144,7 +144,7 @@ class Attachment
         }
 
         $image = $file;
-        $destinationPath = public_path() . '/uploads/thumbnails/' . $folder_name . '/';
+        $destinationPath = public_path() . '/storage/thumbnails/' . $folder_name . '/';
         $extension = $file->getClientOriginalExtension(); // getting image extension
         if (!file_exists($destinationPath)) {
             mkdir($destinationPath, 0777  , true);
@@ -156,7 +156,7 @@ class Attachment
 
             $input =
                 [
-                    'path' => 'uploads/thumbnails/' . $folder_name . '/' . $name,
+                    'path' => 'storage/thumbnails/' . $folder_name . '/' . $name,
                     'type' => $type,
                     'usage' => $usage
                 ];
@@ -176,7 +176,7 @@ class Attachment
 
         $input =
             [
-                'path' => 'uploads/thumbnails/' . $folder_name . '/' . $imageResize,
+                'path' => 'storage/thumbnails/' . $folder_name . '/' . $imageResize,
                 'type' => $type,
                 'usage' => $usage,
             ];
@@ -254,7 +254,7 @@ class Attachment
         $folder_name = 'qr-codes/' . Carbon::now()->toDateString();
         $name = $size . '-' . time() . '' . rand(11111, 99999) . '.' . $extension;
 
-        $destinationPath = public_path() . '/uploads/thumbnails/' . $folder_name . '/';
+        $destinationPath = public_path() . '/storage/thumbnails/' . $folder_name . '/';
 
         if (!file_exists($destinationPath)) {
             mkdir($destinationPath, 0755);
@@ -264,7 +264,7 @@ class Attachment
 
         $model->$relation()->create(
             [
-                'path' => 'uploads/thumbnails/' . $folder_name . '/' . $name,
+                'path' => 'storage/thumbnails/' . $folder_name . '/' . $name,
                 'type' => $type,
                 'usage' => $usage
             ]
