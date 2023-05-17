@@ -92,14 +92,17 @@
                                             <td><img src="{{ asset($item->attachmentRelation[0]->path) }} " alt="avatar"
                                                     height="60" style="border-radius:20px;"></td>
                                         @else
-                                            <td><img src="{{ asset('admin/app-assets/images/profile.png') }}" alt="avatar"
+                                            <td><img src="{{ asset('assets/img/profile.png') }}" alt="avatar"
                                                     height="60"></td>
                                         @endisset
                                         <td>{{ $item->name }} </td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->number }}</td>
+                                        @isset($item->wallet)
                                         <td>{{ $item->wallet->balance }}</td>
-
+                                        @else
+                                        <td>0</td>
+                                        @endisset
                                         <td>
 
                                             <a href="{{ route('user.edit', $item->id) }}"
@@ -107,7 +110,7 @@
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <span class=" btn round btn-outline-danger delete-row text-danger"
-                                                data-url="{{ url('user/delete/' . $item->id) }}"><i
+                                                data-url="{{ url('users/user/delete/' . $item->id) }}"><i
                                                     class="fa-solid fa-trash"></i></span>
                                         </td>
                                     </tr>

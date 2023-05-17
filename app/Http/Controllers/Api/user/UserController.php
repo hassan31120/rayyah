@@ -13,6 +13,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BannerResource;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\PlaceResource;
 use App\Http\Resources\TransResource;
@@ -20,6 +21,7 @@ use App\Http\Resources\HomeCatResource;
 use App\Http\Resources\DelOrderResource;
 use App\Http\Resources\PlaceByCatResource;
 use App\Http\Resources\TrackOrderResource;
+use App\Models\Banner;
 
 class UserController extends Controller
 {
@@ -46,11 +48,11 @@ class UserController extends Controller
     public function home(Request $request)
     {
         $services = HomeCatResource::collection(Service::all());
+        $banners = Banner::all();
 
         if ($request->service_id) {
             $service = Service::where('id', $request->service_id)->first();
             if ($service) {
-
                 return $this->helper->ResponseJson(1, __('apis.success'), new PlaceResource($service));
             } else {
                 return $this->helper->ResponseJson(0, __('apis.faild'), null);
@@ -58,7 +60,10 @@ class UserController extends Controller
         }
 
         if ($services) {
-            return $this->helper->ResponseJson(1, __('apis.success'), $services);
+            return $this->helper->ResponseJson(1, __('apis.success'), [
+                'services' => PlaceResource::collection($services),
+                'Banners' => BannerResource::collection($banners)
+            ]);
         }
         return $this->helper->ResponseJson(0, __('apis.faild'));
     }

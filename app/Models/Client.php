@@ -25,6 +25,7 @@ class Client extends Authenticatable
         'email',
         'number',
         'push_token',
+        'noti_image',
         'image',
         'userType',
         'rate',

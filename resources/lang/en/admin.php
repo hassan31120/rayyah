@@ -433,5 +433,7 @@ return [
     'to' => 'to',
     'trans_value' => 'Transaction value',
     'balance' => 'Balance',
+    'banner' => 'Banner',
+    'banners' => 'Banners',
 
 ];
