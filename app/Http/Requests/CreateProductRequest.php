@@ -26,18 +26,13 @@ class CreateProductRequest extends FormRequest
             'name.en' => 'required',
             'name.fr' => 'sometimes',
             'name.de' => 'sometimes',
-            'rate'=>'required',
+           
 
             'description.ar' => 'required',
             'description.en' => 'required',
             'description.fr' => 'sometimes',
             'description.de' => 'sometimes',
-            'latitude'=>'required',
-            'longitude'=>'required',
-            'logo' => 'required',
-            'category_id'=>'required',
-            'image'=>'nullable'
-
+            'attachment' => 'required',
 
         ];
     }

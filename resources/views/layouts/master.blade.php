@@ -56,3 +56,37 @@
     }, 5000);
 </script>
 
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('2d29478d36a13c14ce84', {
+  cluster: 'ap1'
+});
+
+
+    var channel = pusher.subscribe('popup-channel');
+    channel.bind('user-register', function(data) {
+        toastr.success(  'لديك مستخدم جديد')
+        // alert(JSON.stringify(data))
+
+    });
+
+    var channel2 = pusher.subscribe('popup-channel');
+    channel.bind('new-order', function(data) {
+        toastr.success(  'لديك طلب جديد')
+        // alert(JSON.stringify(data))
+
+    });
+
+
+
+    
+</script>
+
+
+

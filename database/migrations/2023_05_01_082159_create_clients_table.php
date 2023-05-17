@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('push_token')->nullable();
             $table->string('image')->nullable();
             $table->string('userType')->default('user');
-            $table->double('balance')->nullable();
+            $table->double('rate')->nullable();
             $table->rememberToken();
             $table->timestamps();
-                });
+        });
     }
 
     /**

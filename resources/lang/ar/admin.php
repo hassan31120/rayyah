@@ -3,7 +3,7 @@ return [
     "home"=>"الرئيسيه",
     "create"=>"اضافه",
     'places'=>'الأماكن',
-    'add-place'=>'إضافه مكان',
+    'add-place'=>'إضافه خدمه',
     'reme'=>'تذكرني',
     'login' => 'مرحبا بعودتك',
     "Products"=>"المنتجات",
@@ -11,6 +11,11 @@ return [
     "address" => " العنوان",
     "weather" => "الطقس",
     "riyadh" => "الرياض",
+    "Product_sold" => "المبيعات",
+
+    "TODAY_ORDERS"=>"الطلبات اليوميه",
+    "TODAY_EARNINGS"=>"الدخل اليومي ",
+    "total_earning"=>"اجمالي الدخل",
     "induction_Statistics" => "احصائيات الموقع التعريفي",
     "Statistics" => "الاحصائيات",
     "country_and_cities" => "الدول والمدن",
@@ -29,7 +34,7 @@ return [
     "delete_question" => "حذف سؤال",
     "delete_multible_question" => "حذف مجموعة من الاسئلة الشائعة",
     "question" => "السؤال",
-    'rate'=>'القييم',
+    'rate'=>'التقييم',
     'add_user'=>'إضافه مستخدم',
     'logo'=>'الشعار',
     'images'=>'الصور التعريفيه',
@@ -40,6 +45,7 @@ return [
     "question_in_english" => "السؤال بالانجليزية",
     "answer" => "الاجابه",
     "add_a_banner" => "اضافة بنر اعلاني",
+    "services"=>'الخدمات',
     "delete_a_banner" => "حذف بنر اعلاني",
     "delete_multible_banner" => "حذف مجموعة بنرات  اعلانية",
     "modification_of_banner" => "تعديل بنر اعلاني",
@@ -450,6 +456,7 @@ return [
     'from' => 'من',
     'to' => 'إلى',
     'trans_value' => 'قيمة التحويل',
+    'balance' => 'الرصيد',
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!

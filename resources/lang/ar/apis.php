@@ -12,6 +12,7 @@ return [
   | these language lines according to your application's requirements.
   |
    */
+  'order_faild'=>'عذرا لا يمكنك الغاء الطلب الان',
 
   'loggedOut'      => 'تم تسجيل الخروج بنجاح',
   'AdminNotify'    => 'اشعار اداري',

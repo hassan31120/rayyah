@@ -16,7 +16,9 @@ class HomeCatResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name' => $this->name
+            'name' => $this->name,
+            'description' => $this->description,
+            'image' => asset($this->attachmentRelation[0]->path)
         ];
     }
 }

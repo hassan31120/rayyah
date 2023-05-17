@@ -18,15 +18,10 @@ class OrderResource extends JsonResource
         return [
             'order_number'=>$this->id,
             'address'=>$this->address->title,
-            'total_price'=> $this->total_price ?? null,
+            'total_price'=> $this->total_cost ,
             'time'=> Carbon::parse($this->created_at)->format('h:i a'),
-            'status'=>$this->status,    
-            'items'=>$this->items->map(function($item, $key){
-                return [
-                    'image'=>$item->product->attachmentRelation[0]->path,
-                    'name'=>$item->product->name
-                ];
-            })
+            'status'=>$this->status,
+            'service'=>$this->service->name
 
 
         ];

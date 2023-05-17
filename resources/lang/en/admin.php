@@ -5,12 +5,16 @@ return [
     'logo'=>'Logo',
     'login' => 'Welcome back',
     "login2" => "Login",
-
+    "TODAY_ORDERS"=>"Today's orders",
+"TODAY_EARNINGS"=>"Today Earnings",
     'sender'=>'Sender',
+    "total_earning"=>"Total Earning",
+    "Product_sold" => "sales",
+
     'reciver'=>'Reciver',
     "trans"=>"Transactions",
 'places'=>'Places',
-'add-place'=>'Add Place',
+'add-place'=>'Add Service',
     'images'=>'Images',
     "Products"=>"Products",
     "create"=>"Create",
@@ -176,6 +180,7 @@ return [
     "message"=>"Message",
     "ray"=>"Rayyah",
     'reme'=>'Remember me',
+    "services"=>'Services',
 
     "section" => " Section",
     "add_section" => "Add a section",
@@ -427,5 +432,6 @@ return [
     'from' => 'from',
     'to' => 'to',
     'trans_value' => 'Transaction value',
+    'balance' => 'Balance',
 
 ];

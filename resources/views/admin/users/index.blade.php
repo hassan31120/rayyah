@@ -72,6 +72,7 @@
                                     <th class="border-bottom-0">{{ __('admin.name') }}</th>
                                     <th class="border-bottom-0">{{ __('admin.email') }}</th>
                                     <th class="border-bottom-0">{{ __('admin.phone') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.balance') }}</th>
 
                                     <th class="border-bottom-0">{{ __('admin.control') }}</th>
 
@@ -97,6 +98,7 @@
                                         <td>{{ $item->name }} </td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->number }}</td>
+                                        <td>{{ $item->wallet->balance }}</td>
 
                                         <td>
 

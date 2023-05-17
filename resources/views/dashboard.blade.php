@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    home
+    {{ __('admin.home') }}
 @stop
 @section('css')
     <!--  Owl-carousel css-->
@@ -63,13 +63,19 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">$5,74.12</h4>
-                                <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+                                <h4 class="tx-20 font-weight-bold mb-1 text-white">{{ $todayCount->count() }}</h4>
+                                <p class="mb-0 tx-12 text-white op-7">Compared to yesterday</p>
                             </div>
                             <span class="float-right my-auto mr-auto">
+                                @if($todayCount->count() > $yesterdayCount->count())
                                 <i class="fas fa-arrow-circle-up text-white"></i>
-                                <span class="text-white op-7"> +427</span>
+                                @else
+                                <i class="fas fa-arrow-circle-down text-warning"></i>
+
+                                @endif
+                                <span class="text-white op-7">{{ $orderDifference }}</span>
                             </span>
+
                         </div>
                     </div>
                 </div>
@@ -81,16 +87,22 @@
                 <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                     <div class="">
                         <h6 class="mb-3 tx-12 text-white">{{ __('admin.TODAY_EARNINGS') }} </h6>
+
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">$1,230.17</h4>
-                                <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+                                <h4 class="tx-20 font-weight-bold mb-1 text-white">${{ number_format($todayCount->sum('total_cost')) }}</h4>
+                                <p class="mb-0 tx-12 text-white op-7">Compared to yesterday</p>
+
                             </div>
                             <span class="float-right my-auto mr-auto">
-                                <i class="fas fa-arrow-circle-down text-white"></i>
-                                <span class="text-white op-7"> -23.09%</span>
+                                @if($todayCount->sum('total_cost') > $yesterdayCount->count('total_cost'))
+                                <i class="fas fa-arrow-circle-up text-white"></i>
+                                @else
+                                <i class="fas fa-arrow-circle-down text-warning"></i>
+
+                                @endif                                <span class="text-white op-7">{{ $orderDifference1 }}</span>
                             </span>
                         </div>
                     </div>
@@ -107,12 +119,18 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">$7,125.70</h4>
+                                <h4 class="tx-20 font-weight-bold mb-1 text-white">${{ number_format($totalIncomeThisWeek) }}</h4>
                                 <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
                             </div>
                             <span class="float-right my-auto mr-auto">
+                                @if($totalIncomeThisWeek > $totalIncomeLastWeek)
                                 <i class="fas fa-arrow-circle-up text-white"></i>
-                                <span class="text-white op-7"> 52.09%</span>
+
+                                @else
+                                <i class="fas fa-arrow-circle-down text-white"></i>
+
+                                @endif
+                                <span class="text-white op-7"> {{ number_format($incomeDifference) }}%</span>
                             </span>
                         </div>
                     </div>
@@ -509,24 +527,4 @@
     <script src="{{ URL::asset('assets/js/index.js') }}"></script>
     <script src="{{ URL::asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
 
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('2d29478d36a13c14ce84', {
-      cluster: 'ap1'
-    });
-
-
-        var channel = pusher.subscribe('popup-channel');
-        channel.bind('user-register', function(data) {
-            toastr.success(  'لديك مستخدم جديد')
-            // alert(JSON.stringify(data))
-
-        });
-    </script>
 @endsection

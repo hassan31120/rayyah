@@ -18,16 +18,14 @@ class TrackOrderResource extends JsonResource
         return [
             'id'=>$this->id,
             'delivery' => $this->delivery->name ?? null,
-            'required_price'=>$this->total_service_price,
+            'service_price'=>$this->total_service_price,
             'delivery_price'=>$this->total_del_price,
             'total_price'=>$this->total_cost,
             'reference number'=> $this->ref_number,
-            'items'=>$this->items->map(function($item, $key){
-                return [
-                    'image'=>$item->product->attachmentRelation[0]->path,
-                    'name'=>$item->product->name
-                ];
-            })
+            'service'=>$this->service->name,
+            'address'=>$this->address->title
+
+           
 
 
         ];

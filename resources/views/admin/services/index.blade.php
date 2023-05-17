@@ -9,25 +9,23 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @endsection
 @section('title')
-    {{ __('admin.deliver') }}
+    {{ __('admin.services') }}
 @stop
-
 
 @section('page-header')
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{ __('admin.deliver') }} </h4><span
+                <h4 class="content-title mb-0 my-auto">{{ __('admin.services') }} </h4><span
                     class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                    {{ __('admin.deliver') }}</span>
+                    {{ __('admin.services') }}</span>
             </div>
         </div>
 
     </div>
     <!-- breadcrumb -->
 @endsection
-
 
 @section('content')
     @if (session()->has('Add'))
@@ -42,20 +40,17 @@
     @endif
     @if (session()->has('delete'))
         <script>
-            toastr.error("{{ __('admin.delete_successfully') }}")
+            toastr.success("{{ __('admin.delete_successfully') }}")
         </script>
     @endif
-
-
-
 
     <div class="row">
         <!--div-->
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
-                    <a href={{ url('users/delivery/create') }} class="modal-effect btn btn-sm btn-primary"
-                        style="color:white"><i class="fas fa-plus"></i>&nbsp; {{ __('admin.add') }}</a>
+                    <a href="services/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
+                            class="fas fa-plus"></i>&nbsp; {{ __('admin.add') }}</a>
 
                     @can('تصدير EXCEL')
                         <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
@@ -68,25 +63,19 @@
                         <table id="example1" class="table key-buttons text-md-nowrap"
                             data-page-length='50'style="text-align: center">
                             <thead>
-                                <tr class="align-self-center">
+                                <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th style="text-align:center">{{ __('admin.image') }}</th>
-
+                                    <th class="border-bottom-0">{{ __('admin.image') }}</th>
                                     <th class="border-bottom-0">{{ __('admin.name') }}</th>
-                                    <th class="border-bottom-0">{{ __('admin.email') }}</th>
-                                    <th class="border-bottom-0">{{ __('admin.phone') }}</th>
-                                    <th class="border-bottom-0">{{ __('admin.balance') }}</th>
-                                    <th class="border-bottom-0">{{ __('admin.rate') }}</th>
-
+                                    <th class="border-bottom-0">{{ __('admin.description') }}</th>
                                     <th class="border-bottom-0">{{ __('admin.control') }}</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $i = 0;
                                 @endphp
-                                @foreach ($users as $item)
+                                @foreach ($services as $item)
                                     @php
                                         $i++;
                                     @endphp
@@ -100,23 +89,18 @@
                                                     height="60"></td>
                                         @endisset
                                         <td>{{ $item->name }} </td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->number }}</td>
-                                        <td>{{ $item->wallet->balance }}</td>
-                                        <td>{{ $item->rate }}</td>
-
+                                        <td>{{ $item->description }}</td>
                                         <td>
-                                            <a href="{{ route('delivery.edit', $item->id) }}"
+                                            <a href="{{ route('services.edit', $item->id) }}"
                                                 class="btn round btn-outline-primary">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <span class=" btn round btn-outline-danger delete-row text-danger"
-                                                data-url="{{ url('delivery/delete/' . $item->id) }}"><i
+                                                data-url="{{ url('services/delete/' . $item->id) }}"><i
                                                     class="fa-solid fa-trash"></i></span>
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
@@ -125,8 +109,6 @@
         </div>
         <!--/div-->
     </div>
-
-
 @endsection
 
 @section('js')
@@ -154,7 +136,7 @@
 
     {{-- delete one user script --}}
     @include('dashboard.shared.deleteOne')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- delete one user script --}}
-
 @endsection
