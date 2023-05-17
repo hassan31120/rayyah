@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductController;
@@ -36,7 +37,7 @@ Route::get('/', function () {
 })->name('signin');
 
 Route::get('table', function () {
-    return view('table-basic');
+    return view('timeline');
 });
 Route::get('/home', [AdminController::class , 'home'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('language/{locale}', function ($locale) {
@@ -57,6 +58,19 @@ Route::controller(ServiceController::class)->group(function(){
     Route::get('services/edit/{id}','edit')->name('services.edit');
     Route::post('services/update/{id}','update')->name('services.update');
     Route::delete('services/delete/{id}','destroy')->name('services.delete');
+});
+Route::controller(OrderController::class)->group(function(){
+Route::get('orders','index')->name('orders');
+Route::get('orders/{id}','show')->name('show.orders');
+Route::get('/invoice/{orderId}/generate', 'generateInvoice');
+Route::get('MarkAsRead_all','MarkAsRead_all')->name('MarkAsRead_all');
+Route::get('unreadNotifications_count', 'unreadNotifications_count')->name('unreadNotifications_count');
+Route::get('unreadNotifications', 'unreadNotifications')->name('unreadNotifications');
+Route::post('/notifications/{notification}/mark-as-read', 'markAsRead')->name('notifications.markAsRead');
+
+
+
+
 });
 
 Route::controller(TransactionController::class)->group(function(){
@@ -100,11 +114,6 @@ Route::controller(ComplainController::class)->group(function(){
 // Route::get('/home', 'HomeController@index')->name('home');
 
 
-// Route::get('MarkAsRead_all','InvoicesController@MarkAsRead_all')->name('MarkAsRead_all');
-
-// Route::get('unreadNotifications_count', 'InvoicesController@unreadNotifications_count')->name('unreadNotifications_count');
-
-// Route::get('unreadNotifications', 'InvoicesController@unreadNotifications')->name('unreadNotifications');
 
 Route::get('/{page}', [AdminController::class, 'index']);
 Route::get('/{page}/edit', [AdminController::class, 'edit'])->name('profile.edit');

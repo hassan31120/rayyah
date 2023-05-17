@@ -56,7 +56,7 @@
   <div class="col-xl-12">
       <div class="card mg-b-20">
           <div class="card-header pb-0">
-                  <a href={{url('user/create') }} class="modal-effect btn btn-sm btn-primary" style="color:white"><i
+                  <a href={{url('users/user/create') }} class="modal-effect btn btn-sm btn-primary" style="color:white"><i
                           class="fas fa-plus"></i>&nbsp; {{ __('admin.add') }}</a>
 
               @can('تصدير EXCEL')
@@ -113,7 +113,7 @@
                                        class="fa-solid fa-pen-to-square"></i>
                                   </a>
                                     <span class=" btn round btn-outline-danger delete-row text-danger"
-                                   data-url="{{ url('user/delete/' .  $item->id) }}"><i
+                                   data-url="{{ url('users/user/delete/' .  $item->id) }}"><i
                                        class="fa-solid fa-trash"></i></span>
                                   </td>
                               </tr>
@@ -127,6 +127,9 @@
   </div>
   <!--/div-->
 </div>
+</div>
+</div>
+
 
 
 @endsection
