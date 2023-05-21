@@ -61,4 +61,12 @@ class Client extends Authenticatable
     {
         return $this->hasOne(Wallet::class, 'client_id');
     }
+
+    public function sending_trans(){
+        return $this->hasMany(Transaction::class, 'sender_id');
+    }
+
+    public function reciving_trans(){
+        return $this->hasMany(Transaction::class, 'reciver_id');
+    }
 }
