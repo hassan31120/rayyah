@@ -36,7 +36,7 @@ use App\Http\Controllers\InvoiceAttachmentController;
 
 Route::get('/', function () {
     return view('signin');
-})->name('signin');
+})->middleware('guest')->name('signin');
 
 Route::get('table', function () {
     return view('timeline');
