@@ -8,7 +8,7 @@ if (!function_exists('capitalize')) {
 }
 
 if (!function_exists('notify')) {
-    function notify($title, $body, $noti_image = null, $users = [])
+    function notify($title, $body, $users = [], $noti_image = null)
     {
         $SERVER_API_KEY = 'AAAAcYLIAGM:APA91bHuL2kulcQqbI7euyywVjybhS4BCLf6he23QWqNNiUBHiz5Iw23YVDvn4NdTxMxtPpP_yom8bROnuVDFaUm9gRTEhMUyC-aLe8fptlyKWU8bJKnvGc7XEB__w9K5AjK6tCJUwaQ';
         $tokens = [];

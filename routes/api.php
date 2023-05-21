@@ -29,7 +29,6 @@ Route::group(['middleware' => 'api-lang'], function () {
         Route::post('/cart-details', [CartController::class, 'cartDetails']);
         Route::post('delete-item-cart', [CartController::class, 'removeFromCart']);
         Route::post('place-order', [OrderController::class, 'placeOrder']);
-        Route::get('home', [UserController::class, 'home']);
         Route::post('category', [UserController::class, 'category']);
 
         Route::get('/user_addresses', [AddressController::class, 'index']);
@@ -59,6 +58,9 @@ Route::group(['middleware' => 'api-lang'], function () {
 
         Route::post('rate', [RateController::class, 'rate']);
     });
+
+    Route::get('home', [UserController::class, 'home']);
+
     Route::get('/settings', [SettingController::class, 'index']);
 
     Route::post('/auth', [AuthController::class, 'auth']);
@@ -66,7 +68,6 @@ Route::group(['middleware' => 'api-lang'], function () {
 
     Route::post('/send_complain', [ComplainsController::class, 'send_complain']);
     Route::post('/contact_us', [ComplainsController::class, 'contact_us']);
-
 
 });
 

@@ -16,7 +16,6 @@
 
 <style>
 
-
 .btn {
   flex: 1 1 auto;
   margin: 10px;
@@ -40,7 +39,7 @@
 }
 
 .btn-1 {
-  background-image: linear-gradient(to right, #f6d365 0%, #070707 51%, #f6d365 100%);
+  background-image: linear-gradient(to right, #4ad2ea 0%, #ffffff 51%, #65d4f6 100%);
 }
 
 .btn-2 {
@@ -79,13 +78,13 @@
                                 <div class="card-sigin">
 
                                     <div class="mb-5 d-flex"> <a href="{{ url('/' . ($page = 'Home')) }}"><img
-                                                src="{{ URL::asset('assets/img/logo1.png') }}"
+                                                src="{{ URL::asset('assets/img/logo.2.png') }}"
                                                 class="sign-favicon ht-40" alt="logo"></a>
-                                        <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">{{ __('admin.ray') }}</h1>
+                                        <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28" style="color:#4ad2ea;">{{ __('admin.ray') }}</h1>
                                     </div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
-                                            <h2 style="color:#FFD369;">{{ __('admin.login2') }}</h2>
+                                            <h2 style="color:#4ad2ea;" >{{ __('admin.login2') }}</h2>
                                             <h5  class="font-weight-semibold mb-4">{{ __('admin.login') }}</h5>
                                             <form method="POST" action="{{ route('login') }}">
                                                 @csrf
@@ -141,11 +140,11 @@
                 </div>
             </div><!-- End -->
 
-            <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex" style="  background-image: linear-gradient(rgb(255, 255, 255), rgb(151, 151, 147));
-            ">
+            <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex"
+            >
                 <div class="row wd-100p mx-auto text-center">
                     <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-                        <img src="{{ URL::asset('assets/img/logo1.png') }}"
+                        <img src="{{ URL::asset('assets/img/logo.2.png') }}"
                             class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
                     </div>
                 </div>

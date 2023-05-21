@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\InvoiceAchiveController;
 use App\Http\Controllers\InvoiceReportController;
 use App\Http\Controllers\Admin\ComplainController;
 use App\Http\Controllers\Admin\DeliveryController;
+use App\Http\Controllers\Admin\NotiController;
 use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\CustomersReportController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -34,10 +36,10 @@ use App\Http\Controllers\InvoiceAttachmentController;
 
 Route::get('/', function () {
     return view('signin');
-})->name('signin');
+})->middleware('guest')->name('signin');
 
 Route::get('table', function () {
-    return view('table-basic');
+    return view('timeline');
 });
 Route::get('/home', [AdminController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('language/{locale}', function ($locale) {
@@ -60,7 +62,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('services/delete/{id}', 'destroy')->name('services.delete');
     });
 
-    Route::controller(BannerController::class)->group(function() {
+    Route::controller(BannerController::class)->group(function () {
         Route::get('banners', 'index')->name('banners');
         Route::get('banner/create', 'create')->name('banner.create');
         Route::post('banner/create', 'store')->name('banner.store');
@@ -101,17 +103,29 @@ Route::middleware('auth')->group(function () {
         Route::delete('settings/complain/delete/{id}', 'destroy')->name('complain.destroy');
     });
 
-    // Route::get('/home', 'HomeController@index')->name('home');
+    Route::controller(NotiController::class)->group(function(){
+        Route::get('noti', 'noti')->name('noti');
+        Route::post('send_noti', 'send_noti')->name('send_noti');
+    });
 
-
-    // Route::get('MarkAsRead_all','InvoicesController@MarkAsRead_all')->name('MarkAsRead_all');
-
-    // Route::get('unreadNotifications_count', 'InvoicesController@unreadNotifications_count')->name('unreadNotifications_count');
-
-    // Route::get('unreadNotifications', 'InvoicesController@unreadNotifications')->name('unreadNotifications');
 
     Route::get('/{page}', [AdminController::class, 'index']);
     Route::get('/{page}/edit', [AdminController::class, 'edit'])->name('profile.edit');
     Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
 });
+
+Route::controller(OrderController::class)->group(function () {
+    Route::get('orders', 'index')->name('orders');
+    Route::get('orders/{id}', 'show')->name('show.orders');
+    Route::get('/invoice/{orderId}/generate', 'generateInvoice');
+    Route::get('MarkAsRead_all', 'MarkAsRead_all')->name('MarkAsRead_all');
+    Route::get('unreadNotifications_count', 'unreadNotifications_count')->name('unreadNotifications_count');
+    Route::get('unreadNotifications', 'unreadNotifications')->name('unreadNotifications');
+    Route::post('/notifications/{notification}/mark-as-read', 'markAsRead')->name('notifications.markAsRead');
+});
+
+Route::controller(TransactionController::class)->group(function () {
+    Route::get('transactions', 'index')->name('users.index');
+});
+
 require __DIR__ . '/auth.php';

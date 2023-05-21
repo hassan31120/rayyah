@@ -12,8 +12,11 @@ return [
     "weather" => "الطقس",
     "riyadh" => "الرياض",
     "Product_sold" => "المبيعات",
-
+    "delivery"=>"المندوب",
+    "invoice"=>"الفاتوره",
+"read"=>'تعيين قراءه الكل',
     "TODAY_ORDERS"=>"الطلبات اليوميه",
+    "total_sales"=>"اجمالي المبيعات",
     "TODAY_EARNINGS"=>"الدخل اليومي ",
     "total_earning"=>"اجمالي الدخل",
     "induction_Statistics" => "احصائيات الموقع التعريفي",
@@ -38,6 +41,7 @@ return [
     'add_user'=>'إضافه مستخدم',
     'logo'=>'الشعار',
     'images'=>'الصور التعريفيه',
+    'mond'=>'نموذج مراقبة المبيعات',
     'delete_successfully'=>'تم الحذف بنجاح',
     "confirm_delete" => "هل انت متأكد من الحذف؟",
     "deliver" => "الدليفري",
@@ -80,6 +84,13 @@ return [
     "send_email" => "ارسال ايميل",
     'sender'=>'الراسل',
     'reciver'=>'المرسل اليه',
+    'all'=>'ألكل',
+    'pending'=>'المعلقه',
+
+    'recent'=>'الحاليه',
+    'done'=>'المنتهيه',
+    'cancelled'=>'الملغيه',
+
     "email_Sender" => "الايميل المرسل",
     "message_all" => "مراسلة الجميع",
     "message_one" => "مراسلة مستخدم",
@@ -245,6 +256,14 @@ return [
     "add_client" => "اضافة عميل",
     "the_sender_name" => "اسم المرسل",
     "complaining" => "الشكوي",
+    "comar-day"=> "مقارنة بالأمس",
+    "compar-week"=>"مقارنتة بالأسبوع الماضي",
+    "order-status"=> "حاله الطلب",
+    "recenr-er"=>"أحدث الارباح اليوميه
+    ",
+    "Sales-Count"=>"عدد المبيعات",
+
+
     "email_to_complain" => "البريد الالكتروني لصاحب الشكوي",
     "name_to_complain" => "اسم صاحب الشكوى",
     "phone_to_complain" => "رقم هاتف صاحب الشكوى",
@@ -328,14 +347,14 @@ return [
     "awamer_alshabaka" => "أوامر الشبكة",
     "available" => "متاح",
     "notifications" => "الاشعارات",
-    "send_notification" => "ارسال اشعار",
+    "send_notification" => "إرسال إشعار",
     "send_notification_email_to_client" => "ارسال او بريد للعميل",
     "send_sms" => "  ارسال SMS  ",
     "send_email" => "ارسال بريد الكتروني",
     "the_message_in_arabic" => "الرسالة بالعربية",
     "the_message_in_english" => "الرسالة بالانجليزية",
     "message"=>"الرساله",
-    "ray"=>"رَيــــــــــح",
+    "ray"=>"رَيٌــــــــــح",
     "send_to" => "ارسال الي ",
     "Select_the_senders_category" => "اختر الفئه المرسل اليها",
     "all_users" => "كل المستخدمين",
@@ -459,6 +478,11 @@ return [
     'balance' => 'الرصيد',
     'banner' => 'التصميم',
     'banners' => 'التصاميم',
+    'title' => 'العنوان',
+    'body' => 'العنوان',
+    'notification' => 'الإشعار',
+    'notifications' => 'الإشعارات',
+    'noti' => 'تم إرسال الإشعار بنجاح',
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!

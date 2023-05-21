@@ -30,6 +30,7 @@
 
 
 @section('content')
+
     @if (session()->has('Add'))
         <script>
             toastr.success("{{ __('admin.added_successfully') }}")
@@ -45,8 +46,6 @@
             toastr.error("{{ __('admin.delete_successfully') }}")
         </script>
     @endif
-
-
 
 
     <div class="row">

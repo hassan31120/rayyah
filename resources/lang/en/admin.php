@@ -10,6 +10,17 @@ return [
     'sender'=>'Sender',
     "total_earning"=>"Total Earning",
     "Product_sold" => "sales",
+    "delivery"=>"Delivery",
+    "invoice"=>"Invoice",
+    'all'=>'All',
+    'pending'=>'Pending',
+    "read"=>'mark All as Read',
+
+
+    'recent'=>'On D elivery',
+    'done'=>'Finished',
+    'cancelled'=>'Cancelled',
+
 
     'reciver'=>'Reciver',
     "trans"=>"Transactions",
@@ -147,7 +158,7 @@ return [
     "phone_activation_status" => "phone activation status",
     "Prohibited" => "forbidden",
     "Unspoken" => "not prohibited",
-    "Send_notification" => "send notice",
+    "Send_notification" => "send Notification",
     "Send_email" => "Send an email",
     "active" => "active",
     "password" => "The password",
@@ -178,9 +189,20 @@ return [
     'add_user'=>'Create User',
     'contac' => "Contacts",
     "message"=>"Message",
-    "ray"=>"Rayyah",
+    "ray"=>"Rayih",
     'reme'=>'Remember me',
     "services"=>'Services',
+    "comar-day"=> " Compared to yesterday",
+    "compar-week"=>"Compared to Last week",
+    "order-status"=> "Order Status",
+    "recenr-er"=>"YOUR MOST RECENT EARNINGS
+    ",
+    "Sales-Count"=>"sales count",
+    "total_sales"=>"Total Sales",
+
+    'mond'=>'Sales mondsitoring template ',
+
+
 
     "section" => " Section",
     "add_section" => "Add a section",
@@ -273,7 +295,7 @@ return [
     "all_rights_reserved" => "All rights reserved",
     "awamer_alshabaka" => "Awamer alshabaka",
     "available" => "Available",
-    "send_notification" => "send notice",
+    "send_notification" => "Send Notification",
     "send_sms" => " send SMS ",
     "send_email" => "Send an email",
     "the_message_in_arabic" => "The message is in Arabic",
@@ -435,5 +457,9 @@ return [
     'balance' => 'Balance',
     'banner' => 'Banner',
     'banners' => 'Banners',
-
+    'title' => 'Title',
+    'body' => 'Body',
+    'notification' => 'Notification',
+    'notifications' => 'Notifications',
+    'noti' => 'Notification has been sent successfully',
 ];

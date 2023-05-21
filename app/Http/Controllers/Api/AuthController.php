@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
+
 use App\Models\Wallet;
 use Twilio\Rest\Client;
+use App\Models\User;
 use App\helpers\Attachment;
 use Illuminate\Http\Request;
 use App\Events\UserRegistration;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Client as ClientModel;
+use Illuminate\Support\Facades\Notification;
 
 class AuthController extends Controller
 {
@@ -48,6 +51,7 @@ class AuthController extends Controller
                 'number' => $validatedData['number'],
                 'verification_code' => $verificationCode,
             ]);
+
             if (isset($validatedData['userType'])) {
                 $user->userType = $validatedData['userType'];
                 $user->save();
@@ -67,6 +71,10 @@ class AuthController extends Controller
             // );
 
             event(new UserRegistration());
+
+            $user = User::where('id', 1)->get();
+            $clients = ClientModel::latest()->first();
+            Notification::send($user, new \App\Notifications\NewUserNoti($clients));
 
             return response()->json([
                 'message' => 'code has been sent successfully for registration!',
@@ -201,6 +209,9 @@ class AuthController extends Controller
 
     public function test()
     {
-        
+        // $user = ClientModel::find(2);
+        $users = ClientModel::all();
+        notify('محمد', 'رمضان', $users);
+        return 'aha';
     }
 }
