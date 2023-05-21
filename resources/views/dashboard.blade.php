@@ -26,7 +26,7 @@
                         class="typcn typcn-star"></i> <span>(14,873)</span>
                 </div>
             </div>
-          
+
         </div>
     </div>
     <!-- /breadcrumb -->
@@ -35,6 +35,11 @@
     @if (session()->has('success'))
         <script>
             toastr.success("{{ __('admin.update_successfully') }}")
+        </script>
+    @endif
+    @if (session()->has('noti'))
+        <script>
+            toastr.success("{{ __('admin.noti') }}")
         </script>
     @endif
     @if (session()->has('login'))
@@ -276,7 +281,7 @@
                                 <td class="tx-right tx-medium tx-inverse">${{number_format($item->total_cost) }}</td>                 </tr>
 
                             @endforeach
-                        
+
                         </tbody>
                     </table>
                 </div>
@@ -285,7 +290,7 @@
     </div>
     <!-- row closed -->
     <!-- row opened -->
-    
+
     <!-- row close -->
 
 

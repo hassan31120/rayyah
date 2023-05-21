@@ -17,6 +17,7 @@ use App\Http\Controllers\InvoiceAchiveController;
 use App\Http\Controllers\InvoiceReportController;
 use App\Http\Controllers\Admin\ComplainController;
 use App\Http\Controllers\Admin\DeliveryController;
+use App\Http\Controllers\Admin\NotiController;
 use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\CustomersReportController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -100,6 +101,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(ComplainController::class)->group(function () {
         Route::get('settings/complains', 'index')->name('complains');
         Route::delete('settings/complain/delete/{id}', 'destroy')->name('complain.destroy');
+    });
+
+    Route::controller(NotiController::class)->group(function(){
+        Route::get('noti', 'noti')->name('noti');
+        Route::post('send_noti', 'send_noti')->name('send_noti');
     });
 
 

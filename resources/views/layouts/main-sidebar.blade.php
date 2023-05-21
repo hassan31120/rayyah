@@ -6,7 +6,9 @@
 
 
     <div class="main-sidebar-header ">
-        <a style="color: #4ad2ea;" class="desktop-logo logo-light " href="{{ url('/' . ($page = 'home')) }}"><h2>{{ __('admin.ray') }}</h2></a>
+        <a style="color: #4ad2ea;" class="desktop-logo logo-light " href="{{ url('/' . ($page = 'home')) }}">
+            <h2>{{ __('admin.ray') }}</h2>
+        </a>
     </div>
     <div class="main-sidemenu" style="
     overflow-y: scroll;
@@ -35,19 +37,6 @@
                     </svg><span class="side-menu__label">{{ __('dashboard.home') }}</span></a>
             </li>
 
-            <li class="slide {{ Request::segment(1) == 'services' ? 'active' : '' }}" >
-
-                <a class="side-menu__item" href="{{ url('/' . ($page = 'services')) }}"><svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M216 64c-13.3 0-24 10.7-24 24s10.7 24 24 24h16v33.3C119.6 157.2 32 252.4 32 368H480c0-115.6-87.6-210.8-200-222.7V112h16c13.3 0 24-10.7 24-24s-10.7-24-24-24H256 216zM24 400c-13.3 0-24 10.7-24 24s10.7 24 24 24H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H24z"/></svg><span class="side-menu__label">{{ __('admin.services') }}</span></a>
-
-            </li>
-
-            <li class="slide {{ Request::segment(1) == 'orders' ? 'active' : '' }}" >
-                
-                <a class="side-menu__item" href="{{ url('/' . ($page = 'orders')) }}"><svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg><span class="side-menu__label">{{ __('admin.orders') }}</span></a>
-            </li>
-        
-
-
             <li class="slide {{ request()->is('users/*') ? 'active' : '' }}">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}">
                     <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
@@ -65,6 +54,55 @@
                 </ul>
             </li>
 
+            <li class="slide {{ Request::segment(1) == 'services' ? 'active' : '' }}">
+
+                <a class="side-menu__item" href="{{ url('/' . ($page = 'services')) }}"><svg class="side-menu__icon"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M216 64c-13.3 0-24 10.7-24 24s10.7 24 24 24h16v33.3C119.6 157.2 32 252.4 32 368H480c0-115.6-87.6-210.8-200-222.7V112h16c13.3 0 24-10.7 24-24s-10.7-24-24-24H256 216zM24 400c-13.3 0-24 10.7-24 24s10.7 24 24 24H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H24z" />
+                    </svg><span class="side-menu__label">{{ __('admin.services') }}</span></a>
+
+            </li>
+
+            <li class="slide {{ Request::segment(1) == 'orders' ? 'active' : '' }}">
+
+                <a class="side-menu__item" href="{{ url('/' . ($page = 'orders')) }}"><svg class="side-menu__icon"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+                    </svg><span class="side-menu__label">{{ __('admin.orders') }}</span></a>
+            </li>
+
+            <li class="slide {{ Request::segment(1) == 'transactions' ? 'active' : '' }}">
+                <a class="side-menu__item" href="{{ url('/' . ($page = 'transactions')) }}">
+                    <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                        <path
+                            d="M0 168v-16c0-13.255 10.745-24 24-24h360V80c0-21.367 25.899-32.042 40.971-16.971l80 80c9.372 9.373 9.372 24.569 0 33.941l-80 80C409.956 271.982 384 261.456 384 240v-48H24c-13.255 0-24-10.745-24-24zm488 152H128v-48c0-21.314-25.862-32.08-40.971-16.971l-80 80c-9.372 9.373-9.372 24.569 0 33.941l80 80C102.057 463.997 128 453.437 128 432v-48h360c13.255 0 24-10.745 24-24v-16c0-13.255-10.745-24-24-24z" />
+                    </svg>
+                    <span class="side-menu__label">{{ __('admin.trans') }}</span>
+                </a>
+            </li>
+
+            <li class="slide {{ Request::segment(1) == 'banners' ? 'active' : '' }}">
+                <a class="side-menu__item" href="{{ url('/' . ($page = 'banners')) }}"><svg class="side-menu__icon"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                        <path
+                            d="M480 416v16c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V176c0-26.51 21.49-48 48-48h16v208c0 44.112 35.888 80 80 80h336zm96-80V80c0-26.51-21.49-48-48-48H144c-26.51 0-48 21.49-48 48v256c0 26.51 21.49 48 48 48h384c26.51 0 48-21.49 48-48zM256 128c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-96 144l55.515-55.515c4.686-4.686 12.284-4.686 16.971 0L272 256l135.515-135.515c4.686-4.686 12.284-4.686 16.971 0L512 208v112H160v-48z" />
+                    </svg><span class="side-menu__label">{{ __('admin.banners') }}</span></a>
+            </li>
+
+            <li class="slide {{ Request::segment(1) == 'noti' ? 'active' : '' }}">
+                <a class="side-menu__item" href="{{ url('/' . ($page = 'noti')) }}"><svg class="side-menu__icon"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z" />
+                    </svg><span class="side-menu__label">{{ __('admin.Send_notification') }}</span></a>
+            </li>
 
             <li class="slide {{ request()->is('settings/*') ? 'active' : '' }}">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}">
@@ -82,24 +120,6 @@
                     <li><a class="slide-item {{ request()->is('settings/contacts') ? 'active' : '' }}"
                             href="{{ url('/' . ($page = 'settings/contacts')) }}">{{ __('admin.contac') }}</a></li>
                 </ul>
-            </li>
-
-            <li class="slide {{ Request::segment(1) == 'transactions' ? 'active' : '' }}">
-                <a class="side-menu__item" href="{{ url('/' . ($page = 'transactions')) }}"><svg
-                        class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                        <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <path
-                            d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
-                    </svg><span class="side-menu__label">{{ __('admin.trans') }}</span></a>
-            </li>
-
-            <li class="slide {{ Request::segment(1) == 'banners' ? 'active' : '' }}">
-                <a class="side-menu__item" href="{{ url('/' . ($page = 'banners')) }}"><svg
-                        class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                        <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <path
-                            d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
-                    </svg><span class="side-menu__label">{{ __('admin.banners') }}</span></a>
             </li>
         </ul>
     </div>

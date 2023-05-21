@@ -347,7 +347,7 @@ return [
     "awamer_alshabaka" => "أوامر الشبكة",
     "available" => "متاح",
     "notifications" => "الاشعارات",
-    "send_notification" => "ارسال اشعار",
+    "send_notification" => "إرسال إشعار",
     "send_notification_email_to_client" => "ارسال او بريد للعميل",
     "send_sms" => "  ارسال SMS  ",
     "send_email" => "ارسال بريد الكتروني",
@@ -478,6 +478,11 @@ return [
     'balance' => 'الرصيد',
     'banner' => 'التصميم',
     'banners' => 'التصاميم',
+    'title' => 'العنوان',
+    'body' => 'العنوان',
+    'notification' => 'الإشعار',
+    'notifications' => 'الإشعارات',
+    'noti' => 'تم إرسال الإشعار بنجاح',
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!

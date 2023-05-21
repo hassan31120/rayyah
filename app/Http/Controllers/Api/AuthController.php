@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Wallet;
 use Twilio\Rest\Client;
+use App\Models\User;
 use App\helpers\Attachment;
 use Illuminate\Http\Request;
 use App\Events\UserRegistration;
@@ -68,13 +69,13 @@ class AuthController extends Controller
             //         'body' => 'Your verification code is: ' . $verificationCode
             //     )
             // );
-    
+
             event(new UserRegistration());
 
             $user = User::where('id', 1)->get();
             $clients = ClientModel::latest()->first();
             Notification::send($user, new \App\Notifications\NewUserNoti($clients));
-    
+
             return response()->json([
                 'message' => 'code has been sent successfully for registration!',
             ], 200);
@@ -208,6 +209,9 @@ class AuthController extends Controller
 
     public function test()
     {
-        
+        // $user = ClientModel::find(2);
+        $users = ClientModel::all();
+        notify('محمد', 'رمضان', $users);
+        return 'aha';
     }
 }
