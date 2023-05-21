@@ -39,7 +39,7 @@ Route::group(['middleware' => 'api-lang'], function () {
         Route::get('my-orders', [UserController::class, 'myOrders']);
         Route::post('deposit', [WalletController::class, 'deposit']);
         Route::post('withdraw', [WalletController::class, 'withdraw']);
-        Route::post('sendBalane', [WalletController::class, 'sendBalane']);
+        Route::post('sendBalance', [WalletController::class, 'sendBalance']);
         Route::get('my-trans', [UserController::class, 'myTrans']);
         Route::post('search', [UserController::class, 'search']);
         Route::post('cancel-order', [UserController::class, 'cancelOrder']);
