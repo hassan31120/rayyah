@@ -18,7 +18,6 @@ class WalletController extends Controller
     {
         $this->walletService = $walletService;
         $this->helper = new helper();
-
     }
 
     public function deposit(Request $request)
@@ -37,7 +36,6 @@ class WalletController extends Controller
         $this->walletService->withdraw($user, $amount);
         // Redirect to success page or display a success message
         return $this->helper->ResponseJson(1, __('apis.success'), $amount);
-
     }
 
     public function balance()
@@ -47,13 +45,14 @@ class WalletController extends Controller
         // Display the user's balance
     }
 
-    public function sendBalance(Request $request){
+    public function sendBalance(Request $request)
+    {
         $validate = $request->validate([
             'balance' => 'required',
             'number' => 'required|exists:clients,number',
         ]);
         $sender = auth('sanctum')->user();
-        $reciver = Client::where('number',$validate['number'])->first();
+        $reciver = Client::where('number', $validate['number'])->first();
         $transaction = new Transaction();
         if ($sender->wallet->balance >= $request->balance) {
             $sender->wallet->balance -=  $request->balance;
@@ -63,12 +62,13 @@ class WalletController extends Controller
             $transaction->reciver_id = $reciver->id;
             $reciver->wallet->increment('balance', $request->balance);
             $transaction->save();
-
+            notify(
+                __('notification.send_balance_title'),
+                __('notification.send_balance_body', ['user' => $sender->name, 'value' => $transaction->value]),
+                [$reciver]
+            );
             return $this->helper->ResponseJson(1, __('apis.success'));
-
         }
         return $this->helper->ResponseJson(1, __('apis.balance_faild'));
-
-
     }
 }

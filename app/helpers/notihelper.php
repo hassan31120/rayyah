@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\PushNotification;
+
 if (!function_exists('capitalize')) {
     function capitalize($string)
     {
@@ -41,6 +43,16 @@ if (!function_exists('notify')) {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
         $response = curl_exec($ch);
-        return response()->json(['success' => true, 'msg' => 'notification has been sent successfully'], 200);
+
+        // storing the notification in the DB
+        $image = isset($noti_image) ? $noti_image : null;
+        foreach ($users as $user) {
+            PushNotification::create([
+                'title' => $title,
+                'body' => $body,
+                'image' => $image,
+                'client_id' => $user->id
+            ]);
+        }
     }
 }

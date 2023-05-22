@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\user\OrderController;
 use App\Http\Controllers\Api\user\WalletController;
 use App\Http\Controllers\Api\user\AddressController;
 use App\Http\Controllers\Api\user\DeliveryController;
+use App\Http\Controllers\Api\user\NotiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,10 @@ Route::group(['middleware' => 'api-lang'], function () {
         });
 
         Route::post('rate', [RateController::class, 'rate']);
+
+        Route::get('/notis', [NotiController::class, 'index']);
+        Route::post('/markNotificationAsRead/{notificationId}', [NotiController::class, 'markNotificationAsRead']);
+        Route::post('/markAllNotificationsAsRead', [NotiController::class, 'markAllNotificationsAsRead']);
     });
 
     Route::get('home', [UserController::class, 'home']);
