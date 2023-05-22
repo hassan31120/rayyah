@@ -30,14 +30,6 @@ class NotiController extends Controller
         $users = Client::all();
         $image = isset($data['image']) ? $data['image'] : null;
         notify($data['title'], $data['body'], $users, $image);
-        foreach($users as $user){
-            PushNotification::create([
-                'title' => $data['title'],
-                'body' => $data['body'],
-                'image' => $image,
-                'client_id' => $user->id
-            ]);
-        }
         return redirect(route('dashboard'))->with(
             'noti',
             Lang::get('notification.add_complain')
