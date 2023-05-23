@@ -26,7 +26,6 @@ class CreateProductRequest extends FormRequest
             'name.en' => 'required',
             'name.fr' => 'sometimes',
             'name.de' => 'sometimes',
-           
 
             'description.ar' => 'required',
             'description.en' => 'required',

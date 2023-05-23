@@ -112,6 +112,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(SettingsController::class)->group(function () {
         Route::get('settings', 'index')->name('settings');
+        Route::post('settings_update', 'update')->name('settings.update');
     });
 
 

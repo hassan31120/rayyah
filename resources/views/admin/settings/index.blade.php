@@ -1,7 +1,11 @@
 @extends('layouts.master')
 
 @section('css')
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 @endsection
 @section('title')
     {{ __('admin.edit_settings') }}
@@ -23,39 +27,48 @@
 @endsection
 
 @section('content')
-    @if (session()->has('Add'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('Add') }}</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-    <div class="row">
+@if (session()->has('edit'))
+<script>
+    toastr.success("{{ __('admin.update_successfullay') }}")
+</script>
+@endif    <div class="row">
 
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('send_noti') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('settings.update') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         @foreach (languages() as $lang)
                             <div class="mb-3">
                                 <div class="form-group">
-                                    <label for="title">{{ __('admin.terms') }}</label>
-                                    <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+                                    <label for="terms[{{ $lang }}]">{{ __('site.terms_' . $lang) }}</label>
+                                    <textarea class="form-control" name="terms[{{ $lang }}]" id="terms_{{ $lang }}">{{ $settings->getTranslations('terms')[$lang] }}</textarea>
                                 </div>
                             </div>
                         @endforeach
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
     </div>
     </div>
-
-
+        <script type="text/javascript">
+            $('#terms_ar').summernote({
+                height: 400
+            });
+            $('#terms_en').summernote({
+                height: 400
+            });
+            $('#terms_de').summernote({
+                height: 400
+            });
+            $('#terms_fr').summernote({
+                height: 400
+            });
+        </script>
 @endsection
