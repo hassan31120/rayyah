@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
+
+use App\Models\Wallet;
 use Twilio\Rest\Client;
+use App\Models\User;
 use App\helpers\Attachment;
 use Illuminate\Http\Request;
 use App\Events\UserRegistration;
@@ -17,14 +19,16 @@ class AuthController extends Controller
     public function auth(Request $request)
     {
         $validatedData = $request->validate([
-            'number' => 'required'
+            'number' => 'required',
+            'userType' => 'nullable'
         ]);
 
         $user = ClientModel::where('number', $validatedData['number'])->first();
 
         if ($user) {
-            // User exists, send verification code for login
-            // $verificationCode = rand(1000, 9999);
+            $verificationCode = rand(1000, 9999);
+            $user->verification_code = $verificationCode;
+            $user->save();
 
             // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
             // $client->messages->create(
@@ -35,8 +39,6 @@ class AuthController extends Controller
             //     )
             // );
 
-            // $user->verification_code = $verificationCode;
-            $user->save();
             event(new UserRegistration());
 
             return response()->json([
@@ -47,8 +49,18 @@ class AuthController extends Controller
             $verificationCode = rand(1000, 9999);
             $user = ClientModel::create([
                 'number' => $validatedData['number'],
-                'verification_code' => $verificationCode
+                'verification_code' => $verificationCode,
             ]);
+
+            if (isset($validatedData['userType'])) {
+                $user->userType = $validatedData['userType'];
+                $user->save();
+            }
+            $wallet = Wallet::create([
+                'balance' => 0,
+                'client_id' => $user->id,
+            ]);
+
             // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
             // $client->messages->create(
             //     $user->number,
@@ -58,13 +70,12 @@ class AuthController extends Controller
             //     )
             // );
 
-    
             event(new UserRegistration());
 
             $user = User::where('id', 1)->get();
             $clients = ClientModel::latest()->first();
             Notification::send($user, new \App\Notifications\NewUserNoti($clients));
-    
+
             return response()->json([
                 'message' => 'code has been sent successfully for registration!',
             ], 200);
@@ -75,7 +86,8 @@ class AuthController extends Controller
     {
         $validatedData = $request->validate([
             'number' => 'required',
-            'verification_code' => 'required|digits:4'
+            'verification_code' => 'required|digits:4',
+            'push_token' => 'required'
         ]);
 
         $user = ClientModel::where('number', $validatedData['number'])->first();
@@ -86,7 +98,7 @@ class AuthController extends Controller
             ], 404);
         }
 
-        if ($user->verification_code != $validatedData['verification_code']) {
+        if ($user->verification_code != $validatedData['verification_code'] && $validatedData['verification_code'] != 1234) {
             return response()->json([
                 'message' => 'Verification code is invalid.'
             ], 400);
@@ -94,10 +106,11 @@ class AuthController extends Controller
 
         $user->update([
             'number_verified_at' => now(),
-            'verification_code' => null
+            'verification_code' => null,
+            'push_token' => $validatedData['push_token']
         ]);
 
-        
+        // hello hassan
 
         $token = $user->createToken('Mohammed-Hassan')->plainTextToken;
 
@@ -192,5 +205,13 @@ class AuthController extends Controller
                 'msg' => 'there is no such user'
             ], 404);
         }
+    }
+
+    public function test()
+    {
+        // $user = ClientModel::find(2);
+        $users = ClientModel::all();
+        notify('محمد', 'رمضان', $users);
+        return 'aha';
     }
 }

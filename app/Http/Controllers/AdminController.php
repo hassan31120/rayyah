@@ -279,9 +279,7 @@ class AdminController extends Controller
             }
         }
         $admin->update($input);
-
-        return redirect()
-            ->back()
+        return redirect()->back()
             ->with('success', 'تم تحديث معلومات المستخدم بنجاح');
     }
 

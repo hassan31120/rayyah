@@ -25,13 +25,14 @@ class OrderController extends Controller
         $this->helper = new helper();
     }
 
-    public function placeOrder(Request $request){
+    public function placeOrder(Request $request)
+    {
         $validate = $request->validate([
             'payment_method' => 'required',
-            'address_id'=>'required:exists,addresses',
+            'address_id' => 'required:exists,addresses',
             'total_del_price' => 'required',
             'description' => 'required',
-            'service_id'=>'required|exists:services,id',
+            'service_id' => 'required|exists:services,id',
         ]);
         $address = auth()->user()->addresses()->where('user_id', auth()->user()->id)->first();
         $service = Service::findorFail($validate['service_id']);
@@ -52,55 +53,47 @@ class OrderController extends Controller
         $user_create = Auth::user()->number;
         Notification::send($users, new NewOrderNoti($order->id, $user_create));
 
-        
-
         return $this->helper->ResponseJson(1, __('apis.success'), $order);
-
-
-
-
     }
 
-    public function checkout(Request $request)
-    {
-        $validate = $request->validate([
-            'payment_method' => 'required',
-            'address_id'=>'required:exists,addresses'
-        ]);
-        $order = new Order();
-        $order->payment_method = $validate['payment_method'];
-        $order->client_id = auth()->user()->id;
-        $order->save();
-        $cart=Cart::where('client_id',1)->get();
-        if($cart != '[]'){
-            
-            foreach($cart as $item)
-            {
-                OrderItem::create([
-                    'product_id'=>$item->product_id,
-                    'total_price'=>$item->del_price,
-                    'order_id'=>$order->id,
-    
-                ]);
-                $product = Product::where('id',$item->product_id)->first();
-                $price = Cart::where('id',$item->id)->first();
-                 $collectCartPrice[] = $item->del_price;
-            }
-            $total_cost = array_sum($collectCartPrice);
-          
+    // public function checkout(Request $request)
+    // {
+    //     $validate = $request->validate([
+    //         'payment_method' => 'required',
+    //         'address_id' => 'required:exists,addresses'
+    //     ]);
+    //     $order = new Order();
+    //     $order->payment_method = $validate['payment_method'];
+    //     $order->client_id = auth()->user()->id;
+    //     $order->save();
+    //     $cart = Cart::where('client_id', 1)->get();
+    //     if ($cart != '[]') {
 
-                     $order->update([
-                'total_del_price' => $total_cost,
-                'address_id'=>$request->address_id,
-                'ref_number'=> Str::random(10)
-            ]);
-            $cartItems = Cart::where('client_id',auth()->user()->id)->get();
-    
-            Cart::destroy($cartItems);
-               return $this->helper->ResponseJson(1, __('apis.success'), $order);
-        }else{
-             return $this->helper->ResponseJson(1, __('apis.cart_is_empty'),[]);
+    //         foreach ($cart as $item) {
+    //             OrderItem::create([
+    //                 'product_id' => $item->product_id,
+    //                 'total_price' => $item->del_price,
+    //                 'order_id' => $order->id,
 
-        }
-    }
+    //             ]);
+    //             $product = Product::where('id', $item->product_id)->first();
+    //             $price = Cart::where('id', $item->id)->first();
+    //             $collectCartPrice[] = $item->del_price;
+    //         }
+    //         $total_cost = array_sum($collectCartPrice);
+
+
+    //         $order->update([
+    //             'total_del_price' => $total_cost,
+    //             'address_id' => $request->address_id,
+    //             'ref_number' => Str::random(10)
+    //         ]);
+    //         $cartItems = Cart::where('client_id', auth()->user()->id)->get();
+
+    //         Cart::destroy($cartItems);
+    //         return $this->helper->ResponseJson(1, __('apis.success'), $order);
+    //     } else {
+    //         return $this->helper->ResponseJson(1, __('apis.cart_is_empty'), []);
+    //     }
+    // }
 }

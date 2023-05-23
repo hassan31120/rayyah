@@ -16,27 +16,21 @@ class TransResource extends JsonResource
     {
         return [
             'my-blance'=>$this->balance,
-            'sending_trans'=>$this->user->send_trans->map(function ($item , $key){
-                return[
-                    'amount' => $item->value,
-                    'sender' => $item->sender->number,
-                    'reciver' => $item->reciver->number
-
-
+            'sending_trans'=>$this->user->sending_trans->map(function($item , $key){
+                return [
+                    'amount'=>$item->value,
+                    'sender'=>$item->sender->number,
+                    'reciver'=>$item->reciver->number
                 ];
             }),
-
-            'recieving_trans'=>$this->user->recieve_trans->map(function ($item , $key){
-                return[
-                    'amount' => $item->value,
-                    'sender' => $item->sender->number,
-                    'reciver' => $item->reciver->number
-
-
-
-                ];
+            'reciving_trans'=>$this->user->reciving_trans->map(function($item , $key){
+                return [
+                    'amount'=>$item->value,
+                    'sender'=>$item->sender->number,
+                    'reciver'=>$item->reciver->number
             }),
 
         ];
     }
+    ];
 }

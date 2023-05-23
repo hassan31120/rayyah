@@ -16,7 +16,6 @@
 
 <style>
 
-
 .btn {
   flex: 1 1 auto;
   margin: 10px;
@@ -68,18 +67,16 @@
 @section('content')
     <div class="container-fluid">
         <div class="row no-gutter">
-            
             <!-- The image half -->
             <!-- The content half -->
             <div class="col-md-6 col-lg-6 col-xl-5 bg-white">
                 <div class="login d-flex align-items-center py-2">
-                    
                     <!-- Demo content-->
                     <div class="container p-0">
                         <div class="row">
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
-                                    
+
                                     <div class="mb-5 d-flex"> <a href="{{ url('/' . ($page = 'Home')) }}"><img
                                                 src="{{ URL::asset('assets/img/logo.2.png') }}"
                                                 class="sign-favicon ht-40" alt="logo"></a>

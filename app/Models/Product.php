@@ -17,7 +17,6 @@ class Product extends Model
     protected $table = 'products';
     protected $guarded = [];
 
-    
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

@@ -26,9 +26,10 @@ class Client extends Authenticatable
         'email',
         'number',
         'push_token',
+        'noti_image',
         'image',
         'userType',
-        'balance',
+        'rate',
         'verification_code',
         'number_verified_at'
     ];
@@ -59,15 +60,20 @@ class Client extends Authenticatable
 
     public function wallet()
     {
-        return $this->hasOne('App\Models\Wallet');
+
+        return $this->hasOne(Wallet::class, 'client_id');
     }
 
-    public function send_trans(){
-        return $this->hasMany(Transaction::class , 'sender_id');
-    }
-    
-    public function recieve_trans(){
-        return $this->hasMany(Transaction::class , 'reciver_id');
+    public function sending_trans(){
+        return $this->hasMany(Transaction::class, 'sender_id');
     }
 
+    public function reciving_trans(){
+        return $this->hasMany(Transaction::class, 'reciver_id');
+
+    }
+
+    public function push_notifications(){
+        return $this->hasMany(PushNotification::class, 'client_id');
+    }
 }

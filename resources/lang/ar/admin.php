@@ -347,7 +347,7 @@ return [
     "awamer_alshabaka" => "أوامر الشبكة",
     "available" => "متاح",
     "notifications" => "الاشعارات",
-    "send_notification" => "ارسال اشعار",
+    "send_notification" => "إرسال إشعار",
     "send_notification_email_to_client" => "ارسال او بريد للعميل",
     "send_sms" => "  ارسال SMS  ",
     "send_email" => "ارسال بريد الكتروني",
@@ -427,7 +427,7 @@ return [
     "credit" => "دائن",
     "transactionable_type" => "نوع القائم بالحركة",
     "trans"=>"التحويلات",
-    
+
     "orders" => "الطلبات",
     "wallet_details" => "تفاصيل المحفظه",
     "block" => "حظر",
@@ -471,7 +471,18 @@ return [
     "seats" => "عدد المقاعد",
     "trips" => "الرحلات",
     "index_trips" => "الرحلات",
-    'show_trips' => 'المشرتكين'
+    'show_trips' => 'المشرتكين',
+    'from' => 'من',
+    'to' => 'إلى',
+    'trans_value' => 'قيمة التحويل',
+    'balance' => 'الرصيد',
+    'banner' => 'التصميم',
+    'banners' => 'التصاميم',
+    'title' => 'العنوان',
+    'body' => 'العنوان',
+    'notification' => 'الإشعار',
+    'notifications' => 'الإشعارات',
+    'noti' => 'تم إرسال الإشعار بنجاح',
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!

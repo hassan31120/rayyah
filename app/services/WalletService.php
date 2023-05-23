@@ -16,7 +16,7 @@ class WalletService
             $walletcreate->client_id = $user->id;
             $walletcreate->save();
         }
-      
+
         $wallet = $user->wallet;
         $wallet->balance += $amount;
         $wallet->save();
