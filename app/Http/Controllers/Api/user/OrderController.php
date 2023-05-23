@@ -36,7 +36,7 @@ class OrderController extends Controller
             'service_id' => 'required|exists:services,id',
         ]);
         $address = Address::findorFail($request->address_id);
-        if ($address->user_id != auth()->id) {
+        if ($address->user_id != auth('sanctum')->user()->id) {
             return response()->json([
                 'success' => false,
                 'message' => 'this is not your address'
