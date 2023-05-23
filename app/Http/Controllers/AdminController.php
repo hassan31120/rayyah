@@ -170,7 +170,7 @@ class AdminController extends Controller
             ->options([]);
 
 
-          $orderat =   DB::table('orders')
+          $orderat =   DB::table('orders')->where('status', 'done')
       ->select(DB::raw('DATE(created_at) as date') , DB::raw('count(*) as count') , DB::raw('SUM(total_cost) as total_cost'))
       ->groupBy('date')
       ->get();

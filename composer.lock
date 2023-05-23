@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "345b593d1d7c10c09692a2e37e05b1f5",
+    "content-hash": "9fcbea109a41408a1d5f8045e2f798b9",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1391,6 +1391,70 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "kartik-v/bootstrap-fileinput",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
+                "reference": "63b2cabc273fb855991e8fb18a3f76e24728f793"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/63b2cabc273fb855991e8fb18a3f76e24728f793",
+                "reference": "63b2cabc273fb855991e8fb18a3f76e24728f793",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\fileinput\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced HTML 5 file input for Bootstrap 5.x, 4.x, and 3.x with features for file preview for many file types, multiple selection, ajax uploads, and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+            "keywords": [
+                "ajax",
+                "bootstrap",
+                "delete",
+                "file",
+                "image",
+                "input",
+                "jquery",
+                "multiple",
+                "preview",
+                "progress",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/kartik-v/bootstrap-fileinput/issues",
+                "source": "https://github.com/kartik-v/bootstrap-fileinput/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/bootstrap-fileinput",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2023-03-11T11:25:41+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4392,6 +4456,69 @@
                 "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
             },
             "time": "2021-12-11T13:40:54+00:00"
+        },
+        {
+            "name": "sopamo/laravel-filepond",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sopamo/laravel-filepond.git",
+                "reference": "b6a659e98550f0485d98550f8dcf56b66d3fa098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sopamo/laravel-filepond/zipball/b6a659e98550f0485d98550f8dcf56b66d3fa098",
+                "reference": "b6a659e98550f0485d98550f8dcf56b66d3fa098",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/http": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/routing": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.0|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.5|^8.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sopamo\\LaravelFilepond\\LaravelFilepondServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sopamo\\LaravelFilepond\\": "src/",
+                    "Sopamo\\LaravelFilepond\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Mohr",
+                    "email": "p.mohr@sopamo.de"
+                }
+            ],
+            "description": "Laravel backend module for filepond uploads",
+            "keywords": [
+                "filepond",
+                "image",
+                "laravel",
+                "php",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/Sopamo/laravel-filepond/issues",
+                "source": "https://github.com/Sopamo/laravel-filepond/tree/v1.2.0"
+            },
+            "time": "2023-02-02T10:22:51+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -9617,7 +9744,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "kartik-v/bootstrap-fileinput": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

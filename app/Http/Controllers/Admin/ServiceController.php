@@ -87,7 +87,7 @@ public function store(CreateProductRequest $request)
         public function destroy($id)
         {
             $product = Service::find($id);
-            
+            Attachment::deleteAttachment($product,  $relation = 'attachmentRelation' , $type = 'serviceimage');   
             $product->delete();
             return redirect('/services')->with(
                 'delete',

@@ -58,7 +58,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($contacts as $item)
+                                            @forelse ($contacts as $item)
                                                 <tr class="align-self-center">
                                                     <td>{{ $item->f_name . $item->l_name }}</td>
                                                     <td>{{ $item->number }}</td>
@@ -70,8 +70,11 @@
                                                             <i class="fa-solid fa-trash"></i></span>
                                                     </td>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="7">{{ __('admin.there_is_no_data_at_the_moment') }}</td>
+                                                </tr>
+                                            @endforelse                                        </tbody>
                                     </table>
                                 </div>
                             </div>

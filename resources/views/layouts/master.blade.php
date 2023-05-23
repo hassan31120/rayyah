@@ -16,13 +16,24 @@
         <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+ 
+        <!-- alternatively you can use the font awesome icon library if using with `fas` theme (or Bootstrap 4.x) by uncommenting below. -->
+        <!-- link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous" -->
+         
+        <!-- the fileinput plugin styling CSS file -->
+        <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+         
 </head>
 
-<body class="main-body app sidebar-mini">
+<body class="main-body">
     <!-- Loader -->
     <div id="global-loader">
-    <img src="{{ URL::asset('assets/img/loader.svg') }}" class="loader-img" alt="Loader">
+        <div class="spinner-grow text-info loader-img" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        
     </div>
     <!-- /Loader -->
     @include('layouts.main-sidebar')
@@ -38,12 +49,17 @@
             @include('layouts.models')
             @include('layouts.footer')
             @include('layouts.footer-scripts')
+
             <script>
                 Echo.channel('notifications')
                     .listen('.NewNotification', (notification) => {
                         // handle the notification
                     })
             </script>
+        </div>
+    </div>
+    
+
 
 </body>
 

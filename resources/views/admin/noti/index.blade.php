@@ -57,7 +57,7 @@
                         <div class="mb-3">
                             <div class="form-group">
                                 <label for="image">{{ __('admin.image') }}</label>
-                                <input class="form-control" name="image" type="file">
+                                <input id="input-b3" name="image" type="file">
                             </div>
                         </div>
 
@@ -72,4 +72,18 @@
     </div>
 
 
+@endsection
+
+@section('js')
+
+<script>
+    $(document).ready(function() {
+        $("#input-b3").fileinput({
+            rtl: true,
+            dropZoneEnabled: false,
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+    });
+    </script>
+    
 @endsection

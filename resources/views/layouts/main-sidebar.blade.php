@@ -86,7 +86,7 @@
                 </a>
             </li>
 
-            <li class="slide {{ Request::segment(1) == 'banners' ? 'active' : '' }}">
+            <li class="slide {{ Request::segment(1) == 'banners'  ? 'active' : '' }}">
                 <a class="side-menu__item" href="{{ url('/' . ($page = 'banners')) }}"><svg class="side-menu__icon"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                         <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
