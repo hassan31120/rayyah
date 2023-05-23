@@ -68,7 +68,9 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-        'api-lang' => ApiLang::class
+        'api-lang' => ApiLang::class,
+        'revalidate' => \App\Http\Middleware\RevalidateBackHistory::class,
+
 
 
     ];

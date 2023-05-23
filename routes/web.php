@@ -43,6 +43,7 @@ Route::get('table', function () {
     return view('timeline');
 });
 Route::get('/home', [AdminController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
