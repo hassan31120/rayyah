@@ -28,8 +28,9 @@ class TransResource extends JsonResource
                     'amount'=>$item->value,
                     'sender'=>$item->sender->number,
                     'reciver'=>$item->reciver->number
-                ];
-            })
+            }),
+
         ];
     }
+    ];
 }

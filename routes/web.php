@@ -42,6 +42,7 @@ Route::get('table', function () {
     return view('timeline');
 });
 Route::get('/home', [AdminController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
@@ -112,7 +113,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/{page}', [AdminController::class, 'index']);
     Route::get('/{page}/edit', [AdminController::class, 'edit'])->name('profile.edit');
     Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
-});
+
 
 Route::controller(OrderController::class)->group(function () {
     Route::get('orders', 'index')->name('orders');

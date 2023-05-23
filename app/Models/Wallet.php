@@ -14,5 +14,6 @@ class Wallet extends Model
     public function user()
     {
         return $this->belongsTo(Client::class, 'client_id');
+
     }
 }
