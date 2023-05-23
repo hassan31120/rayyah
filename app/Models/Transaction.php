@@ -13,7 +13,7 @@ class Transaction extends Model
 
     public function sender()
     {
-        return $this->belongsTo(Client::class,'sender_id');
+        return $this->belongsTo(Client::class,'sender_id' , 'id');
     }
     public function reciver()
     {

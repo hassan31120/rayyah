@@ -11,6 +11,15 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
+
+
+    public function getRegister()
+    {
+        if (!Auth::check() || Auth::user()->id !== 1)
+            return redirect('/');
+        return view('signin');
+    }
+
     /**
      * Display the login view.
      */
