@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Transaction;
 use App\Traits\GetAttribute;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
@@ -58,8 +59,15 @@ class Client extends Authenticatable
 
     public function wallet()
     {
-        return $this->hasOne('App\Models\Wallet' );
+        return $this->hasOne('App\Models\Wallet');
     }
 
+    public function send_trans(){
+        return $this->hasMany(Transaction::class , 'sender_id');
+    }
+    
+    public function recieve_trans(){
+        return $this->hasMany(Transaction::class , 'reciver_id');
+    }
 
 }

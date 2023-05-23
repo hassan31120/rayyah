@@ -694,7 +694,7 @@ slide is-expanded side-menu__item {
   content: '';
   width: 3px;
   height: 31px;
-  background: #005ee9;
+  background: #4ad2ea;
   position: absolute;
   left: 0;
 }

@@ -106,9 +106,8 @@ class UserController extends Controller
     }
     public function myTrans(Request $request)
     {
-        $wallet = Wallet::where('user_id', auth()->user()->id)->first();
+        $wallet = Wallet::where('client_id', auth()->user()->id)->first();
 
-        
             return $this->helper->ResponseJson(1, __('apis.success'), new TransResource($wallet));
 
 

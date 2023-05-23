@@ -34,12 +34,13 @@ use App\Http\Controllers\InvoiceAttachmentController;
 
 Route::get('/', function () {
     return view('signin');
-})->name('signin');
+})->middleware('guest')->name('signin');
 
 Route::get('table', function () {
     return view('timeline');
 });
-Route::get('/home', [AdminController::class , 'home'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', [AdminController::class , 'home'])->middleware(['revalidate'])->name('dashboard');
+
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
@@ -59,6 +60,7 @@ Route::controller(ServiceController::class)->group(function(){
     Route::post('services/update/{id}','update')->name('services.update');
     Route::delete('services/delete/{id}','destroy')->name('services.delete');
 });
+
 Route::controller(OrderController::class)->group(function(){
 Route::get('orders','index')->name('orders');
 Route::get('orders/{id}','show')->name('show.orders');
