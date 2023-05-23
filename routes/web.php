@@ -18,6 +18,7 @@ use App\Http\Controllers\InvoiceReportController;
 use App\Http\Controllers\Admin\ComplainController;
 use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Admin\NotiController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\CustomersReportController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -106,6 +107,10 @@ Route::middleware('auth')->group(function () {
     Route::controller(NotiController::class)->group(function(){
         Route::get('noti', 'noti')->name('noti');
         Route::post('send_noti', 'send_noti')->name('send_noti');
+    });
+
+    Route::controller(SettingsController::class)->group(function(){
+        Route::get('settings', 'index')->name('settings');
     });
 
 

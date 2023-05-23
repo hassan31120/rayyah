@@ -20,7 +20,7 @@ return new class extends Migration
             $table->Text('description');
 
             $table->enum('status',['pending','on_delivery','done','cancelled'])->default('pending');
-            $table->integer('delivery_id');
+            $table->integer('delivery_id')->nullable();
             $table->integer('client_id');
             $table->integer('service_id');
             $table->integer('address_id');

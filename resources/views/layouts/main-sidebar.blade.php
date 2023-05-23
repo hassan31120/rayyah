@@ -119,6 +119,8 @@
 
                     <li><a class="slide-item {{ request()->is('settings/contacts') ? 'active' : '' }}"
                             href="{{ url('/' . ($page = 'settings/contacts')) }}">{{ __('admin.contac') }}</a></li>
+                    <li><a class="slide-item {{ request()->is('settings') ? 'active' : '' }}"
+                            href="{{ url('/' . ($page = 'settings')) }}">{{ __('admin.edit_settings') }}</a></li>
                 </ul>
             </li>
         </ul>
