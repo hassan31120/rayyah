@@ -90,5 +90,14 @@
             </div>
         </div>
     @endsection
-    @push('scripts')
+    @push('js')
+    <script>
+        $(document).ready(function() {
+            $("#input-b8").fileinput({
+                rtl: true,
+                dropZoneEnabled: false,
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+        });
+        </script>
     @endpush

@@ -90,15 +90,15 @@
                             <label class="form-label">{{ __('admin.image') }}</label>
                             @isset($service->attachmentRelation[0])
                                 <div class="row">
-                                    <div class="form-group mb-3 col-6">
-                                        <input name="attachment" type="file" class="form-control">
+                                    <div class="form-group mb-3 col-12">
+                                        <input id="input-b1" name="attachment" type="file">
                                     </div>
-                                    <div class="col-6"> <img src="{{ asset($service->attachmentRelation[0]->path) }}"
+                                    <div class="col-md-12"> <img src="{{ asset($service->attachmentRelation[0]->path) }}"
                                         alt="avatar" height="60"></div>
                                 </div>
                             @else
                                 <div class="form-group mb-3">
-                                    <input name="attachment" type="file" class="form-control">
+                                    <input id="input-b1" name="attachment" type="file">
                                 </div>
                             @endisset
 
@@ -110,4 +110,20 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+</div>
+
+    @endsection
+
+    @section('js')
+    <script>
+        $(document).ready(function() {
+            $("#input-b1").fileinput({
+                rtl: true,
+                dropZoneEnabled: false,
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+        });
+        </script>
     @endsection

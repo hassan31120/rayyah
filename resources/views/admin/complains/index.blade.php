@@ -57,7 +57,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($complains as $item)
+                                            @forelse ($complains as $item)
                                                 <tr class="align-self-center">
                                                     <td>{{ $item->email }}</td>
                                                     <td>{{ $item->description }}</td>
@@ -67,8 +67,11 @@
                                                             <i class="fa-solid fa-trash"></i></span>
                                                     </td>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="7">{{ __('admin.there_is_no_data_at_the_moment') }}</td>
+                                                </tr>
+                                            @endforelse                                        </tbody>
                                     </table>
                                 </div>
                             </div>

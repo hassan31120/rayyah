@@ -37,12 +37,16 @@ use App\Http\Controllers\InvoiceAttachmentController;
 
 Route::get('/', function () {
     return view('signin');
-})->middleware('guest')->name('signin');
+})
+    ->middleware('guest')
+    ->name('signin');
 
 Route::get('table', function () {
-    return view('timeline');
+    return view('spinners');
 });
-Route::get('/home', [AdminController::class, 'home'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', [AdminController::class, 'home'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
@@ -50,18 +54,42 @@ Route::get('language/{locale}', function ($locale) {
     return redirect()->back();
 })->name('language');
 
+Route::get('lang/{lang}', [
+    'as' => 'lang.switch',
+    'uses' => 'App\Http\Controllers\LangController@switchLang',
+]);
 
-Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LangController@switchLang']);
+
 
 Route::middleware('auth')->group(function () {
 
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('orders', 'index')->name('orders');
+        Route::get('orders/{id}', 'show')->name('show.orders');
+        Route::get('/invoice/{orderId}/generate', 'generateInvoice');
+        Route::get('MarkAsRead_all', 'MarkAsRead_all')->name('MarkAsRead_all');
+        Route::get(
+            'unreadNotifications_count',
+            'unreadNotifications_count'
+        )->name('unreadNotifications_count');
+        Route::get('unreadNotifications', 'unreadNotifications')->name(
+            'unreadNotifications'
+        );
+        Route::post(
+            '/notifications/{notification}/mark-as-read',
+            'markAsRead'
+        )->name('notifications.markAsRead');
+    });
+    
     Route::controller(ServiceController::class)->group(function () {
         Route::get('services', 'index')->name('services');
         Route::get('services/create', 'create')->name('services.create');
         Route::post('services/store', 'store')->name('services.store');
         Route::get('services/edit/{id}', 'edit')->name('services.edit');
         Route::post('services/update/{id}', 'update')->name('services.update');
-        Route::delete('services/delete/{id}', 'destroy')->name('services.delete');
+        Route::delete('services/delete/{id}', 'destroy')->name(
+            'services.delete'
+        );
     });
 
     Route::controller(BannerController::class)->group(function () {
@@ -90,25 +118,34 @@ Route::middleware('auth')->group(function () {
             Route::get('delivery/create', 'create')->name('delivery.create');
             Route::post('delivery/store', 'store')->name('delivery.store');
             Route::get('delivery/edit/{id}', 'edit')->name('delivery.edit');
-            Route::post('delivery/update/{id}', 'update')->name('delivery.update');
-            Route::delete('delivery/delete/{id}', 'destroy')->name('delivery.destroy');
+            Route::post('delivery/update/{id}', 'update')->name(
+                'delivery.update'
+            );
+            Route::delete('delivery/delete/{id}', 'destroy')->name(
+                'delivery.destroy'
+            );
         });
     });
 
     Route::controller(ContactController::class)->group(function () {
         Route::get('settings/contacts', 'index')->name('contacts');
-        Route::delete('settings/contact/delete/{id}', 'destroy')->name('contact.destroy');
+        Route::delete('settings/contact/delete/{id}', 'destroy')->name(
+            'contact.destroy'
+        );
     });
 
     Route::controller(ComplainController::class)->group(function () {
         Route::get('settings/complains', 'index')->name('complains');
-        Route::delete('settings/complain/delete/{id}', 'destroy')->name('complain.destroy');
+        Route::delete('settings/complain/delete/{id}', 'destroy')->name(
+            'complain.destroy'
+        );
     });
 
     Route::controller(NotiController::class)->group(function () {
         Route::get('noti', 'noti')->name('noti');
         Route::post('send_noti', 'send_noti')->name('send_noti');
     });
+
 
     Route::controller(SettingsController::class)->group(function () {
         Route::get('settings', 'index')->name('settings');
@@ -117,7 +154,9 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/{page}', [AdminController::class, 'index']);
-    Route::get('/{page}/edit', [AdminController::class, 'edit'])->name('profile.edit');
+    Route::get('/{page}/edit', [AdminController::class, 'edit'])->name(
+        'profile.edit'
+    );
     Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
 
     Route::controller(OrderController::class)->group(function () {
@@ -134,5 +173,4 @@ Route::middleware('auth')->group(function () {
         Route::get('transactions', 'index')->name('users.index');
     });
 });
-
 require __DIR__ . '/auth.php';

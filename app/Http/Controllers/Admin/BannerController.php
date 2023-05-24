@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
 
 class BannerController extends Controller
@@ -52,6 +53,10 @@ class BannerController extends Controller
                 'error',
                 'errrrrrrrrrrrrrror'
             );
+        }
+        $filepath = $banner->banner;
+        if(File::exists($filepath)) {
+          File::delete($filepath);
         }
         $banner->delete();
         return redirect(route('users'))->with(

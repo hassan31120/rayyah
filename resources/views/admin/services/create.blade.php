@@ -86,9 +86,7 @@
          
         
        <div class="mb-3">
-        <div class="row">
-            <input class="form-control" name="attachment" type="file">
-        </div>
+            <input id="input-b2" name="attachment" type="file">
        </div>
        
 
@@ -110,6 +108,16 @@
   
 @endsection
 @section('js')
+
+<script>
+    $(document).ready(function() {
+        $("#input-b2").fileinput({
+            rtl: true,
+            dropZoneEnabled: false,
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+    });
+    </script>
 
 <script>
     
