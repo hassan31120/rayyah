@@ -90,7 +90,6 @@
                                     @php
                                         $count_all = \App\invoices::count();
                                         $count_invoices2 = \App\invoices::where('Value_Status', 2)->count();
-                                        
                                         if ($count_invoices2 == 0) {
                                             echo $count_invoices2 = 0;
                                         } else {
@@ -130,7 +129,7 @@
                                     @php
                                         $count_all = \App\invoices::count();
                                         $count_invoices1 = \App\invoices::where('Value_Status', 1)->count();
-                                        
+
                                         if ($count_invoices1 == 0) {
                                             echo $count_invoices1 = 0;
                                         } else {
@@ -169,7 +168,7 @@
                                     @php
                                         $count_all = \App\invoices::count();
                                         $count_invoices1 = \App\invoices::where('Value_Status', 1)->count();
-                                        
+
                                         if ($count_invoices1 == 0) {
                                             echo $count_invoices1 = 0;
                                         } else {
