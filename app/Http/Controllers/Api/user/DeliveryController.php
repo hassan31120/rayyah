@@ -25,16 +25,16 @@ class DeliveryController extends Controller
 
     public function listOrders(Request $request)
     {
-        $orders = Order::where('status', 'prending')->get();
+        $orders = Order::where('status', 'pending')->get();
 
         if ($request->order_id) {
             $order = Order::where('id', $request->order_id)->where('status', 'pending')->first();
             if ($order) {
                 return $this->helper->ResponseJson(1, __('apis.success'), new TrackOrderResource($order));
             }
-            return $this->helper->ResponseJson(0, __('apis.faild'));
+    return $this->helper->ResponseJson(0, __('apis.faild'));
         }
-        return $this->helper->ResponseJson(1, __('apis.success'), OrderResource::collection($orders));
+        return $this->helper->ResponseJson(1, __('apis.success'), TrackOrderResource::collection($orders));
     }
 
     public function acceptOrder(Request $request)

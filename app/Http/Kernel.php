@@ -4,6 +4,8 @@ namespace App\Http;
 
 use App\Http\Middleware\ApiLang;
 use App\Http\Middleware\Language;
+use App\Http\Middleware\CheckDeliType;
+use App\Http\Middleware\CheckUserType;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -70,6 +72,8 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'api-lang' => ApiLang::class,
         'revalidate' => \App\Http\Middleware\RevalidateBackHistory::class,
+        'check-user'=>CheckUserType::class,
+        'check-del'=>CheckDeliType::class,
 
 
 

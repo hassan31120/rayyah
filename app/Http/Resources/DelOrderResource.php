@@ -16,14 +16,18 @@ class DelOrderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-        'id' => $this->id,
+        'id' => $this->id ?? null,
          'status' => $this->status,
          'payment' => $this->payment_method,
          'date'=> Carbon::parse($this->created_at)->format('Y-m-d  h:i a'),
          'address' => $this->address->title,
          'client_name' => $this->client->name,
          'delivery_name'=>$this->delivery->name,
-        ];
+         'description' => $this->description,
+         'service_price'=>$this->total_service_price,
+         'delivery_price'=>$this->total_del_price,
+         'total_price'=>$this->total_cost,
+     ];
 
     }
 }
