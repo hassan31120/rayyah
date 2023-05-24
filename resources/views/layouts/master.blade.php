@@ -25,6 +25,13 @@
         <!-- the fileinput plugin styling CSS file -->
         <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
          
+<!-- include libraries(jQuery, bootstrap) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 </head>
 
 <body class="main-body">
@@ -60,6 +67,8 @@
     </div>
     
 
+
+            @stack('script')
 
 </body>
 
@@ -101,7 +110,7 @@
 
 
 
-    
+
 </script>
 
 

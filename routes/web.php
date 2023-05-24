@@ -18,6 +18,7 @@ use App\Http\Controllers\InvoiceReportController;
 use App\Http\Controllers\Admin\ComplainController;
 use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Admin\NotiController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\CustomersReportController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -145,12 +146,28 @@ Route::middleware('auth')->group(function () {
         Route::post('send_noti', 'send_noti')->name('send_noti');
     });
 
+
+    Route::controller(SettingsController::class)->group(function () {
+        Route::get('settings', 'index')->name('settings');
+        Route::post('settings_update', 'update')->name('settings.update');
+    });
+
+
     Route::get('/{page}', [AdminController::class, 'index']);
     Route::get('/{page}/edit', [AdminController::class, 'edit'])->name(
         'profile.edit'
     );
     Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
 
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('orders', 'index')->name('orders');
+        Route::get('orders/{id}', 'show')->name('show.orders');
+        Route::get('/invoice/{orderId}/generate', 'generateInvoice');
+        Route::get('MarkAsRead_all', 'MarkAsRead_all')->name('MarkAsRead_all');
+        Route::get('unreadNotifications_count', 'unreadNotifications_count')->name('unreadNotifications_count');
+        Route::get('unreadNotifications', 'unreadNotifications')->name('unreadNotifications');
+        Route::post('/notifications/{notification}/mark-as-read', 'markAsRead')->name('notifications.markAsRead');
+    });
 
     Route::controller(TransactionController::class)->group(function () {
         Route::get('transactions', 'index')->name('users.index');
