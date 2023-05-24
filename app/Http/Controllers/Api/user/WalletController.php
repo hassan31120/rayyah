@@ -8,6 +8,9 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Services\WalletService;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SenderResource;
+use App\Http\Resources\TransactionResource;
+use App\Http\Resources\TransResource;
 use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
@@ -67,7 +70,10 @@ class WalletController extends Controller
                 __('notification.send_balance_body', ['user' => $sender->name, 'value' => $transaction->value]),
                 [$reciver]
             );
-            return $this->helper->ResponseJson(1, __('apis.success'));
+            return response()->json([
+                'success' => true,
+                'trasnaction' => new TransactionResource($transaction),
+            ], 200);
         }
         return $this->helper->ResponseJson(1, __('apis.balance_faild'));
     }
