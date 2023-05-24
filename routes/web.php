@@ -145,7 +145,6 @@ Route::middleware('auth')->group(function () {
         Route::post('send_noti', 'send_noti')->name('send_noti');
     });
 
-    Route::get('/{page}', [AdminController::class, 'index']);
     Route::get('/{page}/edit', [AdminController::class, 'edit'])->name(
         'profile.edit'
     );

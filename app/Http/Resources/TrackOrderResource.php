@@ -22,8 +22,11 @@ class TrackOrderResource extends JsonResource
             'delivery_price'=>$this->total_del_price,
             'total_price'=>$this->total_cost,
             'reference number'=> $this->ref_number,
-            'service'=>$this->service->name,
-            'address'=>$this->address->title
+            'service'=>$this->service->name ?? null,
+            'address'=>$this->address->title,
+            'description'=>$this->description,
+            'status'=>$this->status,
+            'payment_method'=>$this->payment_method
 
            
 
