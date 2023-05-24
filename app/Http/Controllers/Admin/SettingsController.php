@@ -18,18 +18,17 @@ class SettingsController extends Controller
         return view('admin.settings.index', compact('settings'));
     }
 
-    public function edit(string $id)
+    public function update(Request $request)
     {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
+        $setting = Setting::find(1);
+        $request->validate([
+            'terms.ar' => 'required',
+            'terms.en' => 'required',
+            'terms.fr' => 'sometimes',
+            'terms.de' => 'sometimes',
+        ]);
+        $data = $request->except('files');
+        $setting->update($data);
+        return redirect(route('settings'))->with('edit', "__('admin.update')");
     }
 }

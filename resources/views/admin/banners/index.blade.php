@@ -64,11 +64,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($banners as $item)
+                                            @forelse ($banners as $item)
                                                 <tr class="align-self-center">
                                                     <td class="text-center">
 
-                                                        <img src="{{ asset($item->banner) }}" width="200" height="100" style="object-fit: cover">
+                                                        <img src="{{ asset($item->banner) }}" width="200" height="100" style="border-radius:20px;  object-fit: cover">
 
                                                     </td>
                                                     <td>
@@ -77,7 +77,11 @@
                                                             <i class="fa-solid fa-trash"></i></span>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                                @empty
+                                                <tr>
+                                                    <td colspan="7">{{ __('admin.there_is_no_data_at_the_moment') }}</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -87,6 +91,11 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+</div>
+</div>
+
     @endsection
 
     @section('js')
