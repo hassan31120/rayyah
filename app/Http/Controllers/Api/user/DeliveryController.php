@@ -43,7 +43,7 @@ class DeliveryController extends Controller
             'order_id' => 'required|exists:orders,id',
             'total_service_price' => 'required'
         ]);
-        $order = Order::findOrfail($validate['order_id']);
+        $order = Order::where('delivery_id',auth()->user()->id)->where('id',$validate['order_id'])->first();
         if ($order) {
             $order->status = 'on_delivery';
             $order->total_service_price = $validate['total_service_price'];
@@ -69,7 +69,7 @@ class DeliveryController extends Controller
         $validate = $request->validate([
             'order_id' => 'required|exists:orders,id',
         ]);
-        $order = Order::findOrfail($validate['order_id']);
+        $order = Order::where('delivery_id',auth()->user()->id)->where('id',$validate['order_id'])->first();
         if ($order) {
             $order->status = 'done';
             $order->save();
