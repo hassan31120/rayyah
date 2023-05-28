@@ -94,11 +94,11 @@ class DeliveryController extends Controller
         $orders = Order::where('delivery_id', auth()->user()->id)->get();
         if ($request->order_id) {
             $order = Order::where('id', $request->order_id)->first();
-            return $this->helper->ResponseJson(1, __('apis.success'), new DelOrderResource($order));
+            return $this->helper->ResponseJson(1, __('apis.success'), new TrackOrderResource($order));
         }
 
         if ($orders) {
-            return $this->helper->ResponseJson(1, __('apis.success'), DelOrderResource::collection($orders));
+            return $this->helper->ResponseJson(1, __('apis.success'), TrackOrderResource::collection($orders));
         }
 
 
