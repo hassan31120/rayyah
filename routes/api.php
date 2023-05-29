@@ -51,11 +51,6 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::get('/profile', [AuthController::class, 'profile']);
             Route::post('/editProfile', [AuthController::class, 'editProfile']);
             Route::post('/delUser', [AuthController::class, 'delUser']);
-            Route::get('home', [UserController::class, 'home']);
-
-            Route::get('/settings', [SettingController::class, 'index']);
-            Route::post('/send_complain', [ComplainsController::class, 'send_complain']);
-            Route::post('/contact_us', [ComplainsController::class, 'contact_us']);
         });
         Route::group(['middleware' => 'check-del'], function () {
             Route::prefix('delivery')->group(function () {
@@ -73,6 +68,11 @@ Route::group(['middleware' => 'api-lang'], function () {
         Route::post('/markAllNotificationsAsRead', [NotiController::class, 'markAllNotificationsAsRead']);
     });
 
+    Route::get('home', [UserController::class, 'home']);
+
+    Route::get('/settings', [SettingController::class, 'index']);
+    Route::post('/send_complain', [ComplainsController::class, 'send_complain']);
+    Route::post('/contact_us', [ComplainsController::class, 'contact_us']);
 
     Route::post('/auth', [AuthController::class, 'auth']);
     Route::post('/verify', [AuthController::class, 'verify']);
