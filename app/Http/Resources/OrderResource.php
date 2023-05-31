@@ -18,10 +18,13 @@ class OrderResource extends JsonResource
         return [
             'order_number' => $this->id,
             'address' => $this->address->title,
+            'total_del_price' => $this->total_del_price,
+            'total_service_price' => $this->total_service_price,
             'total_price' => $this->total_cost,
-            'time' => Carbon::parse($this->created_at)->format('h:i a'),
+            'time' => $this->created_at,
             'status' => $this->status,
-            'service' => $this->service->name ?? null
+            'service' => $this->service->name ?? null,
+            'delivery' => new UserResource($this->delivery)
         ];
     }
 }

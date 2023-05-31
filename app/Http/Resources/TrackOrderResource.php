@@ -16,25 +16,27 @@ class TrackOrderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->id,
+            'id' => $this->id,
             'delivery' => $this->delivery->name ?? null,
-            'service_price'=>number_format($this->total_service_price),
-            'delivery_price'=>number_format($this->total_del_price),
-            'total_price'=>number_format($this->total_cost),
-            'reference number'=> $this->ref_number,
-            'service'=>$this->service->name ?? null,
-            'address'=>$this->address->title,
-            'description'=>$this->description,
-            'status'=>$this->status,
-            'payment_method'=>$this->payment_method,
-            'date'=>$this->created_at,
-            'user'=>$this->client->name,
-            'user_image'=>asset($this->client->attachmentRelation[0]->path),
-            'phone'=>$this->client->number,
-
-           
-
-
+            'service_price' => number_format($this->total_service_price),
+            'delivery_price' => number_format($this->total_del_price),
+            'total_price' => number_format($this->total_cost),
+            'reference number' => $this->ref_number,
+            'service' => $this->service->name ?? null,
+            'address' => $this->address->title,
+            'description' => $this->description,
+            'status' => $this->status,
+            'payment_method' => $this->payment_method,
+            'date' => $this->created_at,
+            'user' => $this->client->name,
+            'user_image' => $this->when(true, function () {
+                if (isset($this->client->attachmentRelation[0]->path)) {
+                    return asset($this->client->attachmentRelation[0]->path);
+                } else {
+                    return null;
+                }
+            }),
+            'phone' => $this->client->number,
         ];
     }
 }
