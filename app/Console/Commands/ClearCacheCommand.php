@@ -15,9 +15,6 @@ class ClearCacheCommand extends Command
     public function handle()
     {
         Cache::flush();
-        Banner::create([
-            'banner' => '123'
-        ]);
         $this->info('Application cache cleared.');
     }
 }
