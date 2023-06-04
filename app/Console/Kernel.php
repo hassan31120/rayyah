@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->command('cache:clear')->daily();
+        $schedule->exec('php artisan cache:clear')->everyMinute();
     }
 
     /**
