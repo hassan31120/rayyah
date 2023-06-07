@@ -5,8 +5,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <!-- Internal Data table css -->
     <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
@@ -54,11 +52,21 @@
 
                                     
                                     <div class="mb-3 ">
-                                        <label class="form-label">{{ __('admin.banner') }}</label>
+                                        <label class="form-label">{{ __('admin.banner_ar') }}</label>
                                         <div class="form-group mb-3">
-                                            <input id="input-b8" name="banner" type="file">
+                                            <div>
+                                                <input type="file" class="dropify" name="banner_ar" data-height="200" />
+                                            </div>                                
+                                                </div>
+                                    </div>
+
+                                    <div class="mb-3 ">
+                                        <label class="form-label">{{ __('admin.banner_en') }}</label>
+                                        <div class="form-group mb-3">
+                                            <input type="file" class="dropify" name="banner_en" data-height="200" />
                                         </div>
                                     </div>
+                                   
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-primary">{{ __('admin.confirm') }}</button>
                                     </div>

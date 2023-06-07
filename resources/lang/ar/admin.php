@@ -358,6 +358,9 @@ return [
     "send_to" => "ارسال الي ",
     "Select_the_senders_category" => "اختر الفئه المرسل اليها",
     "all_users" => "كل المستخدمين",
+    "banner_ar"=>"التصميم بالعربيه",
+    "banner_en"=>"التصميم بالأنجليزيه",
+
     "email_content" => "محتوى الايميل",
     "send_successfully" => "تم الارسال بنجاح",
     "report_text" => "نص التقرير",

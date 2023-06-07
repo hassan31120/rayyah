@@ -59,7 +59,9 @@
                                     <table class="table table-hover mb-0 text-md-nowrap">
                                         <thead>
                                             <tr>
-                                                <th style="text-align:center">{{ __('admin.banner') }}</th>
+                                                <th style="text-align:center">{{ __('admin.banner_ar') }}</th>
+                                                <th style="text-align:center">{{ __('admin.banner_en') }}</th>
+
                                                 <th style="text-align:center">{{ __('admin.control') }}</th>
                                             </tr>
                                         </thead>
@@ -68,9 +70,15 @@
                                                 <tr class="align-self-center">
                                                     <td class="text-center">
 
-                                                        <img src="{{ asset($item->banner) }}" width="200" height="100" style="border-radius:20px;  object-fit: cover">
+                                                        <img src="{{ asset($item->banner_ar) }}" width="200" height="100" style="border-radius:20px;  object-fit: cover">
 
                                                     </td>
+                                                    <td class="text-center">
+
+                                                        <img src="{{ asset($item->banner_en) }}" width="200" height="100" style="border-radius:20px;  object-fit: cover">
+
+                                                    </td>
+
                                                     <td>
                                                         <span class=" btn round btn-outline-danger delete-row text-danger"
                                                             data-url="{{ url('banner/delete/' . $item->id) }}">
