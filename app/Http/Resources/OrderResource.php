@@ -20,6 +20,7 @@ class OrderResource extends JsonResource
             'address' => $this->address->title,
             'address_description' => $this->address->description,
             'description' => $this->description,
+            'reference_number' => $this->ref_number,
             'total_del_price' => $this->total_del_price,
             'total_service_price' => $this->total_service_price,
             'total_price' => $this->total_cost,

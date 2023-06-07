@@ -8,8 +8,6 @@
     <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
     <!--Internal Sumoselect css-->
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
-    <!--Internal  TelephoneInput css-->
-    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
 @endsection
 @section('title')
     {{ __('admin.update') }}
@@ -91,14 +89,14 @@
                             @isset($service->attachmentRelation[0])
                                 <div class="row">
                                     <div class="form-group mb-3 col-12">
-                                        <input id="input-b1" name="attachment" type="file">
+                                        <input type="file" class="dropify" name="attachment" data-height="200" />
                                     </div>
                                     <div class="col-md-12"> <img src="{{ asset($service->attachmentRelation[0]->path) }}"
                                         alt="avatar" height="60"></div>
                                 </div>
                             @else
                                 <div class="form-group mb-3">
-                                    <input id="input-b1" name="attachment" type="file">
+                                    <input type="file" class="dropify" name="attachment" data-height="200" />
                                 </div>
                             @endisset
 

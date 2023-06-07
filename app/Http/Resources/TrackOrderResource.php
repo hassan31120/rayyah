@@ -21,22 +21,14 @@ class TrackOrderResource extends JsonResource
             'service_price' => number_format($this->total_service_price),
             'delivery_price' => number_format($this->total_del_price),
             'total_price' => number_format($this->total_cost),
-            'reference number' => $this->ref_number,
+            'reference_number' => $this->ref_number,
             'service' => $this->service->name ?? null,
-            'address' => $this->address->title,
             'description' => $this->description,
             'status' => $this->status,
             'payment_method' => $this->payment_method,
             'date' => $this->created_at,
-            'user' => $this->client->name,
-            'user_image' => $this->when(true, function () {
-                if (isset($this->client->attachmentRelation[0]->path)) {
-                    return asset($this->client->attachmentRelation[0]->path);
-                } else {
-                    return null;
-                }
-            }),
-            'phone' => $this->client->number,
+            'user' => new UserResource($this->client),
+            'address' => new AddressResource($this->address)
         ];
     }
 }

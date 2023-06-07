@@ -42,7 +42,7 @@ Route::get('/', function () {
     ->name('signin');
 
 Route::get('table', function () {
-    return view('spinners');
+    return view('form-editor');
 });
 Route::get('/home', [AdminController::class, 'home'])
     ->middleware(['auth', 'verified'])
@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
             'markAsRead'
         )->name('notifications.markAsRead');
     });
-    
+
     Route::controller(ServiceController::class)->group(function () {
         Route::get('services', 'index')->name('services');
         Route::get('services/create', 'create')->name('services.create');
@@ -146,13 +146,10 @@ Route::middleware('auth')->group(function () {
         Route::post('send_noti', 'send_noti')->name('send_noti');
     });
 
-
-
     Route::controller(SettingsController::class)->group(function () {
         Route::get('settings', 'index')->name('settings');
         Route::post('settings_update', 'update')->name('settings.update');
     });
-
 
 //     Route::get('/{page}', [AdminController::class, 'index']);
 

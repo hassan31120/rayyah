@@ -23,28 +23,39 @@ class BannerController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'banner' => ['required']
+        $validated =$request->validate([
+            'banner_ar' => ['image'],
+            'banner_en' => ['image'],
+
         ]);
-
-        $data = $request->all();
-
-        if ($request->hasFile('banner')) {
-            $file = $request->file('banner');
+            $data = $request->except('lang');
+            $banner = new Banner();
+        if ($request->hasFile('banner_ar')) {
+            $file = $request->file('banner_ar');
             $filepath = 'storage/images/banners/' . date('Y') . '/' . date('m') . '/';
             $filename = $filepath . time() . '-' . $file->getClientOriginalName();
             $file->move($filepath, $filename);
-            $data['banner'] = $filename;
+            $banner->banner_ar = $filename;
+            $banner->banner_en = $filename;
+
+        }
+        if ($request->hasFile('banner_en')) {
+            $file = $request->file('banner_en');
+            $filepath = 'storage/images/banners/' . date('Y') . '/' . date('m') . '/';
+            $filename = $filepath . time() . '-' . $file->getClientOriginalName();
+            $file->move($filepath, $filename);
+            $banner->banner_en = $filename;
+
+
         }
 
-        Banner::create($data);
+        $banner->save();
 
         return redirect(route('banners'))->with(
             'Add',
             'added'
         );
     }
-
     public function destroy($id)
     {
         $banner = Banner::find($id);
