@@ -27,11 +27,12 @@
 @endsection
 
 @section('content')
-@if (session()->has('edit'))
-<script>
-    toastr.success("{{ __('admin.update_successfullay') }}")
-</script>
-@endif    <div class="row">
+    @if (session()->has('edit'))
+        <script>
+            toastr.success("{{ __('admin.update_successfullay') }}")
+        </script>
+    @endif
+    <div class="row">
 
         <div class="col-lg-12 col-md-12">
             <div class="card">
@@ -57,18 +58,18 @@
     </div>
     </div>
     </div>
-        <script type="text/javascript">
-            $('#terms_ar').summernote({
-                height: 400
-            });
-            $('#terms_en').summernote({
-                height: 400
-            });
-            $('#terms_de').summernote({
-                height: 400
-            });
-            $('#terms_fr').summernote({
-                height: 400
-            });
-        </script>
+    <script type="text/javascript">
+        $('#terms_ar').summernote({
+            height: 400
+        });
+        $('#terms_en').summernote({
+            height: 400
+        });
+        $('#terms_de').summernote({
+            height: 400
+        });
+        $('#terms_fr').summernote({
+            height: 400
+        });
+    </script>
 @endsection

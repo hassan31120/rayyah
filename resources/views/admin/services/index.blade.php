@@ -110,8 +110,9 @@
         </div>
         <!--/div-->
     </div>
-</div>
-</div>
+    </div>
+    </div>
+
 
 
 @endsection
@@ -139,6 +140,5 @@
 
     {{-- delete one user script --}}
     @include('dashboard.shared.deleteOne')
-
     {{-- delete one user script --}}
 @endsection
