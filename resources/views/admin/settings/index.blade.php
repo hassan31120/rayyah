@@ -58,18 +58,4 @@
     </div>
     </div>
     </div>
-    <script type="text/javascript">
-        $('#terms_ar').summernote({
-            height: 400
-        });
-        $('#terms_en').summernote({
-            height: 400
-        });
-        $('#terms_de').summernote({
-            height: 400
-        });
-        $('#terms_fr').summernote({
-            height: 400
-        });
-    </script>
 @endsection
