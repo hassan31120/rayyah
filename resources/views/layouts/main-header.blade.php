@@ -9,7 +9,7 @@
                         src="{{ URL::asset('assets/img/brand/logo-white.png') }}" class="dark-logo-1" alt="logo"></a>
                 <a href="{{ url('/' . ($page = 'index')) }}"><img src="{{ URL::asset('assets/img/logo.2.png') }}"
                         class="logo-2" alt="logo"></a>
-                <a href="{{ url('/' . ($page = 'index')) }}"><img src="{{ URL::asset('assets/img/logo..png') }}"
+                <a href="{{ url('/' . ($page = 'index')) }}"><img src="{{ URL::asset('assets/img/logo.2.png') }}"
                         class="dark-logo-2" alt="logo"></a>
             </div>
             <div class="app-sidebar__toggle" data-toggle="sidebar">

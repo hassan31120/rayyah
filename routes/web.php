@@ -42,7 +42,7 @@ Route::get('/', function () {
     ->name('signin');
 
 Route::get('table', function () {
-    return view('spinners');
+    return view('form-editor');
 });
 Route::get('/home', [AdminController::class, 'home'])
     ->middleware(['auth', 'verified'])

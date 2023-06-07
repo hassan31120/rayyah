@@ -61,7 +61,7 @@
 									</tr>
 									<tr>
 										<td colspan='2' class="mt-5 text-center">
-											<input type='button' class="btn btn-primary mt-2" value='Simple alert' id='but1'>&nbsp;
+										<input type='button' class="btn btn-primary mt-2" value='Simple alert' id='but1'>&nbsp;
 											<input type='button' class="btn btn-danger mt-2" value='Alert with title' id='but2'>&nbsp;
 											<input type='button' class="btn btn-info mt-2" value='Alert with image' id='but3'>&nbsp;
 											<input type='button' class="btn btn-warning mt-2" value='With timer' id='but4'>

@@ -17,7 +17,6 @@
     <!--Internal Sumoselect css-->
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
     <!--Internal  TelephoneInput css-->
-    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
 @endsection
 @section('title')
     {{ __('admin.orders') }}
@@ -93,7 +92,6 @@ $(document).ready(function() {
 
 {{-- delete one user script --}}
 @include('dashboard.shared.deleteOne')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 {{-- delete one user script --}}
 

@@ -136,12 +136,9 @@
     <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
     <!--Internal  Datatable js -->
     <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
-    <script src="{{ asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js') }}"></script>
 
     {{-- delete one user script --}}
     @include('dashboard.shared.deleteOne')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- delete one user script --}}
 @endsection

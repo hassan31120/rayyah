@@ -48,7 +48,7 @@ class UserController extends Controller
     public function home(Request $request)
     {
         $services = HomeCatResource::collection(Service::all());
-        $banners = Banner::all();
+        $banners = Banner::select('id','banner_'.app()->getLocale().' as banner','created_at')->get();
 
         if ($request->service_id) {
             $service = Service::where('id', $request->service_id)->first();

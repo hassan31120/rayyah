@@ -19,7 +19,7 @@ class DelOrderResource extends JsonResource
         'id' => $this->id ?? null,
          'status' => $this->status,
          'payment' => $this->payment_method,
-         'date'=> Carbon::parse($this->created_at)->format('Y-m-d  h:i a'),
+         'date'=> $this->created_at,
          'address' => $this->address->title,
          'client_name' => $this->client->name,
          'delivery_name'=>$this->delivery->name,
