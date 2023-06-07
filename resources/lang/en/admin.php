@@ -465,4 +465,6 @@ return [
     'notification' => 'Notification',
     'notifications' => 'Notifications',
     'noti' => 'Notification has been sent successfully',
+    'settings' => 'Settings',
+    'edit_settings' => 'Edit Settings'
 ];

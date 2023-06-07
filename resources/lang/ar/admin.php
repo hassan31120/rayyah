@@ -486,6 +486,8 @@ return [
     'notification' => 'الإشعار',
     'notifications' => 'الإشعارات',
     'noti' => 'تم إرسال الإشعار بنجاح',
+    'settings' => 'الإعدادات',
+    'edit_settings' => 'تعديل الإعدادات'
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!

@@ -15,22 +15,23 @@ class TransResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'my-blance'=>$this->balance,
-            'sending_trans'=>$this->user->sending_trans->map(function($item , $key){
+            'my-blance' => $this->balance,
+            'sending_trans' => $this->user->sending_trans->map(function ($item, $key) {
                 return [
-                    'amount'=>$item->value,
-                    'sender'=>$item->sender->number,
-                    'reciver'=>$item->reciver->number
+                    'amount' => $item->value,
+                    'sender' => $item->sender->number,
+                    'reciver' => $item->reciver->number,
+                    'created_at' => $item->created_at
                 ];
             }),
-            'reciving_trans'=>$this->user->reciving_trans->map(function($item , $key){
+            'reciving_trans' => $this->user->reciving_trans->map(function ($item, $key) {
                 return [
-                    'amount'=>$item->value,
-                    'sender'=>$item->sender->number,
-                    'reciver'=>$item->reciver->number
-            }),
-
+                    'amount' => $item->value,
+                    'sender' => $item->sender->number,
+                    'reciver' => $item->reciver->number,
+                    'created_at' => $item->created_at
+                ];
+            })
         ];
     }
-    ];
 }

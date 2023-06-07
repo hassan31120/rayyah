@@ -22,7 +22,6 @@
         <!-- link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous" -->
          
         <!-- the fileinput plugin styling CSS file -->
-         
 </head>
 
 <body class="main-body">
@@ -31,7 +30,7 @@
         <div class="spinner-grow text-info loader-img" role="status">
             <span class="sr-only">Loading...</span>
         </div>
-        
+
     </div>
     <!-- /Loader -->
     @include('layouts.main-sidebar')
@@ -56,8 +55,8 @@
             </script>
         </div>
     </div>
-    
 
+    @stack('script')
 
 </body>
 
@@ -79,28 +78,21 @@
     Pusher.logToConsole = true;
 
     var pusher = new Pusher('2d29478d36a13c14ce84', {
-  cluster: 'ap1'
-});
+        cluster: 'ap1'
+    });
 
 
     var channel = pusher.subscribe('popup-channel');
     channel.bind('user-register', function(data) {
-        toastr.success(  'لديك مستخدم جديد')
+        toastr.success('لديك مستخدم جديد')
         // alert(JSON.stringify(data))
 
     });
 
     var channel2 = pusher.subscribe('popup-channel');
     channel.bind('new-order', function(data) {
-        toastr.success(  'لديك طلب جديد')
+        toastr.success('لديك طلب جديد')
         // alert(JSON.stringify(data))
 
     });
-
-
-
-    
 </script>
-
-
-

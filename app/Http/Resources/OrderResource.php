@@ -16,14 +16,17 @@ class OrderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'order_number'=>$this->id,
-            'address'=>$this->address->title,
-            'total_price'=> $this->total_cost ,
-            'time'=> Carbon::parse($this->created_at)->format('h:i a'),
-            'status'=>$this->status,
-            'service'=>$this->service->name ?? null
-
-
+            'order_number' => $this->id,
+            'address' => $this->address->title,
+            'address_description' => $this->address->description,
+            'description' => $this->description,
+            'total_del_price' => $this->total_del_price,
+            'total_service_price' => $this->total_service_price,
+            'total_price' => $this->total_cost,
+            'time' => $this->created_at,
+            'status' => $this->status,
+            'service' => $this->service->name ?? null,
+            'delivery' => new UserResource($this->delivery)
         ];
     }
 }
