@@ -31,7 +31,6 @@ class OrderController extends Controller
         $validate = $request->validate([
             'payment_method' => 'required',
             'address_id' => 'required:exists,addresses',
-            'total_del_price' => 'required',
             'description' => 'required',
             'service_id' => 'required|exists:services,id',
         ]);
@@ -46,7 +45,6 @@ class OrderController extends Controller
         $order = new Order();
         $order->payment_method = $validate['payment_method'];
         $order->description = $validate['description'];
-        $order->total_del_price = $validate['total_del_price'];
         $order->address_id = $address->id;
         $order->service_id = $service->id;
         $order->client_id = auth()->user()->id;

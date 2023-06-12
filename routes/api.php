@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ComplainsController;
+use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\user\CartController;
 use App\Http\Controllers\Api\user\UserController;
@@ -46,18 +47,24 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::get('my-trans', [UserController::class, 'myTrans']);
             Route::post('search', [UserController::class, 'search']);
             Route::post('cancel-order', [UserController::class, 'cancelOrder']);
+            Route::get('list-offers', [UserController::class, 'listOffers']);
+            Route::post('accept-offer', [UserController::class, 'acceptOffer']);
 
             Route::post('/insertData', [AuthController::class, 'insertData']);
             Route::get('/profile', [AuthController::class, 'profile']);
             Route::post('/editProfile', [AuthController::class, 'editProfile']);
             Route::post('/delUser', [AuthController::class, 'delUser']);
+
+            Route::post('/getcoupon', [CouponController::class, 'getCoupon']);
         });
+
         Route::group(['middleware' => 'check-del'], function () {
             Route::prefix('delivery')->group(function () {
                 Route::get('list-orders', [DeliveryController::class, 'listOrders']);
                 Route::post('accept-order', [DeliveryController::class, 'acceptOrder']);
                 Route::post('finish-order', [DeliveryController::class, 'finishOrder']);
                 Route::post('my-orders', [DeliveryController::class, 'myOrders']);
+                Route::post('make-offer', [DeliveryController::class, 'makeOffer']);
             });
         });
 

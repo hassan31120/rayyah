@@ -20,20 +20,23 @@ class Order extends Model
     {
         return $this->belongsTo('App\Models\Client','delivery_id');
     }
+
     public function service()
     {
         return $this->belongsTo('App\Models\Service','service_id');
     }
 
-    public function items()
-    {
-        return $this->hasMany('App\Models\OrderItem');
-    }
     public function address(){
-        
+
         return $this->belongsTo('App\Models\Address');
     }
 
+    public function offers(){
+        return $this->hasMany(OrderOffer::class);
+    }
 
+    public function coupon(){
+        return $this->belongsTo(Coupon::class, 'coupon_id');
+    }
 
 }

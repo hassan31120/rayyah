@@ -15,18 +15,18 @@ return new class extends Migration
             $table->id();
             $table->enum('payment_method', ['cod', 'visa', 'wallet']);
             $table->float('total_del_price')->default(0.0);
-            $table->float('total_service_price')->default(0.0);
-            $table->float('total_cost')->default(0.0);
             $table->Text('description');
-
             $table->enum('status', ['pending', 'on_delivery', 'done', 'cancelled'])->default('pending');
             $table->unsignedBigInteger('delivery_id')->nullable();
+            $table->unsignedBigInteger('coupon_id')->nullable();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('address_id');
             $table->string('ref_number')->nullable();
 
             $table->foreign('delivery_id')->references('id')->on('clients')->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')
                 ->onUpdate('cascade');

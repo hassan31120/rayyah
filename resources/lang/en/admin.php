@@ -148,7 +148,6 @@ return [
     "Progressive" => "Progressive",
     "descending" => "descending",
     "beginning_date" => "The beginning of history",
-    "end_date" => "end of history",
     "back" => "back",
     "Validity" => "validity",
     "Validities" => "powers",
@@ -466,5 +465,15 @@ return [
     'notifications' => 'Notifications',
     'noti' => 'Notification has been sent successfully',
     'settings' => 'Settings',
-    'edit_settings' => 'Edit Settings'
+    'edit_settings' => 'Edit Settings',
+    'code' => 'Code',
+    'discount' => 'Discount',
+    'maximum_usage' => 'Maximum usage',
+    'start_date' => 'Start date',
+    'end_date' => 'End date',
+    'add_coupon' => 'Add coupon',
+    'coupon' => 'Coupon',
+    'owner' => 'Owner',
+    'owner_ratio' => 'Owner Ratio',
+    'remaining_usage' => 'Remaining usage'
 ];

@@ -3,25 +3,27 @@
 namespace App\Http\Controllers\Api\user;
 
 use App\Models\Order;
+use App\Models\Banner;
 use App\Models\Wallet;
 use App\helpers\helper;
 use App\Models\Address;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\Category;
+use App\Models\OrderOffer;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BannerResource;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\PlaceResource;
 use App\Http\Resources\TransResource;
+use App\Http\Resources\BannerResource;
+use App\Http\Resources\OffersResource;
 use App\Http\Resources\HomeCatResource;
 use App\Http\Resources\DelOrderResource;
 use App\Http\Resources\PlaceByCatResource;
 use App\Http\Resources\TrackOrderResource;
-use App\Models\Banner;
 
 class UserController extends Controller
 {
@@ -127,5 +129,59 @@ class UserController extends Controller
             return $this->helper->ResponseJson(1, __('apis.success'));
         }
         return $this->helper->ResponseJson(0, __('apis.order_faild'));
+    }
+
+
+    public function listOffers(Request $request){
+        $order = Order::findOrFail($request->order_id);
+        $offers = OrderOffer::where('client_id' , auth()->user()->id)->where('order_id',$order->id)->where('status', 'pending')->get();
+        if($offers){
+            return $this->helper->ResponseJson(1, __('apis.success') , OffersResource::collection($offers));
+
+        }
+        return $this->helper->ResponseJson(0, __('apis.faild'));
+
+    }
+
+    public function acceptOffer(Request $request)
+    {
+        $validate = $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'offer_id' => 'required|exists:offer_order,id',
+        ]);
+        $order = Order::findOrFail($request->order_id)->whereNull('delivery_id')->first();
+        if($order){
+
+        
+        $offer = OrderOffer::findOrFail($request->offer_id);
+        $offer->update([
+            'status' => 'accepted',
+        ]);
+
+        $offers = OrderOffer::where('order_id',$order->id)->get()->except($offer->id);
+        //send noti to accepted offer delivery
+
+        foreach($offers as $offer){
+            $offer->update([
+                'status' => 'rejected',
+            ]);
+
+                    //send noti to each  offer rejected delivery
+
+            }
+            $order->update([
+                'delivery_id'=>$offer->delivery_id,
+                'est_time'=>$offer->est_time,
+                'total_del_price'=>$offer->price,
+                'status'=>'on_delivery'
+
+            ]);
+
+        return $this->helper->ResponseJson(1, __('apis.success') , new OffersResource($offer));
+
+        }
+
+        return $this->helper->ResponseJson(1, __('apis.faild'));
+
     }
 }
