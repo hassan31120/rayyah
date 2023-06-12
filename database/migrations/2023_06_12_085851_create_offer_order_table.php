@@ -13,12 +13,19 @@ return new class extends Migration
     {
         Schema::create('offer_order', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            $table->integer('delivery_id');
-            $table->integer('client_id');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('delivery_id');
+            $table->unsignedBigInteger('client_id');
             $table->float('price')->default(0.0);
             $table->time('est_time');
-            $table->enum('status',['pending','accepted' , 'rejected'])->default('pending');
+            $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
+
+            $table->foreign('delivery_id')->references('id')->on('clients')->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

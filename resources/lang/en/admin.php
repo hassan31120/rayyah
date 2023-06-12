@@ -475,4 +475,5 @@ return [
     'coupon' => 'Coupon',
     'owner' => 'Owner',
     'owner_ratio' => 'Owner Ratio',
+    'remaining_usage' => 'Remaining usage'
 ];

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ComplainsController;
+use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\user\CartController;
 use App\Http\Controllers\Api\user\UserController;
@@ -53,6 +54,8 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::get('/profile', [AuthController::class, 'profile']);
             Route::post('/editProfile', [AuthController::class, 'editProfile']);
             Route::post('/delUser', [AuthController::class, 'delUser']);
+
+            Route::post('/getcoupon', [CouponController::class, 'getCoupon']);
         });
 
         Route::group(['middleware' => 'check-del'], function () {

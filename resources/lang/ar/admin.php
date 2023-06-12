@@ -496,6 +496,7 @@ return [
     'coupon' => 'كوبون',
     'owner' => 'المسوق',
     'owner_ratio' => 'نسبة المسوق',
+    'remaining_usage' => 'الاستخدامات المتبقية'
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!

@@ -67,6 +67,7 @@
                                     <th class="border-bottom-0">{{ __('admin.owner_ratio') }}</th>
                                     <th class="border-bottom-0">{{ __('admin.start_date') }}</th>
                                     <th class="border-bottom-0">{{ __('admin.end_date') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.remaining_usage') }}</th>
                                     <th class="border-bottom-0">{{ __('admin.control') }}</th>
                                 </tr>
                             </thead>
@@ -88,6 +89,7 @@
                                         <td>{{ $item->owner_ratio }} %</td>
                                         <td>{{ $item->start_date }}</td>
                                         <td>{{ $item->end_date }}</td>
+                                        <td>{{ $item->getRemainingUsageCount() }}</td>
                                         <td>
                                             <a href="{{ route('coupon.edit', $item->id) }}"
                                                 class="btn round btn-outline-primary">

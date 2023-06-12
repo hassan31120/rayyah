@@ -21,16 +21,16 @@ class CouponController extends Controller
         $coupon = Coupon::where('code', $code)
             ->where('start_date', '<=', $now)
             ->where('end_date', '>=', $now)
-            ->where(function ($query) use ($now) {
-                $query->whereNull('maximum_usage')
-                    ->orWhere('usage_count', '<', $query->raw('maximum_usage'));
-            })
             ->first();
 
         if ($coupon) {
-            return response()->json(['coupon' => new CouponResource($coupon)], 200);
+            if ($coupon->getRemainingUsageCount() > 0) {
+                return response()->json(['coupon' => new CouponResource($coupon)], 200);
+            } else {
+                return response()->json(['error' => 'Coupon expired'], 403);
+            }
         } else {
-            return response()->json(['message' => 'Coupon not found or expired'], 404);
+            return response()->json(['error' => 'Coupon not found'], 404);
         }
     }
 }
