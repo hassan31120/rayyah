@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('payment_method', ['cod', 'visa', 'wallet']);
             $table->float('total_del_price')->default(0.0);
-            $table->float('total_service_price')->default(0.0);
-            $table->float('total_cost')->default(0.0);
             $table->Text('description');
-
             $table->enum('status', ['pending', 'on_delivery', 'done', 'cancelled'])->default('pending');
             $table->unsignedBigInteger('delivery_id')->nullable();
             $table->unsignedBigInteger('client_id');

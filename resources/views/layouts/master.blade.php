@@ -17,11 +17,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
- 
+
         <!-- alternatively you can use the font awesome icon library if using with `fas` theme (or Bootstrap 4.x) by uncommenting below. -->
         <!-- link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous" -->
-         
+
         <!-- the fileinput plugin styling CSS file -->
+
 </head>
 
 <body class="main-body">
@@ -56,7 +57,7 @@
         </div>
     </div>
 
-    @stack('script')
+
 
 </body>
 
@@ -78,21 +79,37 @@
     Pusher.logToConsole = true;
 
     var pusher = new Pusher('2d29478d36a13c14ce84', {
-        cluster: 'ap1'
-    });
+  cluster: 'ap1',
+  encrypted: true
+});
 
 
     var channel = pusher.subscribe('popup-channel');
     channel.bind('user-register', function(data) {
-        toastr.success('لديك مستخدم جديد')
+    //     document.addEventListener('click', function(){
+    //         var sound = new Audio(data.sound);
+    // sound.play();
+
+    //     } , {once:true});
+
+    const audio = new Audio('sounds/chatify/new-message-sound.mp3');
+  audio.play();
+
+        toastr.success(  'لديك مستخدم جديد')
         // alert(JSON.stringify(data))
 
     });
 
     var channel2 = pusher.subscribe('popup-channel');
     channel.bind('new-order', function(data) {
-        toastr.success('لديك طلب جديد')
+        toastr.success( 'لديك طلب جديد')
         // alert(JSON.stringify(data))
 
     });
+
+
+
+
 </script>
+
+
