@@ -177,7 +177,6 @@ return [
     "Progressive" => "تصاعدي",
     "descending" => "تنازلي",
     "beginning_date" => "بداية التاريخ",
-    "end_date" => "نهاية التاريخ",
     "back" => "رجوع",
     "Validity" => "الصلاحية",
     "Validities" => "الصلاحيات",
@@ -274,7 +273,7 @@ return [
     "the_replay_of_complaining_or_proposal" => "رد على الشكوى او المقترح",
     "delete_complaining" => " حذف الشكوى ",
     "delete_multibles_complaining" => " حذف مجموعة من الشكاوى ",
-    "coupons" => "كوبونات خصم",
+    "coupons" => "كوبونات الخصم",
     "delete_coupons" => "حذف كوبون",
     "delete_multible_coupons" => 'حذف مجموعه من كوبونات الخصم',
     "add_coupons" => "اضافة كوبون خصم",
@@ -487,7 +486,16 @@ return [
     'notifications' => 'الإشعارات',
     'noti' => 'تم إرسال الإشعار بنجاح',
     'settings' => 'الإعدادات',
-    'edit_settings' => 'تعديل الإعدادات'
+    'edit_settings' => 'تعديل الإعدادات',
+    'code' => 'الكود',
+    'discount' => 'نسبة الخصم',
+    'maximum_usage' => 'الحد الأقصى',
+    'start_date' => 'تاريخ البداية',
+    'end_date' => 'تاريخ النهاية',
+    'add_coupon' => 'إضافة كوبون',
+    'coupon' => 'كوبون',
+    'owner' => 'المسوق',
+    'owner_ratio' => 'نسبة المسوق',
 
     #new_comand_translations_here
     #!!!!!!!!!!!!!!!!!! don't delete the previous comment !!!!!!!!!!!!!!!!!
