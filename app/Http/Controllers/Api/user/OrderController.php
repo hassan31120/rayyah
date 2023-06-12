@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Events\UserRegistration;
 use App\Notifications\NewOrderNoti;
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
@@ -33,7 +34,13 @@ class OrderController extends Controller
             'description' => 'required',
             'service_id' => 'required|exists:services,id',
         ]);
-        $address = auth()->user()->addresses()->where('user_id', auth()->user()->id)->first();
+        $address = Address::findorFail($request->address_id);
+        if ($address->user_id != auth('sanctum')->user()->id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'this is not your address'
+            ], 400);
+        }
         $service = Service::findorFail($validate['service_id']);
         $order = new Order();
         $order->payment_method = $validate['payment_method'];

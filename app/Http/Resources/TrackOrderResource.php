@@ -16,25 +16,19 @@ class TrackOrderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->id,
+            'id' => $this->id,
             'delivery' => $this->delivery->name ?? null,
-            'service_price'=>number_format($this->total_service_price),
-            'delivery_price'=>number_format($this->total_del_price),
-            'total_price'=>number_format($this->total_cost),
-            'reference number'=> $this->ref_number,
-            'service'=>$this->service->name ?? null,
-            'address'=>$this->address->title,
-            'description'=>$this->description,
-            'status'=>$this->status,
-            'payment_method'=>$this->payment_method,
-            'date'=>$this->created_at,
-            'user'=>$this->client->name,
-            'user_image'=>asset($this->client->attachmentRelation[0]->path),
-            'phone'=>$this->client->number,
-
-           
-
-
+            'service_price' => number_format($this->total_service_price),
+            'delivery_price' => number_format($this->total_del_price),
+            'total_price' => number_format($this->total_cost),
+            'reference_number' => $this->ref_number,
+            'service' => $this->service->name ?? null,
+            'description' => $this->description,
+            'status' => $this->status,
+            'payment_method' => $this->payment_method,
+            'date' => $this->created_at,
+            'user' => new UserResource($this->client),
+            'address' => new AddressResource($this->address)
         ];
     }
 }

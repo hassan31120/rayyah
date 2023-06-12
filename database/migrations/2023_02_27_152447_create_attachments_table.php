@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('attachments', function (Blueprint $table) {
-             $table->id();
+            $table->id();
             $table->string('path');
-			$table->enum('type', array('image', 'video', 'doc'));
-			$table->string('usage')->nullable();
-			$table->string('attachmentable_type');
-			$table->integer('attachmentable_id');
-            $table->timestamps();        });
+            $table->enum('type', array('image', 'video', 'doc'));
+            $table->string('usage')->nullable();
+            $table->string('attachmentable_type');
+            $table->integer('attachmentable_id');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -209,4 +209,8 @@ return [
     'meta_keywords_en'        => 'Meta keywords in English',
     'name_ar' => 'Name in Arabic' ,
     'name_en' => 'Name in English' ,
+    'terms_ar'          => 'Arabic Terms',
+    'terms_fr'          => 'Frensh Terms',
+    'terms_de'          => 'Duetch Terms',
+    'terms_en'          => 'English Terms',
 ];

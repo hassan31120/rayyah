@@ -16,8 +16,10 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\InvoiceAchiveController;
 use App\Http\Controllers\InvoiceReportController;
 use App\Http\Controllers\Admin\ComplainController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Admin\NotiController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\InvoiceDetailsController;
 use App\Http\Controllers\CustomersReportController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -79,16 +81,14 @@ Route::middleware('auth')->group(function () {
             'markAsRead'
         )->name('notifications.markAsRead');
     });
-    
+
     Route::controller(ServiceController::class)->group(function () {
         Route::get('services', 'index')->name('services');
         Route::get('services/create', 'create')->name('services.create');
         Route::post('services/store', 'store')->name('services.store');
         Route::get('services/edit/{id}', 'edit')->name('services.edit');
         Route::post('services/update/{id}', 'update')->name('services.update');
-        Route::delete('services/delete/{id}', 'destroy')->name(
-            'services.delete'
-        );
+        Route::delete('services/delete/{id}', 'destroy')->name('services.delete');
     });
 
     Route::controller(BannerController::class)->group(function () {
@@ -145,14 +145,39 @@ Route::middleware('auth')->group(function () {
         Route::post('send_noti', 'send_noti')->name('send_noti');
     });
 
+    Route::controller(SettingsController::class)->group(function () {
+        Route::get('settings', 'index')->name('settings');
+        Route::post('settings_update', 'update')->name('settings.update');
+    });
+
+    //     Route::get('/{page}', [AdminController::class, 'index']);
+
     Route::get('/{page}/edit', [AdminController::class, 'edit'])->name(
         'profile.edit'
     );
     Route::post('/{page}/update/{id}', [AdminController::class, 'update']);
 
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('orders', 'index')->name('orders');
+        Route::get('orders/{id}', 'show')->name('show.orders');
+        Route::get('/invoice/{orderId}/generate', 'generateInvoice');
+        Route::get('MarkAsRead_all', 'MarkAsRead_all')->name('MarkAsRead_all');
+        Route::get('unreadNotifications_count', 'unreadNotifications_count')->name('unreadNotifications_count');
+        Route::get('unreadNotifications', 'unreadNotifications')->name('unreadNotifications');
+        Route::post('/notifications/{notification}/mark-as-read', 'markAsRead')->name('notifications.markAsRead');
+    });
 
     Route::controller(TransactionController::class)->group(function () {
         Route::get('transactions', 'index')->name('users.index');
+    });
+
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('/coupons', 'index')->name('coupons');
+        Route::get('/coupon/create', 'create')->name('coupon.create');
+        Route::post('/coupon/store', 'store')->name('coupon.store');
+        Route::get('/coupon/edit/{id}', 'edit')->name('coupon.edit');
+        Route::put('/coupon/update/{id}', 'update')->name('coupon.update');
+        Route::delete('/coupon/delete/{id}', 'destroy')->name('coupon.delete');
     });
 });
 require __DIR__ . '/auth.php';

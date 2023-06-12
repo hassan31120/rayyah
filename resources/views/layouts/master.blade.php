@@ -17,12 +17,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
- 
+
         <!-- alternatively you can use the font awesome icon library if using with `fas` theme (or Bootstrap 4.x) by uncommenting below. -->
         <!-- link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous" -->
-         
+
         <!-- the fileinput plugin styling CSS file -->
-         
+
 </head>
 
 <body class="main-body">
@@ -31,7 +31,7 @@
         <div class="spinner-grow text-info loader-img" role="status">
             <span class="sr-only">Loading...</span>
         </div>
-        
+
     </div>
     <!-- /Loader -->
     @include('layouts.main-sidebar')
@@ -56,7 +56,7 @@
             </script>
         </div>
     </div>
-    
+
 
 
 </body>
@@ -109,8 +109,7 @@
 
 
 
-    
-</script>
 
+</script>
 
 

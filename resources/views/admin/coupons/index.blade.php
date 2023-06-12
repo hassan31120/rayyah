@@ -9,7 +9,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @endsection
 @section('title')
-    {{ __('admin.services') }}
+    {{ __('admin.coupons') }}
 @stop
 
 @section('page-header')
@@ -17,9 +17,9 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{ __('admin.services') }} </h4><span
+                <h4 class="content-title mb-0 my-auto">{{ __('admin.coupons') }} </h4><span
                     class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                    {{ __('admin.services') }}</span>
+                    {{ __('admin.coupons') }}</span>
             </div>
         </div>
 
@@ -50,14 +50,8 @@
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
-                    <a href="services/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
+                    <a href="coupon/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
                             class="fas fa-plus"></i>&nbsp; {{ __('admin.add') }}</a>
-
-                    @can('تصدير EXCEL')
-                        <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
-                            style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
-                    @endcan
-
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -66,9 +60,13 @@
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">{{ __('admin.image') }}</th>
-                                    <th class="border-bottom-0">{{ __('admin.name') }}</th>
-                                    <th class="border-bottom-0">{{ __('admin.description') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.code') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.discount') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.maximum_usage') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.owner') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.owner_ratio') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.start_date') }}</th>
+                                    <th class="border-bottom-0">{{ __('admin.end_date') }}</th>
                                     <th class="border-bottom-0">{{ __('admin.control') }}</th>
                                 </tr>
                             </thead>
@@ -76,28 +74,27 @@
                                 @php
                                     $i = 0;
                                 @endphp
-                                @foreach ($services as $item)
+                                @foreach ($coupons as $item)
                                     @php
                                         $i++;
                                     @endphp
                                     <tr>
                                         <td>{{ $i }}</td>
-                                        @isset($item->attachmentRelation[0])
-                                            <td><img src="{{ asset($item->attachmentRelation[0]->path) }} " alt="avatar"
-                                                    height="60" style="border-radius:20px;"></td>
-                                        @else
-                                            <td><img src="{{ asset('admin/app-assets/images/profile.png') }}" alt="avatar"
-                                                    height="60"></td>
-                                        @endisset
-                                        <td>{{ $item->name }} </td>
-                                        <td>{{ $item->description }}</td>
+
+                                        <td>{{ $item->code }} </td>
+                                        <td>{{ $item->discount }} %</td>
+                                        <td>{{ $item->maximum_usage }}</td>
+                                        <td>{{ $item->owner }}</td>
+                                        <td>{{ $item->owner_ratio }} %</td>
+                                        <td>{{ $item->start_date }}</td>
+                                        <td>{{ $item->end_date }}</td>
                                         <td>
-                                            <a href="{{ route('services.edit', $item->id) }}"
+                                            <a href="{{ route('coupon.edit', $item->id) }}"
                                                 class="btn round btn-outline-primary">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <span class=" btn round btn-outline-danger delete-row text-danger"
-                                                data-url="{{ url('services/delete/' . $item->id) }}"><i
+                                                data-url="{{ url('coupon/delete/' . $item->id) }}"><i
                                                     class="fa-solid fa-trash"></i></span>
                                         </td>
                                     </tr>
