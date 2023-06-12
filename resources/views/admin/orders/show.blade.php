@@ -48,6 +48,8 @@
                                             <p class="invoice-info-row"><span>Delivery Name</span> <span>{{ $order->delivery->name }}</span></p>
 
 											<p class="invoice-info-row"><span>Invoice No</span> <span>{{ $order->ref_number }}</span></p>
+											<p class="invoice-info-row"><span>Estimated Time</span> <span>{{ $order->est_time }} MIN</span></p>
+
 											<p class="invoice-info-row"><span>Due Date:</span> <span>{{ Carbon\carbon::parse($order->created_at)->format('Y-m-d') }}</span></p>
 										</div>
 									</div>
@@ -56,39 +58,22 @@
 											<thead>
 												<tr>
 													<th class="wd-20p">Service</th>
-													<th class="wd-40p">Description</th>
 
-													<th class="tx-center">Service Price</th>
-													<th class="tx-right">delivery Price</th>
+													<th class="wd-40p">delivery Price</th>
+													<th class="tx-right ">Description</th>
+
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
 													<td>{{ $order->service->name }}</td>
-													<td class="tx-12">{{ $order->description }}</td>
+													<td class="tx-16">${{ $order->total_del_price }}</td>
 
-													<td class="tx-center">${{ $order->total_service_price ?? 0.0 }}</td>
-													<td class="tx-right">${{ $order->total_del_price }}</td>
+													<td class="tx-right">{{ $order->description }}</td>
 												</tr>
 										
-												<tr>
-													<td class="valign-middle" colspan="2" rowspan="4">
-														
-													</td>
-													<td class="tx-right">Sub-Total</td>
-													<td class="tx-right" colspan="2">${{   $order->total_cost  }}</td>
-												</tr>
 												
-												<tr>
-													<td class="tx-right">Discount</td>
-													<td class="tx-right" colspan="2">$0.0</td>
-												</tr>
-												<tr>
-													<td class="tx-right tx-uppercase tx-bold tx-inverse">Total Due</td>
-													<td class="tx-right" colspan="2">
-														<h4 class="tx-primary tx-bold">${{ $order->total_cost }}</h4>
-													</td>
-												</tr>
+											
 											</tbody>
 										</table>
 									</div>

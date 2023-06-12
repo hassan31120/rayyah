@@ -36,5 +36,12 @@ class UserRegistration implements ShouldBroadcast
     {
         return 'user-register';
     }
+
+    public function broadcastWith()
+    {
+        return [
+            'sound' => asset('sounds/chatify/new-message-sound.mp3'),
+        ];
+    }
 }
 

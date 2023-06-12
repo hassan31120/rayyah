@@ -4,14 +4,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- summernote css/js -->
-    <!-- Internal Data table css -->
-    <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+
+   
 @endsection
 @section('title')
     {{ __('admin.banner') }}
@@ -86,24 +80,7 @@
 
     @section('js')
 
-    <script>
-        $(document).ready(function() {
-            $("#input-b8").fileinput({
-                rtl: true,
-                dropZoneEnabled: false,
-                allowedFileExtensions: ["jpg", "png", "gif"]
-            });
-        });
-        </script>
-        
-
-
-        <script>
-            $(document).ready(function() {
-                $('#example').DataTable();
-            });
-        </script>
-
+   
 
         {{-- delete one user script --}}
         @include('dashboard.shared.deleteOne')

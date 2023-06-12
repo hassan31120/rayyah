@@ -46,7 +46,9 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::get('my-trans', [UserController::class, 'myTrans']);
             Route::post('search', [UserController::class, 'search']);
             Route::post('cancel-order', [UserController::class, 'cancelOrder']);
-    
+            Route::get('list-offers', [UserController::class, 'listOffers']);
+            Route::post('accept-offer', [UserController::class, 'acceptOffer']);
+
             Route::post('/insertData', [AuthController::class, 'insertData']);
             Route::get('/profile', [AuthController::class, 'profile']);
             Route::post('/editProfile', [AuthController::class, 'editProfile']);
@@ -67,6 +69,8 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::post('accept-order', [DeliveryController::class, 'acceptOrder']);
             Route::post('finish-order', [DeliveryController::class, 'finishOrder']);
             Route::post('my-orders', [DeliveryController::class, 'myOrders']);
+            Route::post('make-offer', [DeliveryController::class, 'makeOffer']);
+
         });
     });
 

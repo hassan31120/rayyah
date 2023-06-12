@@ -34,6 +34,10 @@ class Order extends Model
         return $this->belongsTo('App\Models\Address');
     }
 
+    public function offers(){
+        return $this->hasMany(OrderOffer::class);
+    }
+
 
 
 }

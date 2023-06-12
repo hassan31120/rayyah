@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Api\user;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Client;
 use App\helpers\helper;
+use App\Models\OrderOffer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Notifications\OrderDeliver;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +16,6 @@ use App\Http\Resources\OrderResource;
 use App\Notifications\OrderAcceptNoti;
 use App\Http\Resources\DelOrderResource;
 use App\Http\Resources\TrackOrderResource;
-use App\Models\Client;
 use Illuminate\Support\Facades\Notification;
 
 class DeliveryController extends Controller
@@ -91,7 +93,8 @@ class DeliveryController extends Controller
 
     public function myOrders(Request $request)
     {
-        $orders = Order::where('delivery_id', auth()->user()->id)->get();
+        
+        $orders = Order::with('delivery')->where('delivery_id', auth()->user()->id)->get();
         if ($request->order_id) {
             $order = Order::where('id', $request->order_id)->first();
             return $this->helper->ResponseJson(1, __('apis.success'), new TrackOrderResource($order));
@@ -104,4 +107,32 @@ class DeliveryController extends Controller
 
         return $this->helper->ResponseJson(0, __('apis.faild'));
     }
+
+    public function makeOffer(Request $request)
+    {
+        $validate = $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'price' => 'required|int',
+
+        ]);
+
+        $order = Order::findOrFail($validate['order_id']);
+            if($order){
+        $offer = new OrderOffer();
+        $offer->order_id = $order->id;
+        $offer->client_id = $order->client_id;
+        $offer->delivery_id = auth()->user()->id;
+        $offer->price = $validate['price'];
+
+        $offer->save();
+
+        DB::commit(); // Commit the transaction since all operations were successful
+    
+        return $this->helper->ResponseJson(1, __('apis.success'), $offer);
+    } else {
+
+        return $this->helper->ResponseJson(1, __('apis.faild'), []);
+    }
+}
+    
 }
