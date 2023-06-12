@@ -43,7 +43,7 @@ class AdminController extends Controller
         // Calculate the difference between the two counts
         $orderDifference = $todayCount->count() - $yesterdayCount->count();
         $orderDifference1 =
-            $todayCount->sum('total_cost') - $yesterdayCount->sum('total_cost');
+            $todayCount->sum('total_del_price') - $yesterdayCount->sum('total_del_price');
 
         $startOfWeek = Carbon::now()
             ->startOfWeek()
@@ -65,12 +65,12 @@ class AdminController extends Controller
         // Get the total income for the current week
         $totalIncomeThisWeek = DB::table('orders')->where('status', '!=', 'pending')
             ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->sum('total_cost');
+            ->sum('total_del_price');
 
         // Get the total income for the previous week
         $totalIncomeLastWeek = DB::table('orders')->where('status', '!=', 'pending')
             ->whereBetween('created_at', [$startOfLastWeek, $endOfLastWeek])
-            ->sum('total_cost');
+            ->sum('total_del_price');
 
             if($totalIncomeLastWeek == 0){
                 $totalIncomeLastWeek = 1;
@@ -171,7 +171,7 @@ class AdminController extends Controller
 
 
           $orderat =   DB::table('orders')->where('status', 'done')
-      ->select(DB::raw('DATE(created_at) as date') , DB::raw('count(*) as count') , DB::raw('SUM(total_cost) as total_cost'))
+      ->select(DB::raw('DATE(created_at) as date') , DB::raw('count(*) as count') , DB::raw('SUM(total_del_price) as total_del_price'))
       ->groupBy('date')
       ->get();
 

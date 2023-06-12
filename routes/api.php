@@ -54,6 +54,7 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::post('/editProfile', [AuthController::class, 'editProfile']);
             Route::post('/delUser', [AuthController::class, 'delUser']);
         });
+
         Route::group(['middleware' => 'check-del'], function () {
             Route::prefix('delivery')->group(function () {
                 Route::get('list-orders', [DeliveryController::class, 'listOrders']);

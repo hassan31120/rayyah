@@ -87,12 +87,12 @@
                         <div class="d-flex">
                             <div class="">
                                 <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                    ${{ number_format($todayCount->sum('total_cost')) }}</h4>
+                                    ${{ number_format($todayCount->sum('total_del_price')) }}</h4>
                                     <p class="mb-0 tx-12 text-white op-7">{{__('admin.comar-day')  }}</p>
 
                             </div>
                             <span class="float-right my-auto mr-auto">
-                                @if ($todayCount->sum('total_cost') > $yesterdayCount->count('total_cost'))
+                                @if ($todayCount->sum('total_del_price') > $yesterdayCount->count('total_del_price'))
                                     <i class="fas fa-arrow-circle-up text-white"></i>
                                 @else
                                     <i class="fas fa-arrow-circle-down text-warning"></i>
@@ -139,7 +139,7 @@
                         <div class="d-flex">
                             <div class="">
                                 <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                    ${{ number_format(App\Models\Order::sum('total_cost')) }}</h4>
+                                    ${{ number_format(App\Models\Order::sum('total_del_price')) }}</h4>
                                     <p class="mb-0 tx-12 text-white op-7">{{ __('admin.compar-week') }}</p>
                                 </div>
                             <span class="float-right my-auto mr-auto">
@@ -274,7 +274,7 @@
                             <tr>
                                 <td>{{ $item->date }}</td>
                                 <td class="tx-right tx-medium tx-inverse">{{ $item->count }}</td>
-                                <td class="tx-right tx-medium tx-inverse">${{number_format($item->total_cost) }}</td>                 </tr>
+                                <td class="tx-right tx-medium tx-inverse">${{number_format($item->total_del_price) }}</td>                 </tr>
 
                             @endforeach
 
