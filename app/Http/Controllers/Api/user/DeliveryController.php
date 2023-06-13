@@ -93,7 +93,7 @@ class DeliveryController extends Controller
 
     public function myOrders(Request $request)
     {
-        
+
         $orders = Order::with('delivery')->where('delivery_id', auth()->user()->id)->get();
         if ($request->order_id) {
             $order = Order::where('id', $request->order_id)->first();
@@ -113,7 +113,6 @@ class DeliveryController extends Controller
         $validate = $request->validate([
             'order_id' => 'required|exists:orders,id',
             'price' => 'required|int',
-
         ]);
 
         $order = Order::findOrFail($validate['order_id']);
@@ -121,18 +120,19 @@ class DeliveryController extends Controller
         $offer = new OrderOffer();
         $offer->order_id = $order->id;
         $offer->client_id = $order->client_id;
+        $offer->est_time = $request->est_time;
         $offer->delivery_id = auth()->user()->id;
         $offer->price = $validate['price'];
 
         $offer->save();
 
         DB::commit(); // Commit the transaction since all operations were successful
-    
+
         return $this->helper->ResponseJson(1, __('apis.success'), $offer);
     } else {
 
         return $this->helper->ResponseJson(1, __('apis.faild'), []);
     }
 }
-    
+
 }
