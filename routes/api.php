@@ -50,10 +50,7 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::get('list-offers', [UserController::class, 'listOffers']);
             Route::post('accept-offer', [UserController::class, 'acceptOffer']);
 
-            Route::post('/insertData', [AuthController::class, 'insertData']);
-            Route::get('/profile', [AuthController::class, 'profile']);
-            Route::post('/editProfile', [AuthController::class, 'editProfile']);
-            Route::post('/delUser', [AuthController::class, 'delUser']);
+            Route::post('rate', [RateController::class, 'rate']);
 
             Route::post('/getcoupon', [CouponController::class, 'getCoupon']);
         });
@@ -68,7 +65,10 @@ Route::group(['middleware' => 'api-lang'], function () {
             });
         });
 
-        Route::post('rate', [RateController::class, 'rate']);
+        Route::post('/insertData', [AuthController::class, 'insertData']);
+        Route::get('/profile', [AuthController::class, 'profile']);
+        Route::post('/editProfile', [AuthController::class, 'editProfile']);
+        Route::post('/delUser', [AuthController::class, 'delUser']);
 
         Route::get('/notis', [NotiController::class, 'index']);
         Route::post('/markNotificationAsRead/{notificationId}', [NotiController::class, 'markNotificationAsRead']);
