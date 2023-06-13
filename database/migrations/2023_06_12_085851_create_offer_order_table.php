@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('delivery_id');
             $table->unsignedBigInteger('client_id');
             $table->float('price')->default(0.0);
-            $table->time('est_time');
+            $table->string('est_time')->nullable();
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
 
             $table->foreign('delivery_id')->references('id')->on('clients')->onDelete('cascade')

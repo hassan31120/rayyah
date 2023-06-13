@@ -152,7 +152,7 @@ class UserController extends Controller
         $order = Order::findOrFail($request->order_id)->whereNull('delivery_id')->first();
         if($order){
 
-        
+
         $offer = OrderOffer::findOrFail($request->offer_id);
         $offer->update([
             'status' => 'accepted',
@@ -171,7 +171,7 @@ class UserController extends Controller
             }
             $order->update([
                 'delivery_id'=>$offer->delivery_id,
-                'est_time'=>$offer->est_time,
+                'est_time'=>$offer->est_time ?? null,
                 'total_del_price'=>$offer->price,
                 'status'=>'on_delivery'
 
