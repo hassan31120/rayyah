@@ -50,7 +50,7 @@ class UserController extends Controller
     public function home(Request $request)
     {
         $services = HomeCatResource::collection(Service::all());
-        $banners = Banner::select('id','banner_'.app()->getLocale().' as banner','created_at')->get();
+        $banners = Banner::select('id', 'banner_' . app()->getLocale() . ' as banner', 'created_at')->get();
 
         if ($request->service_id) {
             $service = Service::where('id', $request->service_id)->first();
@@ -132,15 +132,14 @@ class UserController extends Controller
     }
 
 
-    public function listOffers(Request $request){
+    public function listOffers(Request $request)
+    {
         $order = Order::findOrFail($request->order_id);
-        $offers = OrderOffer::where('client_id' , auth()->user()->id)->where('order_id',$order->id)->where('status', 'pending')->get();
-        if($offers){
-            return $this->helper->ResponseJson(1, __('apis.success') , OffersResource::collection($offers));
-
+        $offers = OrderOffer::where('client_id', auth()->user()->id)->where('order_id', $order->id)->where('status', 'pending')->get();
+        if ($offers) {
+            return $this->helper->ResponseJson(1, __('apis.success'), OffersResource::collection($offers));
         }
         return $this->helper->ResponseJson(0, __('apis.faild'));
-
     }
 
     public function acceptOffer(Request $request)
@@ -149,39 +148,31 @@ class UserController extends Controller
             'order_id' => 'required|exists:orders,id',
             'offer_id' => 'required|exists:offer_order,id',
         ]);
-        $order = Order::findOrFail($request->order_id)->whereNull('delivery_id')->first();
-        if($order){
-
-
-        $offer = OrderOffer::findOrFail($request->offer_id);
-        $offer->update([
-            'status' => 'accepted',
-        ]);
-
-        $offers = OrderOffer::where('order_id',$order->id)->get()->except($offer->id);
-        //send noti to accepted offer delivery
-
-        foreach($offers as $offer){
+        $order = Order::findOrFail($request->order_id);
+        if ($order) {
+            $offer = OrderOffer::find($request->offer_id);
             $offer->update([
-                'status' => 'rejected',
+                'status' => 'accepted',
             ]);
 
-                    //send noti to each  offer rejected delivery
+            $offers = OrderOffer::where('order_id', $order->id)->get()->except($offer->id);
+            //send noti to accepted offer delivery
 
+            foreach ($offers as $offer) {
+                $offer->update([
+                    'status' => 'rejected',
+                ]);
+                //send noti to each  offer rejected delivery
             }
             $order->update([
-                'delivery_id'=>$offer->delivery_id,
-                'est_time'=>$offer->est_time ?? null,
-                'total_del_price'=>$offer->price,
-                'status'=>'on_delivery'
-
+                'delivery_id' => $offer->delivery_id,
+                'est_time' => $offer->est_time ?? null,
+                'total_del_price' => $offer->price,
+                'status' => 'on_delivery'
             ]);
-
-        return $this->helper->ResponseJson(1, __('apis.success') , new OffersResource($offer));
-
+            return $this->helper->ResponseJson(1, __('apis.success'), new OffersResource($offer));
         }
 
         return $this->helper->ResponseJson(1, __('apis.faild'));
-
     }
 }
