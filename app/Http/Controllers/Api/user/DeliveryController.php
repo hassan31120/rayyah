@@ -41,7 +41,8 @@ class DeliveryController extends Controller
         return $this->helper->ResponseJson(1, __('apis.success'), TrackOrderResource::collection($orders));
     }
 
-    public function myOffers(){
+    public function myOffers()
+    {
         $offers = OrderOffer::where('delivery_id', auth('sanctum')->user()->id)->get();
         return $this->helper->ResponseJson(1, __('apis.success'), OffersResource::collection($offers));
     }
@@ -123,23 +124,47 @@ class DeliveryController extends Controller
         ]);
 
         $order = Order::findOrFail($validate['order_id']);
-            if($order){
-        $offer = new OrderOffer();
-        $offer->order_id = $order->id;
-        $offer->client_id = $order->client_id;
-        $offer->est_time = $request->est_time;
-        $offer->delivery_id = auth()->user()->id;
-        $offer->price = $validate['price'];
+        if ($order) {
+            $offer = new OrderOffer();
+            $offer->order_id = $order->id;
+            $offer->client_id = $order->client_id;
+            $offer->est_time = $request->est_time;
+            $offer->delivery_id = auth()->user()->id;
+            $offer->price = $validate['price'];
 
-        $offer->save();
+            $offer->save();
 
-        DB::commit(); // Commit the transaction since all operations were successful
+            DB::commit(); // Commit the transaction since all operations were successful
 
-        return $this->helper->ResponseJson(1, __('apis.success'), $offer);
-    } else {
+            return $this->helper->ResponseJson(1, __('apis.success'), $offer);
+        } else {
 
-        return $this->helper->ResponseJson(1, __('apis.faild'), []);
+            return $this->helper->ResponseJson(1, __('apis.faild'), []);
+        }
     }
-}
 
+    public function CancelOffer(Request $request)
+    {
+        $request->validate([
+            'offer_id' => 'required',
+        ]);
+        $offer = OrderOffer::find($request->offer_id);
+        if ($offer) {
+            if ($offer->delivery_id != auth('sanctum')->user()->id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'this is not your offer to cancel!'
+                ]);
+            }
+            $offer->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Cancled!'
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'there is no offer to Cancel!'
+        ]);
+    }
 }
