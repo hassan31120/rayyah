@@ -43,7 +43,7 @@ class DeliveryController extends Controller
 
     public function myOffers()
     {
-        $offers = OrderOffer::where('delivery_id', auth('sanctum')->user()->id)->get();
+        $offers = OrderOffer::where('delivery_id', auth('sanctum')->user()->id)->where('status', 'pending')->get();
         return $this->helper->ResponseJson(1, __('apis.success'), OffersResource::collection($offers));
     }
 

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('address_id');
             $table->string('ref_number')->nullable();
+            $table->string('est_time')->nullable();
 
             $table->foreign('delivery_id')->references('id')->on('clients')->onDelete('cascade')
                 ->onUpdate('cascade');
