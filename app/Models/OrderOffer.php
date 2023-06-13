@@ -16,8 +16,8 @@ class OrderOffer extends Model
     {
         return $this->belongsTo(Order::class);
     }
+    
     public function delivery(){
         return $this->belongsTo(Client::class , 'delivery_id' , 'id');
-
     }
 }

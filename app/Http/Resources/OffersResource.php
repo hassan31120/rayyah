@@ -16,6 +16,7 @@ class OffersResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'order_id' => $this->order_id,
             'delivery' => $this->delivery->name,
             'phone'=>$this->delivery->number,
             'time'=>$this->est_time,

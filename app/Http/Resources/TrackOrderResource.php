@@ -26,7 +26,9 @@ class TrackOrderResource extends JsonResource
             'payment_method' => $this->payment_method,
             'date' => $this->created_at,
             'user' => new UserResource($this->client),
-            'address' => new AddressResource($this->address)
+            'address' => new AddressResource($this->address),
+            // 'offers' => OffersResource::collection($this->offers),
+            'is_offered' => $this->isoffered()
         ];
     }
 }
