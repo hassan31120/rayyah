@@ -18,9 +18,7 @@ class TrackOrderResource extends JsonResource
         return [
             'id' => $this->id,
             'delivery' => $this->delivery->name ?? null,
-            'service_price' => number_format($this->total_service_price),
             'delivery_price' => number_format($this->total_del_price),
-            'total_price' => number_format($this->total_cost),
             'reference_number' => $this->ref_number,
             'service' => $this->service->name ?? null,
             'description' => $this->description,

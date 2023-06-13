@@ -20,7 +20,6 @@ class OffersResource extends JsonResource
             'phone'=>$this->delivery->number,
             'time'=>$this->est_time,
             'price'=>$this->price
-
         ];
     }
 }
