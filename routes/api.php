@@ -62,6 +62,7 @@ Route::group(['middleware' => 'api-lang'], function () {
                 Route::post('finish-order', [DeliveryController::class, 'finishOrder']);
                 Route::post('my-orders', [DeliveryController::class, 'myOrders']);
                 Route::post('make-offer', [DeliveryController::class, 'makeOffer']);
+                Route::get('my-offers', [DeliveryController::class, 'myOffers']);
             });
         });
 
