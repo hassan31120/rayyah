@@ -20,7 +20,8 @@ class OffersResource extends JsonResource
             'delivery' => $this->delivery->name,
             'phone'=>$this->delivery->number,
             'time'=>$this->est_time,
-            'price'=>$this->price
+            'price'=>$this->price,
+            'order' => new TrackOrderResource($this->order)
         ];
     }
 }

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\OrderResource;
 use App\Notifications\OrderAcceptNoti;
 use App\Http\Resources\DelOrderResource;
+use App\Http\Resources\OffersResource;
 use App\Http\Resources\TrackOrderResource;
 use Illuminate\Support\Facades\Notification;
 
@@ -36,8 +37,13 @@ class DeliveryController extends Controller
             }
             return $this->helper->ResponseJson(0, __('apis.faild'));
         }
-        
+
         return $this->helper->ResponseJson(1, __('apis.success'), TrackOrderResource::collection($orders));
+    }
+
+    public function myOffers(){
+        $offers = OrderOffer::where('delivery_id', auth('sanctum')->user()->id)->get();
+        return $this->helper->ResponseJson(1, __('apis.success'), OffersResource::collection($offers));
     }
 
     public function acceptOrder(Request $request)
