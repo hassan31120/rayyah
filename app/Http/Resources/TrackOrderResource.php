@@ -27,6 +27,7 @@ class TrackOrderResource extends JsonResource
             'date' => $this->created_at,
             'user' => new UserResource($this->client),
             'address' => new AddressResource($this->address),
+            'est_time' => $this->est_time,
             // 'offers' => OffersResource::collection($this->offers),
             'is_offered' => $this->isoffered()
         ];
