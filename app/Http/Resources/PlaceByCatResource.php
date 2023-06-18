@@ -15,15 +15,13 @@ class PlaceByCatResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-                    'id' => $this->id,
-                    'name' => $this->name,
-                    'description' => $this->description,
-                    'rate' => $this->rate,
-                    'image' => $this->productImages[0]->image,
-                    'logo'=>$this->attachmentRelation[0]->path,
-                    'distance'=>$this->distance,
-                   
-            
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'rate' => $this->rate,
+            'image' => $this->productImages[0]->image,
+            'logo' => $this->attachmentRelation[0]->path,
+            'distance' => $this->distance,
         ];
     }
 }

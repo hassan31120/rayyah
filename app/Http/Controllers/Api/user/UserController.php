@@ -157,12 +157,14 @@ class UserController extends Controller
 
             $offers = OrderOffer::where('order_id', $order->id)->get()->except($offer->id);
             //send noti to accepted offer delivery
+            notify(__('notification.offer_accepted_title'), __('notification.offer_accepted_body'), [$offer->delivery]);
 
             foreach ($offers as $offer) {
                 $offer->update([
                     'status' => 'rejected',
                 ]);
                 //send noti to each  offer rejected delivery
+                notify(__('notification.offer_rejected_title'), __('notification.offer_rejected_body'), [$offer->delivery]);
             }
             $order->update([
                 'delivery_id' => $offer->delivery_id,

@@ -16,4 +16,10 @@ return [
     'finished_by' => 'تم التوصيل بنجاح بواسطة :delivery - :number',
     'send_balance_title' => 'لقد تلقيت رصيدًا',
     'send_balance_body' => ':user قام بإرسال :value لك',
+    'deposit_title' => 'تمت إضافة نقدية جديدة',
+    'deposit_body' => 'تمت إضافة :amount إلى محفظتك',
+    'offer_accepted_title' => 'تم قبول العرض',
+    'offer_accepted_body' => 'تم قبول عرضك، قم بالمتابعة',
+    'offer_rejected_title' => 'تم رفض العرض',
+    'offer_rejected_body' => 'عذرًا، تم رفض عرضك',
 ];

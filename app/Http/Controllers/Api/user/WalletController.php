@@ -28,6 +28,7 @@ class WalletController extends Controller
         $user = Auth::user();
         $amount = $request->amount;
         $this->walletService->deposit($user, $amount);
+        notify(__('notification.deposit_title'), __('notification.deposit_body', ['amount' => $amount]), [$user])
         // Redirect to success page or display a success message
         return $this->helper->ResponseJson(1, __('apis.success'), $amount);
     }
@@ -52,6 +53,7 @@ class WalletController extends Controller
     {
         $validate = $request->validate([
             'balance' => 'required',
+            'country_code' => 'required',
             'number' => 'required|exists:clients,number',
         ]);
         $sender = auth('sanctum')->user();

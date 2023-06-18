@@ -19,7 +19,9 @@ class TransResource extends JsonResource
             'sending_trans' => $this->user->sending_trans->map(function ($item, $key) {
                 return [
                     'amount' => $item->value,
+                    'sender_country_code' => $item->sender->country_code,
                     'sender' => $item->sender->number,
+                    'reciver_country_code' => $item->reciver->country_code,
                     'reciver' => $item->reciver->number,
                     'created_at' => $item->created_at
                 ];
@@ -27,7 +29,9 @@ class TransResource extends JsonResource
             'reciving_trans' => $this->user->reciving_trans->map(function ($item, $key) {
                 return [
                     'amount' => $item->value,
+                    'sender_country_code' => $item->sender->country_code,
                     'sender' => $item->sender->number,
+                    'reciver_country_code' => $item->reciver->country_code,
                     'reciver' => $item->reciver->number,
                     'created_at' => $item->created_at
                 ];
