@@ -31,7 +31,8 @@ class Client extends Authenticatable
         'userType',
         'rate',
         'verification_code',
-        'number_verified_at'
+        'number_verified_at',
+        'country_code'
     ];
 
     public function __construct(array $attributes = [])
