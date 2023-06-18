@@ -15,10 +15,10 @@ class CartDetailsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->products->id,
+            'id' => $this->products->id,
             'title' => $this->products->name,
-            'image'=>$this->products->attachmentRelation[0]->path ?? null,
-            'price'=> $this->del_price,
-];
+            'image' => $this->products->attachmentRelation[0]->path ?? null,
+            'price' => $this->del_price,
+        ];
     }
 }

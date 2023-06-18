@@ -13,4 +13,10 @@ return [
     'finished_by' => 'it delivered successfully by :delivery - :number',
     'send_balance_title' => 'You received a balance',
     'send_balance_body' => ':user has send to you :value',
+    'deposit_title' => 'New Cash Added',
+    'deposit_body' => ':amount has been added to your wallet',
+    'offer_accepted_title' => 'Offer Accepted',
+    'offer_accepted_body' => 'Your offer has been accepted, go ahead',
+    'offer_rejected_title' => 'Offer Rejected',
+    'offer_rejected_body' => 'Sorry, your offer has been rejected',
 ];

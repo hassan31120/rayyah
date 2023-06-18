@@ -19,6 +19,7 @@ class AuthController extends Controller
     public function auth(Request $request)
     {
         $validatedData = $request->validate([
+            'country_code' => 'required',
             'number' => 'required',
             'userType' => 'nullable'
         ]);
@@ -32,7 +33,7 @@ class AuthController extends Controller
 
             // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
             // $client->messages->create(
-            //     $user->number,
+            //     $user->country_code . $user->number,
             //     array(
             //         'from' => env('TWILIO_PHONE_NUMBER'),
             //         'body' => 'Your verification code is: ' . $verificationCode
@@ -48,6 +49,7 @@ class AuthController extends Controller
             // User does not exist, send verification code for registration
             $verificationCode = rand(1000, 9999);
             $user = ClientModel::create([
+                'country_code' => $validatedData['country_code'],
                 'number' => $validatedData['number'],
                 'verification_code' => $verificationCode,
             ]);
@@ -63,7 +65,7 @@ class AuthController extends Controller
 
             // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
             // $client->messages->create(
-            //     $user->number,
+            //     $user->country_code . $user->number,
             //     array(
             //         'from' => env('TWILIO_PHONE_NUMBER'),
             //         'body' => 'Your verification code is: ' . $verificationCode
@@ -85,6 +87,7 @@ class AuthController extends Controller
     public function verify(Request $request)
     {
         $validatedData = $request->validate([
+            'country_code' => 'required',
             'number' => 'required',
             'verification_code' => 'required|digits:4',
             'push_token' => 'required'
@@ -109,8 +112,6 @@ class AuthController extends Controller
             'verification_code' => null,
             'push_token' => $validatedData['push_token']
         ]);
-
-        // hello hassan
 
         $token = $user->createToken('Mohammed-Hassan')->plainTextToken;
 
@@ -176,6 +177,7 @@ class AuthController extends Controller
         }
         $request->validate([
             'name' => 'required',
+            'country_code' => 'required',
             'number' => 'required|unique:clients,number, ' .  $user->id,
         ]);
         $data = $request->all();
@@ -206,13 +208,5 @@ class AuthController extends Controller
                 'msg' => 'there is no such user'
             ], 404);
         }
-    }
-
-    public function test()
-    {
-        // $user = ClientModel::find(2);
-        $users = ClientModel::all();
-        notify('محمد', 'رمضان', $users);
-        return 'aha';
     }
 }

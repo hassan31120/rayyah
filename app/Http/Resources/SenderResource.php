@@ -17,6 +17,7 @@ class SenderResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'country_code' => $this->country_code,
             'number' => $this->number,
             'image' => asset($this->image)
         ];

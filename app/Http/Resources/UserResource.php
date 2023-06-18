@@ -15,13 +15,14 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'        => $this->id,
-            'name'      => $this->name,
-            'email'     => $this->email,
-            'number'    => $this->number,
-            'userType'  => $this->userType,
-            'balance'   => (double) $this->wallet->balance,
-            'image'     => $this->when(true, function () {
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'email'         => $this->email,
+            'country_code'  => $this->country_code,
+            'number'        => $this->number,
+            'userType'      => $this->userType,
+            'balance'       => (float) $this->wallet->balance,
+            'image'         => $this->when(true, function () {
                 if (isset($this->attachmentRelation[0])) {
                     return asset($this->attachmentRelation[0]->path);
                 } else {
