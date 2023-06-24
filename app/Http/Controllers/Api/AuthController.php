@@ -12,6 +12,7 @@ use App\Events\UserRegistration;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Client as ClientModel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 
 class AuthController extends Controller
@@ -31,46 +32,62 @@ class AuthController extends Controller
             $user->verification_code = $verificationCode;
             $user->save();
 
-            // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
-            // $client->messages->create(
-            //     $user->country_code . $user->number,
-            //     array(
-            //         'from' => env('TWILIO_PHONE_NUMBER'),
-            //         'body' => 'Your verification code is: ' . $verificationCode
-            //     )
-            // );
-
-            event(new UserRegistration());
+            // try {
+            //     $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
+            //     $client->messages->create(
+            //         $user->country_code . $user->number,
+            //         array(
+            //             'from' => env('TWILIO_PHONE_NUMBER'),
+            //             'body' => 'Your verification code for Rayih login is: ' . $verificationCode
+            //         )
+            //     );
+            // } catch (\Throwable $th) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'error' => 'your country is not supported',
+            //     ], 422);
+            // }
 
             return response()->json([
                 'message' => 'code has been sent successfully for login!',
             ], 200);
         } else {
             // User does not exist, send verification code for registration
-            $verificationCode = rand(1000, 9999);
-            $user = ClientModel::create([
-                'country_code' => $validatedData['country_code'],
-                'number' => $validatedData['number'],
-                'verification_code' => $verificationCode,
-            ]);
+            try {
+                DB::beginTransaction();
+                $verificationCode = rand(1000, 9999);
+                $user = ClientModel::create([
+                    'country_code' => $validatedData['country_code'],
+                    'number' => $validatedData['number'],
+                    'verification_code' => $verificationCode,
+                ]);
 
-            if (isset($validatedData['userType'])) {
-                $user->userType = $validatedData['userType'];
-                $user->save();
+                if (isset($validatedData['userType'])) {
+                    $user->userType = $validatedData['userType'];
+                    $user->save();
+                }
+                $wallet = Wallet::create([
+                    'balance' => 0,
+                    'client_id' => $user->id,
+                ]);
+
+                // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
+                // $client->messages->create(
+                //     $user->country_code . $user->number,
+                //     array(
+                //         'from' => env('TWILIO_PHONE_NUMBER'),
+                //         'body' => 'Your verification code for Rayih registeration is: ' . $verificationCode
+                //     )
+                // );
+
+                DB::commit();
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json([
+                    'success' => false,
+                    'error' => 'your country is not supported',
+                ], 422);
             }
-            $wallet = Wallet::create([
-                'balance' => 0,
-                'client_id' => $user->id,
-            ]);
-
-            // $client = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
-            // $client->messages->create(
-            //     $user->country_code . $user->number,
-            //     array(
-            //         'from' => env('TWILIO_PHONE_NUMBER'),
-            //         'body' => 'Your verification code is: ' . $verificationCode
-            //     )
-            // );
 
             event(new UserRegistration());
 
