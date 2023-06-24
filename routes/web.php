@@ -180,4 +180,11 @@ Route::middleware('auth')->group(function () {
         Route::delete('/coupon/delete/{id}', 'destroy')->name('coupon.delete');
     });
 });
+
+// Route::get('/linkstorage', function () {
+//     $targetFolder = base_path() . '/storage/app/public';
+//     $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+//     symlink($targetFolder, $linkFolder);
+// });
+
 require __DIR__ . '/auth.php';

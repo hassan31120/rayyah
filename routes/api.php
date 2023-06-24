@@ -41,10 +41,7 @@ Route::group(['middleware' => 'api-lang'], function () {
             Route::post('/del_address/{id}', [AddressController::class, 'destroy']);
 
             Route::get('my-orders', [UserController::class, 'myOrders']);
-            Route::post('deposit', [WalletController::class, 'deposit']);
-            Route::post('withdraw', [WalletController::class, 'withdraw']);
-            Route::post('sendBalance', [WalletController::class, 'sendBalance']);
-            Route::get('my-trans', [UserController::class, 'myTrans']);
+
             Route::post('search', [UserController::class, 'search']);
             Route::post('cancel-order', [UserController::class, 'cancelOrder']);
             Route::get('list-offers', [UserController::class, 'listOffers']);
@@ -75,6 +72,10 @@ Route::group(['middleware' => 'api-lang'], function () {
         Route::get('/notis', [NotiController::class, 'index']);
         Route::post('/markNotificationAsRead/{notificationId}', [NotiController::class, 'markNotificationAsRead']);
         Route::post('/markAllNotificationsAsRead', [NotiController::class, 'markAllNotificationsAsRead']);
+        Route::post('deposit', [WalletController::class, 'deposit']);
+        Route::post('withdraw', [WalletController::class, 'withdraw']);
+        Route::post('sendBalance', [WalletController::class, 'sendBalance']);
+        Route::get('my-trans', [UserController::class, 'myTrans']);
     });
 
     Route::get('home', [UserController::class, 'home']);

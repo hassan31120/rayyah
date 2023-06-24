@@ -18,10 +18,11 @@ class OffersResource extends JsonResource
             'id' => $this->id,
             'order_id' => $this->order_id,
             'delivery' => $this->delivery->name,
+            'delivery_image' => asset($this->delivery->attachmentRelation[0]->path ?? null),
             'country_code' => $this->delivery->country_code,
-            'phone'=>$this->delivery->number,
-            'time'=>$this->est_time,
-            'price'=>$this->price,
+            'phone' => $this->delivery->number,
+            'time' => $this->est_time,
+            'price' => $this->price,
             'order' => new TrackOrderResource($this->order)
         ];
     }
