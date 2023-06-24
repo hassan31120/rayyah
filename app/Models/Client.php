@@ -71,7 +71,6 @@ class Client extends Authenticatable
 
     public function reciving_trans(){
         return $this->hasMany(Transaction::class, 'reciver_id');
-
     }
 
     public function push_notifications(){

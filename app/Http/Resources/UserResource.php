@@ -20,6 +20,7 @@ class UserResource extends JsonResource
             'email'         => $this->email,
             'country_code'  => $this->country_code,
             'number'        => $this->number,
+            'rate'          => $this->rate,
             'userType'      => $this->userType,
             'balance'       => (float) $this->wallet->balance,
             'image'         => $this->when(true, function () {
