@@ -23,6 +23,7 @@ class OrderResource extends JsonResource
             'reference_number' => $this->ref_number,
             'total_del_price' => $this->total_del_price,
             'time' => $this->created_at,
+            'est_time' => $this->est_time,
             'status' => $this->status,
             'service' => $this->service->name ?? null,
             'delivery' => new UserResource($this->delivery)

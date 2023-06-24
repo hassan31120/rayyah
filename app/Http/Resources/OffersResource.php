@@ -18,7 +18,13 @@ class OffersResource extends JsonResource
             'id' => $this->id,
             'order_id' => $this->order_id,
             'delivery' => $this->delivery->name,
-            'delivery_image' => asset($this->delivery->attachmentRelation[0]->path ?? null),
+            'delivery_image' => $this->when(true, function () {
+                if (isset($this->attachmentRelation[0])) {
+                    return asset($this->attachmentRelation[0]->path);
+                } else {
+                    return null;
+                }
+            }),
             'country_code' => $this->delivery->country_code,
             'phone' => $this->delivery->number,
             'time' => $this->est_time,
